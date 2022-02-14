@@ -1,5 +1,5 @@
-#include "MiniginPCH.h"
-#include "Minigin.h"
+#include "EnginePCH.h"
+#include "Engine.h"
 #include <thread>
 #include "InputManager.h"
 #include "SceneManager.h"
