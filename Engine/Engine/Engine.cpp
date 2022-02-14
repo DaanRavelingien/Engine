@@ -24,7 +24,7 @@ void PrintSDLVersion()
 		linked.major, linked.minor, linked.patch);
 }
 
-void dae::Engine::Initialize()
+void Engine::Initialize()
 {
 	PrintSDLVersion();
 	
@@ -52,7 +52,7 @@ void dae::Engine::Initialize()
 /**
  * Code constructing the scene world starts here
  */
-void dae::Engine::LoadGame() const
+void Engine::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
@@ -71,7 +71,7 @@ void dae::Engine::LoadGame() const
 	scene.Add(to);
 }
 
-void dae::Engine::Cleanup()
+void Engine::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
@@ -79,7 +79,7 @@ void dae::Engine::Cleanup()
 	SDL_Quit();
 }
 
-void dae::Engine::Run()
+void Engine::Run()
 {
 	Initialize();
 
