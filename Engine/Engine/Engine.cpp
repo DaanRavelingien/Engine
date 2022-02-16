@@ -8,6 +8,7 @@
 #include "TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
+#include "Time.h"
 
 using namespace std;
 
@@ -34,7 +35,7 @@ void Engine::Initialize()
 	}
 
 	m_Window = SDL_CreateWindow(
-		"Programming 4 assignment",
+		"Game Engine Testing",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		640,
@@ -88,20 +89,43 @@ void Engine::Run()
 
 	LoadGame();
 
-	{
-		auto& renderer = Renderer::GetInstance();
-		auto& sceneManager = SceneManager::GetInstance();
-		auto& input = InputManager::GetInstance();
+	//testing logger
+	Logger::GetInstance().LogError("error");
+	std::cout << "Test\n";
+	Logger::GetInstance().LogMessage("message");
+	std::cout << "Test\n";
+	Logger::GetInstance().LogWarning("warnign");
+	std::cout << "Test\n";
 
-		// todo: this update loop could use some work.
-		bool doContinue = true;
-		while (doContinue)
+	auto& renderer = Renderer::GetInstance();
+	auto& sceneManager = SceneManager::GetInstance();
+	auto& input = InputManager::GetInstance();
+	
+	bool doContinue = true;
+	int lag = 0; //lag in Ms
+
+	//starting the game timer
+	Time& time{ Time::GetInstance() };
+	time.Start();
+
+	while (doContinue)
+	{
+		Time::GetInstance().Update();
+		lag += time.GetDeltaTimeInMs();
+
+		while (lag >= MsPerFrame)
 		{
-			doContinue = input.ProcessInput();
-			sceneManager.Update();
-			renderer.Render();
+			sceneManager.FixedUpdate();
+			lag -= MsPerFrame;
 		}
+
+		doContinue = input.ProcessInput();
+		sceneManager.Update();
+		renderer.Render();
+
 	}
 
+	time.Stop();
 	Cleanup();
+
 }
