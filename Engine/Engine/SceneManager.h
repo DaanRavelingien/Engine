@@ -10,9 +10,11 @@ public:
 	Scene& CreateScene(const std::string& name);
 	void SetActiveScene(const std::string& sceneName);
 
+	void Initialize();
 	void Update();
 	void FixedUpdate();
 	void Render();
+
 protected:
 	friend class Singleton<SceneManager>;
 	SceneManager() = default;

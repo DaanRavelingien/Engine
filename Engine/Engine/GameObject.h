@@ -1,29 +1,107 @@
 #pragma once
-#include "Transform.h"
-#include "SceneObject.h"
+#include "Component.h"
+#include "Subject.h"
 
-class Texture2D;
+class TransformComp;
 
-// todo: this should become final.
-class GameObject : public SceneObject
+class GameObject final
 {
 public:
-	void Update() override;
-	void Render() const override;
+	GameObject(const std::string& name);
+	GameObject(const GameObject & other) = delete;
+	GameObject(GameObject && other) = delete;
+	GameObject& operator=(const GameObject & other) = delete;
+	GameObject& operator=(GameObject && other) = delete;
 
-	void SetTexture(const std::string& filename);
-	void SetPosition(float x, float y);
+	void Initialize();
+	void Update();
+	void FixedUpdate();
+	void Render() const;
 
-	GameObject() = default;
-	virtual ~GameObject();
-	GameObject(const GameObject& other) = delete;
-	GameObject(GameObject&& other) = delete;
-	GameObject& operator=(const GameObject& other) = delete;
-	GameObject& operator=(GameObject&& other) = delete;
+	void Destroy() { m_Destroyed = true; };
+	bool IsDestroyed() const { return m_Destroyed; };
+
+	std::string GetName() const { return m_Name; };
+	void Rename(const std::string& name) { m_Name = name; };
+
+	void AddComponent(Component* comp);
+	void RemoveComponent(int idx);
+
+	//removes all components of given type
+	template<typename T>
+	void RemoveComponents()
+	{
+		auto it = std::remove_if(m_Components.begin(), m_Components.end(), [](Component* pComponent)
+			{
+				if (dynamic_cast<T*>(pComponent))
+				{
+					delete pComponent;
+					pComponent = nullptr;
+					return true;
+				}
+				return false;
+			});
+
+		if (it == m_Components.end)
+			Logger::GetInstance().LogWarning("GameObject.RemoveComponents(), No components of type were found");
+		else
+			m_Components.erase(it, m_Components.end());
+	}
+	//only gets the first added comp of given type
+	template<typename T>
+	T* GetComponent() const
+	{
+		auto it = std::find_if(m_Components.begin(), m_Components.end(), [](Component* pComponent)
+			{
+				if (dynamic_cast<T*>(pComponent))
+					return true;
+				return false;
+			});
+
+		if (it == m_Components.end())
+		{
+			Logger::GetInstance().LogWarning("GameObject.GetComponent(), Could Not find a component of given type");
+			return nullptr;
+		}
+
+		return dynamic_cast<T*>(*it);
+	};
+	//gets the comp of type with idx for if you want a specific comp
+	template<typename T>
+	T* GetComponent(int idx) const
+	{
+		auto it = std::find_if(m_Components.begin(), m_Components.end(), [idx](Component* pComponent)
+			{
+				if (dynamic_cast<T*>(pComponent) && pComponent->GetIdx() == idx)
+					return true;
+				return false;
+			});
+
+		if (it == m_Components.end())
+		{
+			Logger::GetInstance().LogWarning("GameObject.GetComponent(), Could Not find a component of given type with given index");
+			return nullptr;
+		}
+
+		return dynamic_cast<T*>(*it);
+	};
+
+	//some functions for easier acces to the default transform component
+	TransformComp* GetTransform() const;
+
+	//add some functions to send notifications to other components
+	void SendNotification(Component* pComp, Event event) { m_GameObjSubject.Notify(pComp, event); };
 
 private:
-	Transform m_Transform;
-	// todo: mmm, every gameobject has a texture? Is that correct?
-	std::shared_ptr<Texture2D> m_Texture{};
+	//making the destructor private so you have to use the destroy function
+	virtual ~GameObject();
+
+	std::string m_Name{};
+	std::vector<Component*> m_Components{};
+	bool m_Destroyed{ false };
+
+	//add subject to the game object so it can send events to all its components
+	//with as payload a component pointer
+	Subject<Component*> m_GameObjSubject{};
 };
 

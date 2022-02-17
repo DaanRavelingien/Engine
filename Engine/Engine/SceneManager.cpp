@@ -4,18 +4,28 @@
 #include <algorithm>
 #include "Logger.h"
 
+void SceneManager::Initialize()
+{
+	if (m_pActiveScene)
+		m_pActiveScene->Initialize();
+	else
+		Logger::GetInstance().LogError("SceneManager::Initialize(), failed to find an active scene");
+}
+
 void SceneManager::Update()
 {
 	if (m_pActiveScene)
 		m_pActiveScene->Update();
 	else
-		Logger::GetInstance().LogError("No active scene found");
+		Logger::GetInstance().LogError("SceneManager::Update(), failed to find an active scene");
 }
 
 void SceneManager::FixedUpdate()
 {
-	//if (m_pActiveScene)
-	//	m_pActiveScene->FixedUpdate();
+	if (m_pActiveScene)
+		m_pActiveScene->FixedUpdate();
+	else
+		Logger::GetInstance().LogError("SceneManager::FixedUpdate(), failed to find an active scene");
 }
 
 void SceneManager::Render()
@@ -23,7 +33,7 @@ void SceneManager::Render()
 	if (m_pActiveScene)
 		m_pActiveScene->Render();
 	else
-		Logger::GetInstance().LogError("No active scene found");
+		Logger::GetInstance().LogError("SceneManager::Render(), failed to find an active scene");
 }
 
 SceneManager::~SceneManager()
@@ -59,7 +69,7 @@ void SceneManager::SetActiveScene(const std::string& sceneName)
 
 	//if no scene was found dont change anything but output an error message
 	if (sceneIt == m_Scenes.end())
-		Logger::GetInstance().LogError("No scene found with the specified name");
+		Logger::GetInstance().LogWarning("SceneManager::SetActiveScene(const std::string&), failed to set the given scene as active");
 	else //otherwise set as active scene
 		m_pActiveScene = *sceneIt;
 

@@ -29,6 +29,7 @@ void Logger::LogMessage(const std::string& message)
 }
 
 Logger::Logger()
+	:m_ConsoleHandle{ GetStdHandle(STD_OUTPUT_HANDLE) }
 {
 	GetConsoleScreenBufferInfo(m_ConsoleHandle, &m_DefaultConsoleInfo);
 }

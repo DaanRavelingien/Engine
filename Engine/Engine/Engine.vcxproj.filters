@@ -16,9 +16,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Engine\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="SceneObject.h">
-      <Filter>Engine\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Engine\Helpers</Filter>
     </ClInclude>
@@ -31,12 +28,6 @@
     <ClInclude Include="Singleton.h">
       <Filter>Engine\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Engine\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="TextObject.h">
-      <Filter>Engine\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Engine\Resources</Filter>
     </ClInclude>
@@ -48,6 +39,30 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Engine\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComp.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComp.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Engine\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Engine\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Events.h">
+      <Filter>Engine\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Render2DComp.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureComp.h">
+      <Filter>Engine\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -76,12 +91,6 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Engine\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="TextObject.cpp">
-      <Filter>Engine\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Engine\Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Engine\Resources</Filter>
     </ClCompile>
@@ -93,6 +102,18 @@
     </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Engine\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComp.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureComp.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Render2DComp.cpp">
+      <Filter>Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +137,9 @@
     </Filter>
     <Filter Include="Engine\Resources">
       <UniqueIdentifier>{f7a642f1-e6dc-4327-a759-d028f6e25f55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{f4da3d1b-dbec-4907-a7b8-6052d299a3a6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

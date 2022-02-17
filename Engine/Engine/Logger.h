@@ -1,6 +1,6 @@
 #pragma once
 #include "Singleton.h"
-#include <windows.h>
+#include <Windows.h>
 
 class Logger final : public Singleton<Logger>
 {
@@ -13,7 +13,7 @@ protected:
 	friend class Singleton<Logger>;
 	Logger();
 
-	HANDLE m_ConsoleHandle{ GetStdHandle(STD_OUTPUT_HANDLE) };
+	HANDLE m_ConsoleHandle{};
 	CONSOLE_SCREEN_BUFFER_INFO  m_DefaultConsoleInfo{};
 };
 

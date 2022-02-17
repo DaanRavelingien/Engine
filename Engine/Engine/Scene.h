@@ -1,14 +1,17 @@
 #pragma once
 #include "SceneManager.h"
 
-class SceneObject;
+class GameObject;
+
 class Scene
 {
 	friend Scene& SceneManager::CreateScene(const std::string& name);
 public:
-	void Add(const std::shared_ptr<SceneObject>& object);
+	void Add(GameObject* pGameObj);
 
+	void Initialize();
 	void Update();
+	void FixedUpdate();
 	void Render() const;
 
 	std::string GetName() const { return m_Name; };
@@ -22,8 +25,10 @@ public:
 private: 
 	explicit Scene(const std::string& name);
 
+	void RemoveDestroyedGameObjs();
+
 	std::string m_Name;
-	std::vector < std::shared_ptr<SceneObject>> m_Objects{};
+	std::vector <GameObject*> m_GameObjs{};
 
 	static unsigned int m_IdCounter; 
 };

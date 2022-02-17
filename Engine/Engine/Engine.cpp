@@ -5,7 +5,6 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-#include "TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
@@ -55,21 +54,21 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
-	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+	//auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	auto go = std::make_shared<GameObject>();
-	go->SetTexture("background.jpg");
-	scene.Add(go);
-
-	go = std::make_shared<GameObject>();
-	go->SetTexture("logo.png");
-	go->SetPosition(216, 180);
-	scene.Add(go);
-
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
-	to->SetPosition(80, 20);
-	scene.Add(to);
+	//auto go = std::make_shared<GameObject>();
+	//go->SetTexture("background.jpg");
+	//scene.Add(go);
+	//
+	//go = std::make_shared<GameObject>();
+	//go->SetTexture("logo.png");
+	//go->SetPosition(216, 180);
+	//scene.Add(go);
+	//
+	//auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	//auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
+	//to->SetPosition(80, 20);
+	//scene.Add(to);
 }
 
 void Engine::Cleanup()
@@ -88,14 +87,6 @@ void Engine::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	LoadGame();
-
-	//testing logger
-	Logger::GetInstance().LogError("error");
-	std::cout << "Test\n";
-	Logger::GetInstance().LogMessage("message");
-	std::cout << "Test\n";
-	Logger::GetInstance().LogWarning("warnign");
-	std::cout << "Test\n";
 
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
@@ -122,7 +113,6 @@ void Engine::Run()
 		doContinue = input.ProcessInput();
 		sceneManager.Update();
 		renderer.Render();
-
 	}
 
 	time.Stop();
