@@ -66,7 +66,7 @@ public:
 
 		if (it == m_Components.end())
 		{
-			Logger::GetInstance().LogWarning("GameObject.GetComponent(), Could Not find a component of given type");
+			LOGWARNING("Could Not find a component of given type");
 			return nullptr;
 		}
 
@@ -85,7 +85,7 @@ public:
 
 		if (it == m_Components.end())
 		{
-			Logger::GetInstance().LogWarning("GameObject.GetComponent(), Could Not find a component of given type with given index");
+			LOGWARNING("Could Not find a component of given type with given index");
 			return nullptr;
 		}
 

@@ -16,17 +16,8 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Engine\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Engine\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture2D.h">
-      <Filter>Engine\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Engine\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Engine\Resources</Filter>
@@ -49,15 +40,6 @@
     <ClInclude Include="TransformComp.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Subject.h">
-      <Filter>Engine\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Observer.h">
-      <Filter>Engine\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Events.h">
-      <Filter>Engine\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="Render2DComp.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
@@ -66,6 +48,24 @@
     </ClInclude>
     <ClInclude Include="FPSComp.h">
       <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Events.h">
+      <Filter>Engine\Helpers\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Engine\Helpers\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Engine\Helpers\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Engine\Helpers\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Engine\Helpers\SDL_Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Engine\Helpers\SDL_Wrappers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -84,12 +84,6 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Engine\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Engine\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>Engine\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Engine\Rendering</Filter>
@@ -124,6 +118,12 @@
     <ClCompile Include="TransformComp.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Engine\Helpers\SDL_Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Engine\Helpers\SDL_Wrappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -149,6 +149,12 @@
     </Filter>
     <Filter Include="Engine\Components">
       <UniqueIdentifier>{f4da3d1b-dbec-4907-a7b8-6052d299a3a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Helpers\Patterns">
+      <UniqueIdentifier>{2ca845c3-4fe2-4757-a0f1-6fca8ceafc60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Helpers\SDL_Wrappers">
+      <UniqueIdentifier>{a17f249a-9050-499d-b52f-777537bfffb6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

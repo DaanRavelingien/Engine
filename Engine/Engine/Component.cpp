@@ -12,7 +12,7 @@ Component::Component()
 GameObject* Component::GetGameObj() const
 {
 	if (!m_pGameObj)
-		Logger::GetInstance().LogWarning("Component::GetGameObj(), component is not attached to any game object");
+		LOGWARNING("component is not attached to any game object");
 
 	return m_pGameObj;
 }

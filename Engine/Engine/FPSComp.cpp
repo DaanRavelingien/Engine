@@ -8,7 +8,7 @@ void FPSComp::Initialize()
 	m_pTextComp = m_pGameObj->GetComponent<TextComp>();
 
 	if (m_pTextComp == nullptr)
-		Logger::GetInstance().LogWarning("FPSComp::Initialize(), no text component was found");
+		LOGWARNING("no text component was found");
 	else
 		m_pTextComp->SetText("0 FPS");
 }

@@ -34,7 +34,7 @@ void Render2DComp::Render()
 		}
 		else
 		{
-			Logger::GetInstance().LogWarning("Render2DComp::Render(), a texture was nullptr");
+			LOGWARNING("a texture was nullptr");
 		}
 	}
 }

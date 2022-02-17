@@ -116,7 +116,7 @@ void GameObject::RemoveComponent(int idx)
 		});
 
 	if (it == m_Components.end())
-		Logger::GetInstance().LogWarning("GameObject.RemoveComponent(int), failed to find component with the specified index");
+		LOGWARNING("failed to find component with the specified index");
 	else
 		m_Components.erase(it, m_Components.end());
 }
