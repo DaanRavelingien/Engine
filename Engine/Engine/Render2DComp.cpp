@@ -9,6 +9,19 @@
 #include "TransformComp.h"
 #include "TextureComp.h"
 
+Render2DComp::~Render2DComp()
+{
+	for (std::pair<Component*, Texture2D*> pair : m_CompsToRender)
+	{
+		//deleting the textures the render comp created for our text
+		if (dynamic_cast<TextComp*>(pair.first) != NULL)
+		{
+			delete pair.second;
+			pair.second = nullptr;
+		}
+	}
+}
+
 void Render2DComp::Render()
 {
 	for (std::pair<Component*, Texture2D*> pair : m_CompsToRender)
