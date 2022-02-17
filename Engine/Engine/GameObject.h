@@ -8,6 +8,7 @@ class GameObject final
 {
 public:
 	GameObject(const std::string& name);
+	virtual ~GameObject();
 	GameObject(const GameObject & other) = delete;
 	GameObject(GameObject && other) = delete;
 	GameObject& operator=(const GameObject & other) = delete;
@@ -93,9 +94,6 @@ public:
 	void SendNotification(Component* pComp, Event event) { m_GameObjSubject.Notify(pComp, event); };
 
 private:
-	//making the destructor private so you have to use the destroy function
-	virtual ~GameObject();
-
 	std::string m_Name{};
 	std::vector<Component*> m_Components{};
 	bool m_Destroyed{ false };

@@ -9,6 +9,13 @@
 #include "Scene.h"
 #include "Time.h"
 
+//temp includes for the demo scene
+//so we can create game obj here
+#include "Render2DComp.h"
+#include "TextComp.h"
+#include "TextureComp.h"
+#include "TransformComp.h"
+
 using namespace std;
 
 void PrintSDLVersion()
@@ -54,21 +61,24 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
-	//auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	//auto go = std::make_shared<GameObject>();
-	//go->SetTexture("background.jpg");
-	//scene.Add(go);
-	//
-	//go = std::make_shared<GameObject>();
-	//go->SetTexture("logo.png");
-	//go->SetPosition(216, 180);
-	//scene.Add(go);
-	//
-	//auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	//auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
-	//to->SetPosition(80, 20);
-	//scene.Add(to);
+	GameObject* pGameObj{ new GameObject("Bg") };
+	pGameObj->AddComponent(new Render2DComp());
+	pGameObj->AddComponent(new TextureComp("background.jpg"));
+	scene.Add(pGameObj);
+
+	pGameObj = new GameObject("Logo");
+	pGameObj->AddComponent(new Render2DComp());
+	pGameObj->AddComponent(new TextureComp("logo.png"));
+	pGameObj->GetTransform()->SetPos({ 216,180,0 });
+	scene.Add(pGameObj);
+
+	pGameObj = new GameObject("Text");
+	pGameObj->AddComponent(new Render2DComp());
+	pGameObj->AddComponent(new TextComp("Programming 4 Assignment", "Lingua.otf", 36));
+	pGameObj->GetTransform()->SetPos({ 80,20,0 });
+	scene.Add(pGameObj);
 }
 
 void Engine::Cleanup()
@@ -90,8 +100,9 @@ void Engine::Run()
 
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
+	sceneManager.Initialize();	//initialize the current active scene
 	auto& input = InputManager::GetInstance();
-	
+
 	bool doContinue = true;
 	int lag = 0; //lag in Ms
 

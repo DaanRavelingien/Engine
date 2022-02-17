@@ -12,14 +12,17 @@ TextComp::TextComp(const std::string& text, const std::string& fontFilePath, int
 	, m_FontSize{fontSize}
 {
 	m_pFont = ResourceManager::GetInstance().LoadFont(m_FontFilePath, m_FontSize);
-
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXT_RENDER);
 }
 
 TextComp::~TextComp()
 {
 	delete m_pFont;
 	m_pFont = nullptr;
+}
+
+void TextComp::Initialize()
+{
+	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXT_RENDER);
 }
 
 void TextComp::SetText(const std::string& text)

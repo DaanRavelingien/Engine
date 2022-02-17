@@ -13,6 +13,8 @@ public:
 	TextComp& operator=(const TextComp& other) = delete;
 	TextComp& operator=(TextComp&& other) = delete;
 
+	void Initialize() override;
+
 	void SetText(const std::string& text);
 	std::string GetText() const { return m_Text; };
 	void SetFont(const std::string& fontFilePath);

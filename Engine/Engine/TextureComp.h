@@ -13,6 +13,8 @@ public:
 	TextureComp& operator=(const TextureComp& other) = delete;
 	TextureComp& operator=(TextureComp&& other) = delete;
 
+	void Initialize() override;
+
 	void ChangeTexture(const std::string& filePath);
 	Texture2D* GetTexture() const { return m_pTexture; };
 

@@ -6,7 +6,14 @@ unsigned int Scene::m_IdCounter = 0;
 
 Scene::Scene(const std::string& name) : m_Name(name) {}
 
-Scene::~Scene() = default;
+Scene::~Scene()
+{
+	for (GameObject* pGameObj : m_GameObjs)
+	{
+		delete pGameObj;
+		pGameObj = nullptr;
+	}
+}
 
 void Scene::Add(GameObject* pGameObj)
 {
@@ -54,7 +61,11 @@ void Scene::RemoveDestroyedGameObjs()
 	auto it = std::remove_if(m_GameObjs.begin(), m_GameObjs.end(), [](GameObject* obj)
 		{
 			if (obj->IsDestroyed())
+			{
+				delete obj;
+				obj = nullptr;
 				return true;
+			}
 			return false;
 		});
 

@@ -9,14 +9,17 @@ TextureComp::TextureComp(const std::string& filePath)
 	, m_pTexture{ nullptr }
 {
 	m_pTexture = ResourceManager::GetInstance().LoadTexture(m_FilePath);
-
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXTURE_RENDER);
 }
 
 TextureComp::~TextureComp()
 {
 	delete m_pTexture;
 	m_pTexture = nullptr;
+}
+
+void TextureComp::Initialize()
+{
+	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXTURE_RENDER);
 }
 
 void TextureComp::ChangeTexture(const std::string& filePath)
