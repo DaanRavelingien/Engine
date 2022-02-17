@@ -25,6 +25,11 @@ public:
 	std::string GetName() const { return m_Name; };
 	void Rename(const std::string& name) { m_Name = name; };
 
+	void AddChild(GameObject* pGameObj);
+	std::vector<GameObject*> GetChildren() const { return m_Children; };
+	void SetParent(GameObject* pGameObj);
+	GameObject* GetParent() const { return m_pParent; };
+
 	void AddComponent(Component* comp);
 	void RemoveComponent(int idx);
 
@@ -96,6 +101,8 @@ public:
 private:
 	std::string m_Name{};
 	std::vector<Component*> m_Components{};
+	GameObject* m_pParent{ nullptr };
+	std::vector<GameObject*> m_Children{};
 	bool m_Destroyed{ false };
 
 	//add subject to the game object so it can send events to all its components

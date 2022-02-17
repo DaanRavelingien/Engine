@@ -121,6 +121,9 @@
     <ClCompile Include="FPSComp.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
+    <ClCompile Include="TransformComp.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

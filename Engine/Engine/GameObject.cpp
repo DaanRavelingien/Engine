@@ -68,6 +68,33 @@ void GameObject::Render() const
 		});
 }
 
+void GameObject::AddChild(GameObject* pGameObj)
+{
+	//checking if the gameObj is already a child to avoid updating a game obj twice
+	auto it = std::find_if(m_Children.begin(), m_Children.end(), [pGameObj](GameObject* pOtherGameObj)
+		{
+			if (pGameObj->GetName() == pOtherGameObj->GetName())
+				return true;
+			return false;
+		});
+
+	//only adding if it was not yet added to the vector
+	if (it == m_Children.end())
+	{
+		pGameObj->SetParent(this);
+		m_Children.push_back(pGameObj);
+	}
+}
+
+void GameObject::SetParent(GameObject* pGameObj)
+{
+	if (m_pParent != pGameObj)
+	{
+		pGameObj->AddChild(this);
+		m_pParent = pGameObj;
+	}
+}
+
 void GameObject::AddComponent(Component* pComp)
 {
 	//setting the component game obj pointer to this

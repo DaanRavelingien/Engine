@@ -6,7 +6,7 @@ class TextComp;
 class FPSComp final : public Component
 {
 public:
-	explicit FPSComp() = default;
+	explicit FPSComp(float refreshRate = 0.5f) :m_RefreshRate{ refreshRate } {};
 	~FPSComp() = default;
 	FPSComp(const FPSComp& other) = delete;
 	FPSComp(FPSComp&& other) = delete;
@@ -20,7 +20,7 @@ private:
 	float m_AverageFps{};
 	int m_SampleSize{};
 	float m_RefreshTime{};
-	float m_RefreshRate{0.2f};
+	float m_RefreshRate;
 
 	TextComp* m_pTextComp{ nullptr };
 };
