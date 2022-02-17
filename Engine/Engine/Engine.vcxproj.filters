@@ -64,6 +64,9 @@
     <ClInclude Include="TextureComp.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="FPSComp.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -113,6 +116,9 @@
       <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Render2DComp.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSComp.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>

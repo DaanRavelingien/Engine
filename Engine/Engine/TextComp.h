@@ -6,7 +6,7 @@ class Font;
 class TextComp final : public Component
 {
 public:
-	explicit TextComp(const std::string& text, const std::string& fontFilePath, int fontSize);
+	explicit TextComp(const std::string& text, const std::string& fontFilePath, int fontSize, const glm::vec3& color = glm::vec3{ 1,1,1 });
 	~TextComp();
 	TextComp(const TextComp& other) = delete;
 	TextComp(TextComp&& other) = delete;

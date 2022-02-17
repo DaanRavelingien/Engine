@@ -4,11 +4,11 @@
 #include "ResourceManager.h"
 #include "Font.h"
 
-TextComp::TextComp(const std::string& text, const std::string& fontFilePath, int fontSize)
+TextComp::TextComp(const std::string& text, const std::string& fontFilePath, int fontSize, const glm::vec3& color)
 	: m_Text{text}
 	, m_pFont{nullptr}
 	, m_FontFilePath{fontFilePath}
-	, m_Color{1,1,1}
+	, m_Color{color}
 	, m_FontSize{fontSize}
 {
 	m_pFont = ResourceManager::GetInstance().LoadFont(m_FontFilePath, m_FontSize);
