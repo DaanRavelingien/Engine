@@ -15,9 +15,13 @@ protected:
 private:
 	Logger();
 	std::string CreateMessage(const std::string& message, const char* functionName, int line);
+	void PrintMessage(const std::string& message, int color);
 
 	HANDLE m_ConsoleHandle{};
 	CONSOLE_SCREEN_BUFFER_INFO  m_DefaultConsoleInfo{};
+	int m_ErrorCount{ 0 };
+	int m_WarningCount{ 0 };
+	int m_MessageCount{ 0 };
 };
 
 #define LOGERROR(message) Logger::GetInstance().LogError(message, __FUNCTION__, __LINE__)
