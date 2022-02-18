@@ -103,12 +103,6 @@ void Engine::Cleanup()
 
 void Engine::Run()
 {
-	//testing the logger for errors
-	std::cout << "======Testing_Logger======\n";
-	LOGMESSAGE("message");
-	LOGWARNING("warning");
-	LOGERROR("error");
-
 	Initialize();
 
 	// tell the resource manager where he can find the game data

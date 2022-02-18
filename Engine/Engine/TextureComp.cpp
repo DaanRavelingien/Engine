@@ -8,13 +8,8 @@ TextureComp::TextureComp(const std::string& filePath)
 	:m_FilePath{filePath}
 	, m_pTexture{ nullptr }
 {
+	//creating our texture on the resource manager so we dont need to take ownership of it
 	m_pTexture = ResourceManager::GetInstance().LoadTexture(m_FilePath);
-}
-
-TextureComp::~TextureComp()
-{
-	delete m_pTexture;
-	m_pTexture = nullptr;
 }
 
 void TextureComp::Initialize()
@@ -24,11 +19,13 @@ void TextureComp::Initialize()
 
 void TextureComp::ChangeTexture(const std::string& filePath)
 {
+	//deleting the old texture
 	delete m_pTexture;
 	m_pTexture = nullptr;
 
+	//swapping out for the new texture
 	m_FilePath = filePath;
-	m_pTexture = ResourceManager::GetInstance().LoadTexture(m_FilePath);
+	m_pTexture = new Texture2D{ filePath };
 
 	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXTURE_RENDER);
 }

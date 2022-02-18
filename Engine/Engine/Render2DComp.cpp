@@ -41,8 +41,6 @@ void Render2DComp::Render()
 
 Texture2D* Render2DComp::MakeTextureFromText(const glm::vec3& color, Font* pFont, const std::string& text)
 {
-
-
 	const SDL_Color sdlColor = { Uint8(color.r * 255),Uint8(color.g * 255),Uint8(color.b * 255) };
 	const auto surf = TTF_RenderText_Blended(pFont->GetFont(), text.c_str(), sdlColor);
 	if (surf == nullptr)

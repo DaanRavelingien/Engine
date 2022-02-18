@@ -4,20 +4,15 @@
 #include "ResourceManager.h"
 #include "Font.h"
 
-TextComp::TextComp(const std::string& text, const std::string& fontFilePath, int fontSize, const glm::vec3& color)
+TextComp::TextComp(const std::string& text, const std::string& fontFilePath, unsigned int fontSize, const glm::vec3& color)
 	: m_Text{text}
 	, m_pFont{nullptr}
 	, m_FontFilePath{fontFilePath}
 	, m_Color{color}
 	, m_FontSize{fontSize}
 {
+	//creating our font on the resource manager so we dont need to take ownership of it
 	m_pFont = ResourceManager::GetInstance().LoadFont(m_FontFilePath, m_FontSize);
-}
-
-TextComp::~TextComp()
-{
-	delete m_pFont;
-	m_pFont = nullptr;
 }
 
 void TextComp::Initialize()
@@ -34,26 +29,26 @@ void TextComp::SetText(const std::string& text)
 
 void TextComp::SetFont(const std::string& fontFilePath)
 {
-	//safly deleting the old font
+	//deleting the old font
 	delete m_pFont; 
 	m_pFont = nullptr; 
 
-	//setting the new font
+	//swapping out for the new font
 	m_FontFilePath = fontFilePath;
-	m_pFont = ResourceManager::GetInstance().LoadFont(m_FontFilePath, m_FontSize);
+	m_pFont = new Font{m_FontFilePath,m_FontSize};
 	
 	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXT_RENDER);
 }
 
-void TextComp::SetFontSize(int fontSize)
+void TextComp::SetFontSize(unsigned int fontSize)
 {
 	//safly deleting the old font
 	delete m_pFont;
 	m_pFont = nullptr;
 
-	//creating the new font with the new size
+	//swapping out for the new font
 	m_FontSize = fontSize;
-	m_pFont = ResourceManager::GetInstance().LoadFont(m_FontFilePath, m_FontSize);
+	m_pFont = new Font{ m_FontFilePath,m_FontSize };
 
 	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXT_RENDER);
 }

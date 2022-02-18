@@ -7,7 +7,7 @@ class TextureComp final : public Component
 {
 public:
 	explicit TextureComp(const std::string& filePath);
-	~TextureComp();
+	~TextureComp() = default;
 	TextureComp(const TextureComp& other) = delete;
 	TextureComp(TextureComp&& other) = delete;
 	TextureComp& operator=(const TextureComp& other) = delete;

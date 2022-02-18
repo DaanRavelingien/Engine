@@ -196,6 +196,7 @@
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Render2DComp.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
@@ -225,6 +226,7 @@
     </ClCompile>
     <ClCompile Include="Render2DComp.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />

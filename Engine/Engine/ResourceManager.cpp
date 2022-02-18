@@ -7,6 +7,15 @@
 #include "Texture2D.h"
 #include "Font.h"
 
+ResourceManager::~ResourceManager()
+{
+	for (Resource* resource : m_Resources)
+	{
+		delete resource;
+		resource = nullptr;
+	}
+}
+
 void ResourceManager::Init(const std::string& dataPath)
 {
 	m_DataPath = dataPath;
@@ -15,32 +24,34 @@ void ResourceManager::Init(const std::string& dataPath)
 
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG) 
 	{
-		throw std::runtime_error(std::string("Failed to load support for png's: ") + SDL_GetError());
+		LOGERROR("Failed to load support for png's: " + std::string{ SDL_GetError() });
 	}
 
 	if ((IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG) != IMG_INIT_JPG) 
 	{
-		throw std::runtime_error(std::string("Failed to load support for jpg's: ") + SDL_GetError());
+		LOGERROR("Failed to load support for jpg's: " + std::string{ SDL_GetError() });
 	}
 
 	if (TTF_Init() != 0) 
 	{
-		throw std::runtime_error(std::string("Failed to load support for fonts: ") + SDL_GetError());
+		LOGERROR("Failed to load support for fonts: " + std::string{ SDL_GetError() });
 	}
 }
 
-Texture2D* ResourceManager::LoadTexture(const std::string& file) const
+Texture2D* ResourceManager::LoadTexture(const std::string& file)
 {
-	const auto fullPath = m_DataPath + file;
-	auto texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
-	if (texture == nullptr) 
-	{
-		throw std::runtime_error(std::string("Failed to load texture: ") + SDL_GetError());
-	}
-	return new Texture2D{ texture };
+	Texture2D* pTexture{ new Texture2D{m_DataPath + file}};
+
+	m_Resources.push_back(pTexture);
+
+	return pTexture;
 }
 
-Font* ResourceManager::LoadFont(const std::string& file, unsigned int size) const
+Font* ResourceManager::LoadFont(const std::string& file, unsigned int size)
 {
-	return new Font{ m_DataPath + file, size };
+	Font* pFont{ new Font{ m_DataPath + file, size } };
+	
+	m_Resources.push_back(pFont);
+
+	return pFont;
 }

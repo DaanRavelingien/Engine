@@ -62,10 +62,13 @@
       <Filter>Engine\Helpers\Patterns</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
-      <Filter>Engine\Helpers\SDL_Wrappers</Filter>
+      <Filter>Engine\Resources\ResourceTypes</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
-      <Filter>Engine\Helpers\SDL_Wrappers</Filter>
+      <Filter>Engine\Resources\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Engine\Resources\ResourceTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,10 +122,13 @@
       <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
-      <Filter>Engine\Helpers\SDL_Wrappers</Filter>
+      <Filter>Engine\Resources\ResourceTypes</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
-      <Filter>Engine\Helpers\SDL_Wrappers</Filter>
+      <Filter>Engine\Resources\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Engine\Resources\ResourceTypes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +159,7 @@
     <Filter Include="Engine\Helpers\Patterns">
       <UniqueIdentifier>{2ca845c3-4fe2-4757-a0f1-6fca8ceafc60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Helpers\SDL_Wrappers">
+    <Filter Include="Engine\Resources\ResourceTypes">
       <UniqueIdentifier>{a17f249a-9050-499d-b52f-777537bfffb6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
