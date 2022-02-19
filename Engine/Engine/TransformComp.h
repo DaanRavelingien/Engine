@@ -5,7 +5,7 @@
 class TransformComp : public Component
 {
 public:
-	TransformComp() :Component{} {};
+	TransformComp() :Component(typeid(this).name()) {};
 	~TransformComp() = default;
 	TransformComp(const TransformComp& other) = delete;
 	TransformComp(TransformComp&& other) = delete;

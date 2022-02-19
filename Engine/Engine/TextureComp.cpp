@@ -5,7 +5,8 @@
 #include "Texture2D.h"
 
 TextureComp::TextureComp(const std::string& filePath)
-	:m_FilePath{filePath}
+	:Component(typeid(this).name())
+	, m_FilePath{filePath}
 	, m_pTexture{ nullptr }
 {
 	//creating our texture on the resource manager so we dont need to take ownership of it

@@ -70,6 +70,9 @@
     <ClInclude Include="Resource.h">
       <Filter>Engine\Resources\ResourceTypes</Filter>
     </ClInclude>
+    <ClInclude Include="ScenePharser.h">
+      <Filter>Engine\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -129,6 +132,9 @@
     </ClCompile>
     <ClCompile Include="Resource.cpp">
       <Filter>Engine\Resources\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenePharser.cpp">
+      <Filter>Engine\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

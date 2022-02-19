@@ -3,6 +3,12 @@
 #include "GameObject.h"
 #include "TextComp.h"
 
+FPSComp::FPSComp(float refreshRate)
+	:Component(typeid(this).name())
+	, m_RefreshRate{ refreshRate } 
+{
+}
+
 void FPSComp::Initialize()
 {
 	m_pTextComp = m_pGameObj->GetComponent<TextComp>();

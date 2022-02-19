@@ -87,7 +87,7 @@ void Engine::LoadGame() const
 	//fps counter
 	pGameObj = new GameObject("FPS");
 	pGameObj->AddComponent(new Render2DComp());
-	pGameObj->AddComponent(new TextComp("Programming 4 Assignment", "Lingua.otf", 20, { 0.f,0.8f,0.f }));
+	pGameObj->AddComponent(new TextComp("0 FPS", "Lingua.otf", 20, { 0.f,0.8f,0.f }));
 	pGameObj->AddComponent(new FPSComp());
 	pGameObj->GetTransform()->SetPos({ 10,10,0 });
 	scene.Add(pGameObj);

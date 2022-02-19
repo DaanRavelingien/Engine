@@ -7,7 +7,7 @@ class Texture2D;
 class Render2DComp final : public Component
 {
 public:
-	explicit Render2DComp() = default;
+	explicit Render2DComp();
 	~Render2DComp();
 	Render2DComp(const Render2DComp& other) = delete;
 	Render2DComp(Render2DComp&& other) = delete;

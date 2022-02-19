@@ -9,6 +9,11 @@
 #include "TransformComp.h"
 #include "TextureComp.h"
 
+Render2DComp::Render2DComp()
+	:Component(typeid(this).name())
+{
+}
+
 Render2DComp::~Render2DComp()
 {
 	for (std::pair<Component*, Texture2D*> pair : m_CompsToRender)

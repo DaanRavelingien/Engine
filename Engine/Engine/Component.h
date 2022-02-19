@@ -6,7 +6,7 @@ class GameObject;
 class Component : public Observer<Component*>
 {
 public:
-	Component();
+	Component(const std::string& compName);
 	virtual ~Component() = default;
 	Component(const Component& other) = delete;
 	Component(Component&& other) = delete;
@@ -20,6 +20,7 @@ public:
 	virtual void Notify(Component*, Event) override {};
 
 	int GetIdx() const { return m_Idx; };
+	std::string GetCompName() const { return m_CompName; };
 
 	void SetGameObj(GameObject* pGameObj) { m_pGameObj = pGameObj; };
 	GameObject* GetGameObj() const;
@@ -28,7 +29,11 @@ protected:
 	GameObject* m_pGameObj{ nullptr };
 
 private:
-	static int idxCount;
+	std::string SimplifyCompTypeName(const std::string& compTypeName);
+
+	static int m_IdxCount;
 	int m_Idx{};
+	std::string m_CompName{};
+	static std::vector<std::string> m_ComponentTypes;
 };
 

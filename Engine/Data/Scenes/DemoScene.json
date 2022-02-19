@@ -1,0 +1,73 @@
+{
+  "GameName": "Demo",
+  "Scenes": [
+    {
+      "Scene": "Demo",
+      "GameObjects": [
+        {
+          "Name": "Bg",
+          "Position": [0,0,0],
+          "Rotation": [0,0,0],
+          "Scale": [1,1,1],
+          "Components": [
+            { "Type": "RENDERCOMP" },
+            {
+              "Type": "TEXTURECOMP",
+              "Args": ["background.jpg"]
+            }
+          ]
+        },
+        {
+          "Name": "Logo",
+          "Position": [ 216, 180, 0 ],
+          "Rotation": [0,0,0],
+          "Scale": [1,1,1],
+          "Components": [
+            { "Type": "RENDERCOMP" },
+            {
+              "Type": "TEXTURECOMP",
+              "Args": [ "logo.png" ]
+            }
+          ]
+        },
+        {
+          "Name": "Text",
+          "Position": [80,20,0],
+          "Rotation": [ 0, 0, 0 ],
+          "Scale": [1,1,1],
+          "Components": [
+            { "Type": "RENDERCOMP" },
+            {
+              "Type": "TEXTCOMP",
+              "Args": [
+                "Programming 4 Assignment",
+                "Lingua.otf",
+                36,
+                [ 1, 1, 1 ]
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "FPS",
+          "Position": [10,10,0],
+          "Rotation": [0,0,0],
+          "Scale": [1,1,1],
+          "Components": [
+            { "Type": "RENDERCOMP" },
+            {
+              "Type": "TEXTCOMP",
+              "Args": [
+                "0 FPS",
+                "Lingua.otf",
+                20,
+                [ 0, 0.8, 0 ]
+              ]
+            },
+            { "Type": "FPSCOMP" }
+          ]
+        }
+      ]
+    }
+  ]
+}

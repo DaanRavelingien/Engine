@@ -5,7 +5,8 @@
 #include "Font.h"
 
 TextComp::TextComp(const std::string& text, const std::string& fontFilePath, unsigned int fontSize, const glm::vec3& color)
-	: m_Text{text}
+	: Component(typeid(this).name())
+	, m_Text{text}
 	, m_pFont{nullptr}
 	, m_FontFilePath{fontFilePath}
 	, m_Color{color}
