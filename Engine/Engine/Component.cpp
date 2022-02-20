@@ -23,12 +23,7 @@ Component::Component(const std::string& compName)
 		});
 	//if the added component was new we add it to the list
 	if (it == m_ComponentTypes.end())
-	{
-		//temp to check correct behaviour
-		LOGMESSAGE("Added component of type: " + simpleCompType + " to compTypes");
-
 		m_ComponentTypes.push_back(simpleCompType);
-	}
 
 }
 

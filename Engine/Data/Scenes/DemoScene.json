@@ -10,7 +10,10 @@
           "Rotation": [0,0,0],
           "Scale": [1,1,1],
           "Components": [
-            { "Type": "RENDERCOMP" },
+            {
+              "Type": "RENDERCOMP",
+              "Args": []
+            },
             {
               "Type": "TEXTURECOMP",
               "Args": ["background.jpg"]
@@ -23,7 +26,10 @@
           "Rotation": [0,0,0],
           "Scale": [1,1,1],
           "Components": [
-            { "Type": "RENDERCOMP" },
+            {
+              "Type": "RENDERCOMP",
+              "Args": []
+            },
             {
               "Type": "TEXTURECOMP",
               "Args": [ "logo.png" ]
@@ -36,7 +42,10 @@
           "Rotation": [ 0, 0, 0 ],
           "Scale": [1,1,1],
           "Components": [
-            { "Type": "RENDERCOMP" },
+            {
+              "Type": "RENDERCOMP",
+              "Args": []
+            },
             {
               "Type": "TEXTCOMP",
               "Args": [
@@ -54,7 +63,10 @@
           "Rotation": [0,0,0],
           "Scale": [1,1,1],
           "Components": [
-            { "Type": "RENDERCOMP" },
+            {
+              "Type": "RENDERCOMP",
+              "Args": []
+            },
             {
               "Type": "TEXTCOMP",
               "Args": [
@@ -64,7 +76,10 @@
                 [ 0, 0.8, 0 ]
               ]
             },
-            { "Type": "FPSCOMP" }
+            {
+              "Type": "FPSCOMP",
+              "Args": []
+            }
           ]
         }
       ]

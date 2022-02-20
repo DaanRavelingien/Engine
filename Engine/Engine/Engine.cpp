@@ -9,6 +9,8 @@
 #include "Scene.h"
 #include "Time.h"
 
+#include "ScenePharser.h"
+
 //temp includes for the demo scene
 //so we can create game obj here
 #include "Render2DComp.h"
@@ -62,35 +64,9 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
-	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-
-	//background
-	GameObject* pGameObj{ new GameObject("Bg") };
-	pGameObj->AddComponent(new Render2DComp());
-	pGameObj->AddComponent(new TextureComp("background.jpg"));
-	scene.Add(pGameObj);
-
-	//logo
-	pGameObj = new GameObject("Logo");
-	pGameObj->AddComponent(new Render2DComp());
-	pGameObj->AddComponent(new TextureComp("logo.png"));
-	pGameObj->GetTransform()->SetPos({ 216,180,0 });
-	scene.Add(pGameObj);
-
-	//text
-	pGameObj = new GameObject("Text");
-	pGameObj->AddComponent(new Render2DComp());
-	pGameObj->AddComponent(new TextComp("Programming 4 Assignment", "Lingua.otf", 36));
-	pGameObj->GetTransform()->SetPos({ 80,20,0 });
-	scene.Add(pGameObj);
-
-	//fps counter
-	pGameObj = new GameObject("FPS");
-	pGameObj->AddComponent(new Render2DComp());
-	pGameObj->AddComponent(new TextComp("0 FPS", "Lingua.otf", 20, { 0.f,0.8f,0.f }));
-	pGameObj->AddComponent(new FPSComp());
-	pGameObj->GetTransform()->SetPos({ 10,10,0 });
-	scene.Add(pGameObj);
+	//temp solution to get the scenes from a file
+	ScenePharser ScenePharser{};
+	ScenePharser.CreateScenes("../Data/Scenes/DemoScene.json");
 }
 
 void Engine::Cleanup()
