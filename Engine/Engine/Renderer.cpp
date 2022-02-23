@@ -3,6 +3,13 @@
 #include "SceneManager.h"
 #include "Texture2D.h"
 
+#ifdef _DEBUG
+//imgui includes
+#include "imgui.h"
+#include "imgui_impl_opengl2.h"
+#include "imgui_impl_sdl.h"
+#endif // _DEBUG
+
 int GetOpenGLDriverIndex()
 {
 	auto openglIndex = -1;
@@ -25,6 +32,15 @@ void Renderer::Init(SDL_Window * window)
 	{
 		throw std::runtime_error(std::string("SDL_CreateRenderer Error: ") + SDL_GetError());
 	}
+
+#ifdef _DEBUG
+	//setting up imgui
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
+	ImGui_ImplOpenGL2_Init();
+#endif // _DEBUG
+
 }
 
 void Renderer::Render() const
@@ -35,11 +51,32 @@ void Renderer::Render() const
 
 	SceneManager::GetInstance().Render();
 	
+#ifdef _DEBUG
+	//rendering imgui
+	ImGui_ImplOpenGL2_NewFrame();
+	ImGui_ImplSDL2_NewFrame(m_Window);
+	ImGui::NewFrame();
+
+	ImGui::ShowDemoWindow();
+
+	ImGui::Render();
+	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+#endif // _DEBUG
+
+
 	SDL_RenderPresent(m_Renderer);
 }
 
 void Renderer::Destroy()
 {
+#ifdef _DEBUG
+	//destroying the stuff from imgui
+	ImGui_ImplOpenGL2_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
+#endif // _DEBUG
+
+
 	if (m_Renderer != nullptr)
 	{
 		SDL_DestroyRenderer(m_Renderer);

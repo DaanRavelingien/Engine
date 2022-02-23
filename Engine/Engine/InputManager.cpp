@@ -1,6 +1,11 @@
 #include "EnginePCH.h"
 #include "InputManager.h"
 
+#ifdef _DEBUG
+#include "imgui_impl_sdl.h"
+#endif // _DEBUG
+
+
 bool InputManager::ProcessInput()
 {
 	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
@@ -8,6 +13,12 @@ bool InputManager::ProcessInput()
 
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
+#ifdef _DEBUG
+		//sending events to the imgui so we can interact with it
+		ImGui_ImplSDL2_ProcessEvent(&e);
+#endif // _DEBUG
+
+
 		if (e.type == SDL_QUIT) {
 			return false;
 		}
