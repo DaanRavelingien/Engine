@@ -18,6 +18,9 @@ public:
 	void Update();
 	void FixedUpdate();
 	void Render() const;
+#ifdef _DEBUG
+	void RenderGui();
+#endif // _DEBUG
 
 	void Destroy() { m_Destroyed = true; };
 	bool IsDestroyed() const { return m_Destroyed; };

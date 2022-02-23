@@ -68,6 +68,19 @@ void GameObject::Render() const
 		});
 }
 
+#ifdef _DEBUG
+void GameObject::RenderGui()
+{
+	if (IsDestroyed())
+		return;
+
+	for (Component* comp : m_Components)
+	{
+		comp->RenderGui();
+	}
+}
+#endif // _DEBUG
+
 void GameObject::AddChild(GameObject* pGameObj)
 {
 	//checking if the gameObj is already a child to avoid updating a game obj twice

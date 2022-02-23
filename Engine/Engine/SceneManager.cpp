@@ -36,6 +36,16 @@ void SceneManager::Render()
 		LOGERROR("failed to find an active scene");
 }
 
+#ifdef _DEBUG
+void SceneManager::RenderGui()
+{
+	if (m_pActiveScene)
+		m_pActiveScene->RenderGui();
+	else
+		LOGERROR("failed to find an active scene");
+}
+#endif // _DEBUG
+
 SceneManager::~SceneManager()
 {
 	for (Scene* pScene : m_Scenes)

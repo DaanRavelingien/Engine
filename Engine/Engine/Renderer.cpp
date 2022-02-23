@@ -57,12 +57,11 @@ void Renderer::Render() const
 	ImGui_ImplSDL2_NewFrame(m_Window);
 	ImGui::NewFrame();
 
-	ImGui::ShowDemoWindow();
+	SceneManager::GetInstance().RenderGui();
 
 	ImGui::Render();
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 #endif // _DEBUG
-
 
 	SDL_RenderPresent(m_Renderer);
 }

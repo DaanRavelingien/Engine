@@ -56,6 +56,16 @@ void Scene::Render() const
 	}
 }
 
+#ifdef _DEBUG
+void Scene::RenderGui()
+{
+	for (auto& gameObj : m_GameObjs)
+	{
+		gameObj->RenderGui();
+	}
+}
+#endif // _DEBUG
+
 void Scene::RemoveDestroyedGameObjs()
 {
 	auto it = std::remove_if(m_GameObjs.begin(), m_GameObjs.end(), [](GameObject* obj)

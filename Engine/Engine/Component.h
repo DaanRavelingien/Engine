@@ -16,6 +16,9 @@ public:
 	virtual void Initialize() {};
 	virtual void Update() {};
 	virtual void FixedUpdate() {};
+#ifdef _DEBUG
+	virtual void RenderGui() {};
+#endif // _DEBUG
 
 	virtual void Notify(Component*, Event) override {};
 

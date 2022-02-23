@@ -13,7 +13,9 @@ public:
 	void Update();
 	void FixedUpdate();
 	void Render() const;
-
+#ifdef _DEBUG
+	void RenderGui();
+#endif	//_DEBUG
 	std::string GetName() const { return m_Name; };
 
 	~Scene();

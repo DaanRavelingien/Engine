@@ -14,6 +14,9 @@ public:
 	void Update();
 	void FixedUpdate();
 	void Render();
+#ifdef _DEBUG
+	void RenderGui();
+#endif //_DEBUG
 
 protected:
 	friend class Singleton<SceneManager>;
