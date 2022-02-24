@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include <algorithm>
 #include "Logger.h"
+#include "ScenePharser.h"
 
 void SceneManager::Initialize()
 {
@@ -53,6 +54,12 @@ SceneManager::~SceneManager()
 		delete pScene;
 		pScene = nullptr;
 	}
+}
+
+void SceneManager::CreateSceneFromJson(const std::string& filePath)
+{
+	ScenePharser pharser{};
+	pharser.CreateScene(filePath);
 }
 
 Scene& SceneManager::CreateScene(const std::string& name)

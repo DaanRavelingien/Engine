@@ -2,11 +2,13 @@
 #include "Singleton.h"
 
 class Scene;
+
 class SceneManager final : public Singleton<SceneManager>
 {
 public:
 	~SceneManager();
 
+	void CreateSceneFromJson(const std::string& filePath);
 	Scene& CreateScene(const std::string& name);
 	void SetActiveScene(const std::string& sceneName);
 

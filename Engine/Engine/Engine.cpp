@@ -9,16 +9,6 @@
 #include "Scene.h"
 #include "Time.h"
 
-#include "ScenePharser.h"
-
-//temp includes for the demo scene
-//so we can create game obj here
-#include "Render2DComp.h"
-#include "TextComp.h"
-#include "TextureComp.h"
-#include "TransformComp.h"
-#include "FPSComp.h"
-
 using namespace std;
 
 void PrintSDLVersion()
@@ -64,9 +54,8 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
-	//temp solution to get the scenes from a file
-	ScenePharser ScenePharser{};
-	ScenePharser.CreateScenes("../Data/Scenes/DemoScene.json");
+	//loading our demo scene from a file
+	SceneManager::GetInstance().CreateSceneFromJson("../Data/Scenes/DemoScene.json");
 }
 
 void Engine::Cleanup()

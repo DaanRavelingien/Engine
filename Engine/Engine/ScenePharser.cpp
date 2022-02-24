@@ -12,7 +12,7 @@
 #include "TextComp.h"
 #include "FPSComp.h"
 
-void ScenePharser::CreateScenes(const std::string& filePath)
+void ScenePharser::CreateScene(const std::string& filePath)
 {
     //getting the given file in a string
     std::ifstream jsonFile{ filePath };

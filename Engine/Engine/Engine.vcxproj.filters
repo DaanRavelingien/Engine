@@ -70,9 +70,6 @@
     <ClInclude Include="Resource.h">
       <Filter>Engine\Resources\ResourceTypes</Filter>
     </ClInclude>
-    <ClInclude Include="ScenePharser.h">
-      <Filter>Engine\Pharser</Filter>
-    </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\imconfig.h">
       <Filter>imgui</Filter>
     </ClInclude>
@@ -96,6 +93,9 @@
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h">
       <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePharser.h">
+      <Filter>Engine\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -157,9 +157,6 @@
     <ClCompile Include="Resource.cpp">
       <Filter>Engine\Resources\ResourceTypes</Filter>
     </ClCompile>
-    <ClCompile Include="ScenePharser.cpp">
-      <Filter>Engine\Pharser</Filter>
-    </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
@@ -180,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp">
       <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenePharser.cpp">
+      <Filter>Engine\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +212,6 @@
     </Filter>
     <Filter Include="Engine\Resources\ResourceTypes">
       <UniqueIdentifier>{a17f249a-9050-499d-b52f-777537bfffb6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Pharser">
-      <UniqueIdentifier>{1e6b0f32-eef5-4f00-bdab-b60f89f185d0}</UniqueIdentifier>
     </Filter>
     <Filter Include="imgui">
       <UniqueIdentifier>{024e24cf-1a84-49fd-b76d-3d31647f791b}</UniqueIdentifier>

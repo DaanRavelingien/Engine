@@ -15,7 +15,7 @@ public:
 	ScenePharser& operator=(const ScenePharser& other) = delete;
 	ScenePharser& operator=(ScenePharser&& other) = delete;
 
-	void CreateScenes(const std::string& filePath);
+	void CreateScene(const std::string& filePath);
 
 private:
 	Scene& PharseScene(const rapidjson::Value& jsonScene);
