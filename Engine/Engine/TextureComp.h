@@ -6,7 +6,7 @@ class Texture2D;
 class TextureComp final : public Component
 {
 public:
-	explicit TextureComp(const std::string& filePath);
+	explicit TextureComp(const std::string& file);
 	~TextureComp() = default;
 	TextureComp(const TextureComp& other) = delete;
 	TextureComp(TextureComp&& other) = delete;
@@ -15,11 +15,11 @@ public:
 
 	void Initialize() override;
 
-	void ChangeTexture(const std::string& filePath);
-	Texture2D* GetTexture() const { return m_pTexture; };
+	void ChangeTexture(const std::string& file);
+	int GetTextureIdx() const { return m_TextureIdx; };
 
 private:
 	std::string m_FilePath{};
-	Texture2D* m_pTexture{};
+	int m_TextureIdx{};
 };
 

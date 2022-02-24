@@ -3,9 +3,14 @@
 
 int Resource::m_ResourceCounter{ 0 };
 
-Resource::Resource(const std::string& name)
-	:m_Name{name}
-	, m_Idx{m_ResourceCounter}
+Resource::Resource()
+	:m_Idx{m_ResourceCounter}
 {
 	++m_ResourceCounter;
+}
+
+Resource::Resource(int idx)
+	:m_Idx{idx}
+{
+
 }

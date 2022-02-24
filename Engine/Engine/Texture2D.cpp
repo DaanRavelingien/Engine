@@ -25,29 +25,28 @@ SDL_Texture* Texture2D::GetSDLTexture() const
 	return m_Texture;
 }
 
-Texture2D::Texture2D(const std::string& name, const std::string& filePath)
-	:Resource(name)
-	, m_Texture{nullptr}
+Texture2D::Texture2D(int idx, const std::string& filePath)
+	:Resource(idx)
+	,m_Texture{nullptr}
 {
 	MakeTexture(filePath);
 }
 
 Texture2D::Texture2D(const std::string& filePath)
-	:Resource("")
+	:Resource()
 	, m_Texture{nullptr}
 {
-	//if not name was given just set the id as name
-	std::string name{ "Texture2D" + GetIdx() };
-	Rename(name);
-
 	MakeTexture(filePath);
 }
 
-Texture2D::Texture2D(SDL_Texture* texture)
-	:Resource("")
-	, m_Texture{texture}
+Texture2D::Texture2D(int idx, SDL_Texture* pTexture)
+	:Resource(idx)
+	,m_Texture{pTexture}
 {
-	//if not name was given just set the id as name
-	std::string name{ "Texture2D" + GetIdx() };
-	Rename(name);
+}
+
+Texture2D::Texture2D(SDL_Texture* pTexture)
+	:Resource()
+	, m_Texture{pTexture}
+{
 }

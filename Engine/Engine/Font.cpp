@@ -6,21 +6,15 @@ TTF_Font* Font::GetFont() const {
 	return m_Font;
 }
 
-Font::Font(const std::string& name, const std::string& fullPath, unsigned int size) 
-	: Resource(name)
-	, m_Font(nullptr)
-	, m_Size(size)
+Font::Font(int idx, const std::string& fullPath, unsigned int size)
+	:Resource(idx)
 {
 	MakeFont(fullPath, size);
 }
 
 Font::Font(const std::string& fullPath, unsigned int size)
-	:Resource("")
+	:Resource()
 {
-	//if not name was given just set the id as name
-	std::string name{ "Font" + GetIdx() };
-	Rename(name);
-
 	MakeFont(fullPath, size);
 }
 

@@ -1,17 +1,26 @@
 #pragma once
+#include "ResourceManager.h"
+
+class ResourceManager;
 
 class Resource
 {
 public:
-	Resource(const std::string& name);
-	virtual ~Resource() = default;
+	Resource(const Resource&) = delete;
+	Resource(Resource&&) = delete;
+	Resource& operator= (const Resource&) = delete;
+	Resource& operator= (const Resource&&) = delete;
 
-	std::string GetName() const { return m_Name; };
-	void Rename(const std::string& name) { m_Name = name; };
 	int GetIdx() const { return m_Idx; };
 
+protected:
+	friend class ResourceManager;
+
+	Resource();
+	Resource(int idx);
+	virtual ~Resource() = default;
+
 private:
-	std::string m_Name;
 	int m_Idx;
 
 	static int m_ResourceCounter;
