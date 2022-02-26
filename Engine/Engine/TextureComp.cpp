@@ -40,6 +40,8 @@ glm::vec4 TextureComp::GetDestRect() const
 
 	rect.x += m_pGameObj->GetTransform()->GetPos().x;
 	rect.y += m_pGameObj->GetTransform()->GetPos().y;
+	rect.z *= m_pGameObj->GetTransform()->GetScale().x;
+	rect.w *= m_pGameObj->GetTransform()->GetScale().y;
 
 	return rect;
 }

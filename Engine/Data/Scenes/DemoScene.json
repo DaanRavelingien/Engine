@@ -16,52 +16,15 @@
             },
             {
               "Type": "TEXTURECOMP",
-              "Args": ["background.jpg"]
-            }
-          ]
-        },
-        {
-          "Name": "Logo",
-          "Position": [ 216, 180, 0 ],
-          "Rotation": [0,0,0],
-          "Scale": [1,1,1],
-          "Components": [
-            {
-              "Type": "RENDERCOMP",
-              "Args": []
-            },
-            {
-              "Type": "TEXTURECOMP",
-              "Args": [ "logo.png" ]
-            }
-          ]
-        },
-        {
-          "Name": "Text",
-          "Position": [80,20,0],
-          "Rotation": [ 0, 0, 0 ],
-          "Scale": [1,1,1],
-          "Components": [
-            {
-              "Type": "RENDERCOMP",
-              "Args": []
-            },
-            {
-              "Type": "TEXTCOMP",
-              "Args": [
-                "Programming 4 Assignment",
-                "Lingua.otf",
-                36,
-                [ 1, 1, 1 ]
-              ]
+              "Args": ["Textures/background.jpg"]
             }
           ]
         },
         {
           "Name": "FPS",
-          "Position": [10,10,0],
-          "Rotation": [0,0,0],
-          "Scale": [1,1,1],
+          "Position": [ 10, 10, 0 ],
+          "Rotation": [ 0, 0, 0 ],
+          "Scale": [ 1, 1, 1 ],
           "Components": [
             {
               "Type": "RENDERCOMP",
@@ -71,7 +34,7 @@
               "Type": "TEXTCOMP",
               "Args": [
                 "0 FPS",
-                "Lingua.otf",
+                "Fonts/Lingua.otf",
                 20,
                 [ 0, 0.8, 0 ]
               ]
@@ -79,6 +42,31 @@
             {
               "Type": "FPSCOMP",
               "Args": []
+            }
+          ]
+        },
+        {
+          "Name": "Sprite",
+          "Position": [ 216, 250, 0 ],
+          "Rotation": [ 0, 0, 0 ],
+          "Scale": [ 4, 4, 4 ],
+          "Components": [
+            {
+              "Type": "RENDERCOMP",
+              "Args": []
+            },
+            {
+              "Type": "TEXTURECOMP",
+              "Args": [ "Textures/TestSprite.png" ]
+            },
+            {
+              "Type": "SPRITECOMP",
+              "Args": [
+                29,
+                [40,44],
+                [0,0],
+                0.1
+              ]
             }
           ]
         }

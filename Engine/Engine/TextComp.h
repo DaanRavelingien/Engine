@@ -22,7 +22,7 @@ public:
 	void SetColor(const glm::vec3& color) { m_Color = color; };
 	glm::vec3 GetColor() const { return m_Color; };
 	void SetFontSize(unsigned int fontSize);
-	unsigned int GetFontSize() const { return m_FontSize; };
+	unsigned int GetFontSize() const;
 
 private:
 	std::string m_Text;

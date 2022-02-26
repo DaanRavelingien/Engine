@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
 #include "Font.h"
+#include "TransformComp.h"
 
 TextComp::TextComp(const std::string& text, const std::string& file, unsigned int fontSize, const glm::vec3& color)
 	: Component(typeid(this).name())
@@ -42,4 +43,13 @@ void TextComp::SetFontSize(unsigned int fontSize)
 	m_FontSize = fontSize;
 
 	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXT_RENDER);
+}
+
+unsigned int TextComp::GetFontSize() const
+{
+	unsigned int size{ m_FontSize };
+	//taking into account the scale of the game obj
+	size *= unsigned int(m_pGameObj->GetTransform()->GetScale().x);
+
+	return size;
 }
