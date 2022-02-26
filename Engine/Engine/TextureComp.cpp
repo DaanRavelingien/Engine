@@ -5,6 +5,24 @@
 #include "Texture2D.h"
 #include "TransformComp.h"
 
+//static function
+Component* TextureComp::CreateComp(const rapidjson::Value& args)
+{
+	TextureComp* pTextureComp{ nullptr };
+
+	if (args.Empty())
+		LOGERROR("Expected arguments for component of type: TEXTURECOMP");
+	else
+	{
+		if (!args[0].IsString())
+			LOGERROR("Expected different type of argument for component of type : TEXTURECOMP");
+		else
+			pTextureComp = new TextureComp{ args[0].GetString() };
+	}
+
+	return pTextureComp;
+}
+
 TextureComp::TextureComp(const std::string& file)
 	:Component(typeid(this).name())
 	, m_FilePath{file}

@@ -16,6 +16,8 @@ public:
 	void Initialize() override;
 	void Update() override;
 
+	//static function to create comp from arguments
+	static Component* CreateComp(const rapidjson::Value& args);
 private:
 	float m_AverageFps{};
 	int m_SampleSize{};

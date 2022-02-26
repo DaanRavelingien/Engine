@@ -1,5 +1,6 @@
 #pragma once
 #include "Observer.h"
+#include "document.h"
 
 class GameObject;
 
@@ -27,6 +28,13 @@ public:
 
 	void SetGameObj(GameObject* pGameObj) { m_pGameObj = pGameObj; };
 	GameObject* GetGameObj() const;
+;
+	//static function to create comp from json
+	template<typename T>
+	static Component* CreateCompFromJson(const rapidjson::Value& args)
+	{
+		return T::CreateComp(args);
+	}
 
 protected:
 	GameObject* m_pGameObj{ nullptr };

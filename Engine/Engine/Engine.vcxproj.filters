@@ -100,6 +100,9 @@
     <ClInclude Include="SpriteComp.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="CompConstrucor.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

@@ -24,13 +24,5 @@ private:
 
 	//function to create comp from string
 	Component* CreateComponent(const std::string& compType, const rapidjson::Value& args);
-
-	//functions to create components
-	Component* CreateTransformComp(const rapidjson::Value& args);
-	Component* CreateRenderComp(const rapidjson::Value& args);
-	Component* CreateFPSComp(const rapidjson::Value& args);
-	Component* CreateTextComp(const rapidjson::Value& args);
-	Component* CreateTextrueComp(const rapidjson::Value& args);
-	Component* CreateSpriteComp(const rapidjson::Value& args);
 };
 

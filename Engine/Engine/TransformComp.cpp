@@ -2,6 +2,13 @@
 #include "TransformComp.h"
 #include "GameObject.h"
 
+//static function
+Component* TransformComp::CreateComp(const rapidjson::Value&)
+{
+	TransformComp* pComp{ new TransformComp{} };
+	return pComp;
+}
+
 glm::vec3 TransformComp::GetPos() const
 {
 	//keeping into account the transform of the parent

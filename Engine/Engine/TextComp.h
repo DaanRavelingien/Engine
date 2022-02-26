@@ -24,6 +24,8 @@ public:
 	void SetFontSize(unsigned int fontSize);
 	unsigned int GetFontSize() const;
 
+	//static function to create comp from arguments
+	static Component* CreateComp(const rapidjson::Value& args);
 private:
 	std::string m_Text;
 	int m_FontIdx;

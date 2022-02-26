@@ -185,107 +185,18 @@ Component* ScenePharser::CreateComponent(const std::string& compType, const rapi
 {
     Component* pComponent{ nullptr };
     if (compType.compare("RENDERCOMP") == 0)
-        pComponent = CreateRenderComp(args);
+        pComponent = Component::CreateCompFromJson<Render2DComp>(args);
     else if (compType.compare("TEXTURECOMP") == 0)
-        pComponent = CreateTextrueComp(args);
+        pComponent = Component::CreateCompFromJson<TextureComp>(args);
     else if (compType.compare("TEXTCOMP") == 0)
-        pComponent = CreateTextComp(args);
+        pComponent = Component::CreateCompFromJson<TextComp>(args);
     else if (compType.compare("TRANSFORMCOMP") == 0)
-        pComponent = CreateTransformComp(args);
+        pComponent = Component::CreateCompFromJson<TransformComp>(args);
     else if (compType.compare("FPSCOMP") == 0)
-        pComponent = CreateFPSComp(args);
+        pComponent = Component::CreateCompFromJson<FPSComp>(args);
     else if (compType.compare("SPRITECOMP") == 0)
-        pComponent = CreateSpriteComp(args);
+        pComponent = Component::CreateCompFromJson<SpriteComp>(args);
 
     return pComponent;
 }
 
-Component* ScenePharser::CreateTransformComp(const rapidjson::Value&)
-{
-    TransformComp* pComp{ new TransformComp{} };
-    return pComp;
-}
-
-Component* ScenePharser::CreateRenderComp(const rapidjson::Value&)
-{
-    Render2DComp* pRenderComp{ new Render2DComp{} };
-    return pRenderComp;
-}
-
-Component* ScenePharser::CreateFPSComp(const rapidjson::Value& args)
-{
-    FPSComp* pFPSComp{ nullptr };
-    if (args.Empty())
-        pFPSComp = new FPSComp{};
-    else
-    {
-        if (!args[0].IsFloat())
-            LOGERROR("Expected different type of argument for component of type: FPSCOMP");
-        else
-            pFPSComp = new FPSComp{ args[0].GetFloat() };
-    }
-
-    return pFPSComp;
-}
-
-Component* ScenePharser::CreateTextComp(const rapidjson::Value& args)
-{
-    TextComp* pTextComp{ nullptr };
-    
-    if (args.Empty())
-        LOGERROR("Expected arguments for component of type: TEXTCOMP");
-    else
-    {
-        if (!args[0].IsString() || !args[1].IsString() || !args[2].IsInt() || !args[3].IsArray())
-            LOGERROR("Expected different type of argument for component of type : TEXTCOMP");
-        else
-        {
-            pTextComp = new TextComp{ args[0].GetString(), args[1].GetString(), unsigned int(args[2].GetInt())
-                , {args[3][0].GetFloat(),args[3][1].GetFloat(),args[3][2].GetFloat()} };
-        }
-    }
-
-    return pTextComp;
-}
-
-Component* ScenePharser::CreateTextrueComp(const rapidjson::Value& args)
-{
-    TextureComp* pTextureComp{ nullptr };
-
-    if(args.Empty())
-        LOGERROR("Expected arguments for component of type: TEXTURECOMP");
-    else
-    {
-        if (!args[0].IsString())
-            LOGERROR("Expected different type of argument for component of type : TEXTURECOMP");
-        else
-            pTextureComp = new TextureComp{ args[0].GetString() };
-    }
-
-    return pTextureComp;
-}
-
-Component* ScenePharser::CreateSpriteComp(const rapidjson::Value& args)
-{
-    SpriteComp* pSpriteComp{nullptr};
-
-    if (args.Empty())
-        LOGERROR("Expected arguments for component of type: SPRITECOMP");
-    else
-    {
-        if (!args[0].IsInt() || !args[1].IsArray() || !args[2].IsArray(), !args[3].IsFloat()
-            || !args[1][0].IsInt(), !args[1][1].IsInt(), !args[2][0].IsInt(), !args[2][1].IsInt())
-            LOGERROR("Expected different type of argument for component of type : TEXTURECOMP");
-        else
-        {
-            pSpriteComp = new SpriteComp{
-                args[0].GetInt(),
-                glm::vec2{args[1][0].GetInt(),args[1][1].GetInt()},
-                glm::vec2{args[2][0].GetInt(),args[2][1].GetInt()},
-                args[3].GetFloat()
-            };
-        }
-    }
-
-    return pSpriteComp;
-}

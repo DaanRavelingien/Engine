@@ -5,6 +5,27 @@
 #include "Font.h"
 #include "TransformComp.h"
 
+//static function
+Component* TextComp::CreateComp(const rapidjson::Value& args)
+{
+	TextComp* pTextComp{ nullptr };
+
+	if (args.Empty())
+		LOGERROR("Expected arguments for component of type: TEXTCOMP");
+	else
+	{
+		if (!args[0].IsString() || !args[1].IsString() || !args[2].IsInt() || !args[3].IsArray())
+			LOGERROR("Expected different type of argument for component of type : TEXTCOMP");
+		else
+		{
+			pTextComp = new TextComp{ args[0].GetString(), args[1].GetString(), unsigned int(args[2].GetInt())
+				, {args[3][0].GetFloat(),args[3][1].GetFloat(),args[3][2].GetFloat()} };
+		}
+	}
+
+	return pTextComp;
+}
+
 TextComp::TextComp(const std::string& text, const std::string& file, unsigned int fontSize, const glm::vec3& color)
 	: Component(typeid(this).name())
 	, m_Text{text}

@@ -24,6 +24,8 @@ public:
 	void SetDestRect(const glm::vec4& rect) { m_DestRect = rect; };
 	glm::vec4 GetDestRect() const;
 
+	//static function to create comp from arguments
+	static Component* CreateComp(const rapidjson::Value& args);
 private:
 	std::string m_FilePath{};
 	glm::vec4 m_SourceRect{};
