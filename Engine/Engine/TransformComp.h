@@ -13,11 +13,11 @@ public:
 	TransformComp& operator=(TransformComp&& other) = delete;
 
 	glm::vec3 GetPos() const;
-	void SetPos(const glm::vec3& pos) { m_Position = pos; };
+	void SetPos(const glm::vec3& pos);
 	glm::vec3 GetScale() const;
-	void SetScale(const glm::vec3& scale) { m_Scale = scale; };
+	void SetScale(const glm::vec3& scale);
 	glm::vec3 GetRotation() const;
-	void SetRotation(const glm::vec3& rotation) { m_Rotation = rotation; };
+	void SetRotation(const glm::vec3& rotation);
 
 private:
 	glm::vec3 m_Position{ 0,0,0 };

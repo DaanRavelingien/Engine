@@ -11,6 +11,7 @@
 #include "TextureComp.h"
 #include "TextComp.h"
 #include "FPSComp.h"
+#include "SpriteComp.h"
 
 void ScenePharser::CreateScene(const std::string& filePath)
 {
@@ -193,6 +194,8 @@ Component* ScenePharser::CreateComponent(const std::string& compType, const rapi
         pComponent = CreateTransformComp(args);
     else if (compType.compare("FPSCOMP") == 0)
         pComponent = CreateFPSComp(args);
+    else if (compType.compare("SPRITECOMP") == 0)
+        pComponent = CreateSpriteComp(args);
 
     return pComponent;
 }
@@ -260,4 +263,29 @@ Component* ScenePharser::CreateTextrueComp(const rapidjson::Value& args)
     }
 
     return pTextureComp;
+}
+
+Component* ScenePharser::CreateSpriteComp(const rapidjson::Value& args)
+{
+    SpriteComp* pSpriteComp{nullptr};
+
+    if (args.Empty())
+        LOGERROR("Expected arguments for component of type: SPRITECOMP");
+    else
+    {
+        if (!args[0].IsInt() || !args[1].IsArray() || !args[2].IsArray(), !args[3].IsFloat()
+            || !args[1][0].IsInt(), !args[1][1].IsInt(), !args[2][0].IsInt(), !args[2][1].IsInt())
+            LOGERROR("Expected different type of argument for component of type : TEXTURECOMP");
+        else
+        {
+            pSpriteComp = new SpriteComp{
+                args[0].GetInt(),
+                glm::vec2{args[1][0].GetInt(),args[1][1].GetInt()},
+                glm::vec2{args[2][0].GetInt(),args[2][1].GetInt()},
+                args[3].GetFloat()
+            };
+        }
+    }
+
+    return pSpriteComp;
 }

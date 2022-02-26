@@ -31,5 +31,6 @@ private:
 	Component* CreateFPSComp(const rapidjson::Value& args);
 	Component* CreateTextComp(const rapidjson::Value& args);
 	Component* CreateTextrueComp(const rapidjson::Value& args);
+	Component* CreateSpriteComp(const rapidjson::Value& args);
 };
 

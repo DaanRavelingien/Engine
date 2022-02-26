@@ -16,6 +16,9 @@ public:
 	Texture2D(Texture2D &&) = delete;
 	Texture2D & operator= (const Texture2D &) = delete;
 	Texture2D & operator= (const Texture2D &&) = delete;
+
+	glm::vec2 GetTextureSize() const;
+
 private:
 	friend class ResourceManager;
 	//should be created through the resource manager

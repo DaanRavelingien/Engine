@@ -21,10 +21,29 @@ void Render2DComp::Render()
 		//check if the texture is something
 		if (pair.second >= 0)
 		{
-			const auto& pos = m_pGameObj->GetTransform()->GetPos();
-			Renderer::GetInstance().RenderTexture(
-				*ResourceManager::GetInstance().GetResource<Texture2D>(pair.second),
-				pos.x, pos.y);
+			//if the texture comes from a textureComp take into account the srcRect and destRect
+			if (dynamic_cast<TextureComp*>(pair.first))
+			{
+				TextureComp* pTextureComp{ dynamic_cast<TextureComp*>(pair.first) };
+
+				//const auto& pos = m_pGameObj->GetTransform()->GetPos();
+				//
+				//Renderer::GetInstance().RenderTexture(
+				//	*ResourceManager::GetInstance().GetResource<Texture2D>(pair.second),
+				//	pos.x, pos.y);
+
+				Renderer::GetInstance().RenderTexture(
+					*ResourceManager::GetInstance().GetResource<Texture2D>(pair.second),
+					pTextureComp->GetDestRect(), pTextureComp->GetSourceRect());
+			}
+			else
+			{
+				const auto& pos = m_pGameObj->GetTransform()->GetPos();
+
+				Renderer::GetInstance().RenderTexture(
+					*ResourceManager::GetInstance().GetResource<Texture2D>(pair.second),
+					pos.x, pos.y);
+			}
 		}
 		else
 		{
@@ -69,6 +88,8 @@ void Render2DComp::AddTextureToRender(Component* pComp, int textureIdx)
 	if (it != m_CompsToRender.end())
 	{
 		newTextureIdx = ResourceManager::GetInstance().ReplaceResource(it->second, textureIdx);
+		(*it).second = newTextureIdx;
+		return;
 	}
 
 	//else add it to the vector

@@ -210,6 +210,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScenePharser.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SpriteComp.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TextComp.h" />
     <ClInclude Include="Texture2D.h" />
@@ -247,6 +248,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScenePharser.cpp" />
+    <ClCompile Include="SpriteComp.cpp" />
     <ClCompile Include="TextComp.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TextureComp.cpp" />

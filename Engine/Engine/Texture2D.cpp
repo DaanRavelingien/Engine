@@ -25,6 +25,16 @@ SDL_Texture* Texture2D::GetSDLTexture() const
 	return m_Texture;
 }
 
+glm::vec2 Texture2D::GetTextureSize() const
+{
+	int textureWidth{};
+	int textureHeight{};
+
+	SDL_QueryTexture(m_Texture, nullptr, nullptr, &textureWidth, &textureHeight);
+	
+	return glm::vec2{ textureWidth,textureHeight };
+}
+
 Texture2D::Texture2D(int idx, const std::string& filePath)
 	:Resource(idx)
 	,m_Texture{nullptr}
