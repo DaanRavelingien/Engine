@@ -196,7 +196,8 @@ Component* ScenePharser::CreateComponent(const std::string& compType, const rapi
         pComponent = Component::CreateCompFromJson<FPSComp>(args);
     else if (compType.compare("SPRITECOMP") == 0)
         pComponent = Component::CreateCompFromJson<SpriteComp>(args);
-
+    else
+        LOGWARNING("Coponent of type: " + compType + " does not exist");
     return pComponent;
 }
 

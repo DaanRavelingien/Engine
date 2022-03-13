@@ -37,8 +37,8 @@ void Engine::Initialize()
 		"Game Engine Testing",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		640,
-		480,
+		720,
+		720,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_Window == nullptr) 

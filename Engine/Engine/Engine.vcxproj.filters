@@ -103,6 +103,9 @@
     <ClInclude Include="CompConstrucor.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Engine\Helpers\Patterns</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

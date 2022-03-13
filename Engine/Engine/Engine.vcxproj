@@ -192,6 +192,7 @@
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h" />
+    <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="CompConstrucor.h" />
     <ClInclude Include="Events.h" />

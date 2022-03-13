@@ -1,8 +1,8 @@
 {
-  "GameName": "Demo",
+  "GameName": "BurgerTimeMockup",
   "Scenes": [
     {
-      "Scene": "Demo",
+      "Scene": "BurgerTimeMockup",
       "GameObjects": [
         {
           "Name": "FPS",
@@ -47,8 +47,8 @@
               "Type": "SPRITECOMP",
               "Args": [
                 29,
-                [40,44],
-                [0,0],
+                [ 40, 44 ],
+                [ 0, 0 ],
                 0.1
               ]
             }

@@ -5,47 +5,219 @@
 #include "imgui_impl_sdl.h"
 #endif // _DEBUG
 
-
 bool InputManager::ProcessInput()
 {
-	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-	XInputGetState(0, &m_CurrentState);
+	//controller input
+	XInputGetKeystroke(0, 0, &m_Keystrokes);
+	HandleControllerInput();
 
-	SDL_Event e;
-	while (SDL_PollEvent(&e)) {
+	//keyboard / mouse input
+	while (SDL_PollEvent(&m_SDLEvent))
+	{
 #ifdef _DEBUG
 		//sending events to the imgui so we can interact with it
-		ImGui_ImplSDL2_ProcessEvent(&e);
+		ImGui_ImplSDL2_ProcessEvent(&m_SDLEvent);
 #endif // _DEBUG
 
-
-		if (e.type == SDL_QUIT) {
+		if (m_SDLEvent.type == SDL_QUIT)
+		{
+			//quiting the game when clicked on the cross of the window
 			return false;
 		}
-		if (e.type == SDL_KEYDOWN) {
-			
+		if (m_SDLEvent.type == SDL_KEYDOWN || m_SDLEvent.type == SDL_KEYUP)
+		{
+			//only handel keyboard input if a key is pressed
+			HandleKeyboardInput();
 		}
-		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
+		if (m_SDLEvent.type == SDL_MOUSEBUTTONDOWN)
+		{
+			//mouse input should come here
 		}
 	}
 
 	return true;
 }
 
-bool InputManager::IsPressed(ControllerButton button) const
+bool InputManager::IsPressed(const ControllerButton& button) const
 {
-	switch (button)
+	if ((WORD)button == m_Keystrokes.VirtualKey)
+		return true;
+	return false;
+}
+
+bool InputManager::IsPressed(const KeyboardButton& button) const
+{
+	if ((SDL_Scancode)button == m_SDLEvent.key.keysym.scancode)
+		return true;
+	return false;
+}
+
+void InputManager::SetCommand(const ControllerButton& button, ButtonState buttonState, Command* pCommand)
+{
+	//if the command doesnt exist yet create it
+	Input input{ nullptr,nullptr,nullptr };
+	if (m_ControllerCommands.find(button) == m_ControllerCommands.end())
 	{
-	case ControllerButton::ButtonA:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_A;
-	case ControllerButton::ButtonB:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_B;
-	case ControllerButton::ButtonX:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_X;
-	case ControllerButton::ButtonY:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
-	default: return false;
+		switch (buttonState)
+		{
+		case ButtonState::Down:
+			input.downCommand = pCommand;
+			m_ControllerCommands.emplace(button, input);
+			break;
+		case ButtonState::Up:
+			input.upCommand = pCommand;
+			m_ControllerCommands.emplace(button, input);
+			break;
+		case ButtonState::Pressed:
+			input.pressedCommand = pCommand;
+			m_ControllerCommands.emplace(button, input);
+			break;
+		default:
+			break;
+		}
+	}
+	//if it does exist remove the old command and put the new one in place
+	else
+	{
+		switch (buttonState)
+		{
+		case ButtonState::Down:
+			//removing the old command
+			if (m_ControllerCommands.at(button).downCommand != nullptr)
+				delete m_ControllerCommands.at(button).downCommand;
+			//setting the new command
+			m_ControllerCommands.at(button).downCommand = pCommand;
+			break;
+		case ButtonState::Up:
+			//removing the old command
+			if (m_ControllerCommands.at(button).upCommand != nullptr)
+				delete m_ControllerCommands.at(button).upCommand;
+			//setting the new command
+			m_ControllerCommands.at(button).upCommand = pCommand;
+			break;
+		case ButtonState::Pressed:
+			//removing the old command
+			if (m_ControllerCommands.at(button).pressedCommand != nullptr)
+				delete m_ControllerCommands.at(button).pressedCommand;
+			//setting the new command
+			m_ControllerCommands.at(button).pressedCommand = pCommand;
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void InputManager::SetCommand(const KeyboardButton& button, ButtonState buttonState, Command* pCommand)
+{
+	//if the command doesnt exist yet create it
+	Input input{ nullptr,nullptr,nullptr };
+	if (m_KeyboardCommands.find(button) == m_KeyboardCommands.end())
+	{
+		switch (buttonState)
+		{
+		case ButtonState::Down:
+			input.downCommand = pCommand;
+			m_KeyboardCommands.emplace(button, input);
+			break;
+		case ButtonState::Up:
+			input.upCommand = pCommand;
+			m_KeyboardCommands.emplace(button, input);
+			break;
+		case ButtonState::Pressed:
+			input.pressedCommand = pCommand;
+			m_KeyboardCommands.emplace(button, input);
+			break;
+		default:
+			break;
+		}
+	}
+	//if it does exist remove the old command and put the new one in place
+	else
+	{
+		switch (buttonState)
+		{
+		case ButtonState::Down:
+			//removing the old command
+			if (m_KeyboardCommands.at(button).downCommand != nullptr)
+				delete m_KeyboardCommands.at(button).downCommand;
+			//setting the new command
+			m_KeyboardCommands.at(button).downCommand = pCommand;
+			break;
+		case ButtonState::Up:
+			//removing the old command
+			if (m_KeyboardCommands.at(button).upCommand != nullptr)
+				delete m_KeyboardCommands.at(button).upCommand;
+			//setting the new command
+			m_KeyboardCommands.at(button).upCommand = pCommand;
+			break;
+		case ButtonState::Pressed:
+			//removing the old command
+			if (m_KeyboardCommands.at(button).pressedCommand != nullptr)
+				delete m_KeyboardCommands.at(button).pressedCommand;
+			//setting the new command
+			m_KeyboardCommands.at(button).pressedCommand = pCommand;
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void InputManager::HandleControllerInput()
+{
+	//going through all the buttons and checking wich ones are pressed
+	for (const std::pair<ControllerButton, Input>& input : m_ControllerCommands)
+	{
+		//if the button is pressed execute the commands associated with it
+		if (m_Keystrokes.Flags & XINPUT_KEYSTROKE_REPEAT)
+		{
+			if (IsPressed(input.first))
+			{
+				if (m_ControllerCommands.at(input.first).pressedCommand != nullptr)
+					m_ControllerCommands.at(input.first).pressedCommand->Execute();
+			}
+		}
+		//if the button is released execute the commands associated with it
+		if (m_Keystrokes.Flags == XINPUT_KEYSTROKE_KEYUP)
+		{
+			if (IsPressed(input.first))
+			{
+				if (m_ControllerCommands.at(input.first).upCommand != nullptr)
+					m_ControllerCommands.at(input.first).upCommand->Execute();
+			}
+		}
+		//if the button is pressed down execute the commands associated with it
+		if (m_Keystrokes.Flags == XINPUT_KEYSTROKE_KEYDOWN)
+		{
+			if (IsPressed(input.first))
+			{
+				if (m_ControllerCommands.at(input.first).downCommand != nullptr)
+					m_ControllerCommands.at(input.first).downCommand->Execute();
+			}
+		}
+	}
+}
+
+void InputManager::HandleKeyboardInput()
+{
+	//for keyboard input we only need to check the current button that is pressed and not loop over all of them
+	//we do the looping in the proces input fucntion
+	auto it = m_KeyboardCommands.find((KeyboardButton)m_SDLEvent.key.keysym.scancode);
+	//check if the key is in the map
+	if (it == m_KeyboardCommands.end())
+		return;
+
+	//TODO: make the down command work as well withs some kind of flag or look a bit more into sdl
+	if (m_SDLEvent.type == SDL_KEYDOWN)
+	{
+		if (it->second.pressedCommand != nullptr)
+			it->second.pressedCommand->Execute();
+	}
+	if (m_SDLEvent.type == SDL_KEYUP)
+	{
+		if (it->second.upCommand != nullptr)
+			it->second.upCommand->Execute();
 	}
 }
 
