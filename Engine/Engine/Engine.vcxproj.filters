@@ -34,21 +34,6 @@
     <ClInclude Include="Component.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="TextComp.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformComp.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Render2DComp.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureComp.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="FPSComp.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Events.h">
       <Filter>Engine\Helpers\Patterns</Filter>
     </ClInclude>
@@ -97,14 +82,32 @@
     <ClInclude Include="ScenePharser.h">
       <Filter>Engine\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteComp.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="CompConstrucor.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Engine\Helpers\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Render2DComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -142,21 +145,6 @@
     <ClCompile Include="Component.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="TextComp.cpp">
-      <Filter>Engine\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureComp.cpp">
-      <Filter>Engine\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Render2DComp.cpp">
-      <Filter>Engine\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="FPSComp.cpp">
-      <Filter>Engine\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformComp.cpp">
-      <Filter>Engine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Engine\Resources\ResourceTypes</Filter>
     </ClCompile>
@@ -190,8 +178,26 @@
     <ClCompile Include="ScenePharser.cpp">
       <Filter>Engine\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Render2DComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
     <ClCompile Include="SpriteComp.cpp">
-      <Filter>Engine\Components</Filter>
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +233,12 @@
     </Filter>
     <Filter Include="imgui">
       <UniqueIdentifier>{024e24cf-1a84-49fd-b76d-3d31647f791b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\StandardComps">
+      <UniqueIdentifier>{891d6783-1a53-44c4-8069-dfec15db9883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\GameComps">
+      <UniqueIdentifier>{6620dbb8-cd61-49ca-963c-b073948d4b19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

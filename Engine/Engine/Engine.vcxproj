@@ -199,6 +199,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComp.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="HealthComp.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EnginePCH.h" />
@@ -232,6 +233,7 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComp.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="HealthComp.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
