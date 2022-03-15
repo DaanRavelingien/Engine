@@ -31,8 +31,6 @@ private:
 
 	std::string m_Name;
 	std::vector <GameObject*> m_GameObjs{};
-
-	static unsigned int m_IdCounter; 
 };
 
 

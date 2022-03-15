@@ -2,9 +2,10 @@
 #include "Scene.h"
 #include "GameObject.h"
 
-unsigned int Scene::m_IdCounter = 0;
-
-Scene::Scene(const std::string& name) : m_Name(name) {}
+Scene::Scene(const std::string& name) 
+	: m_Name(name)
+{
+}
 
 Scene::~Scene()
 {
