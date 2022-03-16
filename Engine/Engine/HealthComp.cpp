@@ -1,5 +1,6 @@
 #include "EnginePCH.h"
 #include "HealthComp.h"
+#include "GameObject.h"
 
 HealthComp::HealthComp(int maxHealth)
 	: Component(typeid(this).name())
@@ -13,6 +14,8 @@ void HealthComp::Damage(int damage)
 	
 	if (m_Health < 0)
 		m_Health = 0;
+
+	m_pGameObj->SendNotification(this, Event::COMPONENT_HEALTH_CHANGED);
 }
 
 void HealthComp::Heal(int heal)
@@ -21,4 +24,6 @@ void HealthComp::Heal(int heal)
 
 	if (m_Health > m_MaxHealth)
 		m_Health = m_MaxHealth;
+
+	m_pGameObj->SendNotification(this, Event::COMPONENT_HEALTH_CHANGED);
 }

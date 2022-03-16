@@ -14,6 +14,12 @@ Render2DComp::Render2DComp()
 {
 }
 
+void Render2DComp::Initialize()
+{
+	//subscibing the renderComp to the game object
+	m_pGameObj->AddObserver(this);
+}
+
 void Render2DComp::Render()
 {
 	for (std::pair<Component*, int> pair : m_CompsToRender)

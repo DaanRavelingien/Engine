@@ -12,6 +12,7 @@ public:
 	HealthComp& operator=(HealthComp&& other) = delete;
 
 	int GetHealth() const {	return m_Health; };
+	int GetMaxHealth() const { return m_MaxHealth; };
 
 	void Damage(int damage);
 	void Heal(int heal);

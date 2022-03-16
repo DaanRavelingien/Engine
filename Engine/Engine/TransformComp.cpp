@@ -20,7 +20,7 @@ glm::vec3 TransformComp::GetScale() const
 {
 	//keeping into account the transform of the parent
 	if (m_pGameObj->GetParent())
-		return m_pGameObj->GetParent()->GetTransform()->GetScale() + m_Scale;
+		return m_pGameObj->GetParent()->GetTransform()->GetScale() * m_Scale;
 	return m_Scale;
 }
 

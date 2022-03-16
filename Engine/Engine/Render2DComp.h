@@ -1,10 +1,11 @@
 #pragma once
 #include "Component.h"
+#include "Observer.h"
 
 class Font;
 class Texture2D;
 
-class Render2DComp final : public Component
+class Render2DComp final : public Component, public Observer<Component>
 {
 public:
 	explicit Render2DComp();
@@ -14,6 +15,7 @@ public:
 	Render2DComp& operator=(const Render2DComp& other) = delete;
 	Render2DComp& operator=(Render2DComp&& other) = delete;
 
+	void Initialize() override;
 	void Render();
 
 private:

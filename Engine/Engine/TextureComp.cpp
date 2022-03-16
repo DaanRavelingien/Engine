@@ -6,13 +6,26 @@
 #include "TransformComp.h"
 
 TextureComp::TextureComp(const std::string& file)
-	:Component(typeid(this).name())
+	:Component{ typeid(this).name() }
 	, m_FilePath{file}
 	, m_TextureIdx{ -1 }
 {
 	//creating our texture on the resource manager so we dont need to take ownership of it
 	m_TextureIdx = ResourceManager::GetInstance().LoadTexture(m_FilePath);
 
+	//setting the default source rectangle to the size of the whole texture
+	m_SourceRect = glm::vec4{ 0,0,
+	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureIdx)->GetTextureSize().x,
+	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureIdx)->GetTextureSize().y };
+
+	//setting the destination rectangle to the same size as well
+	m_DestRect = m_SourceRect;
+}
+
+TextureComp::TextureComp(int textureIdx)
+	:Component{ typeid(this).name() }
+	, m_TextureIdx{textureIdx}
+{
 	//setting the default source rectangle to the size of the whole texture
 	m_SourceRect = glm::vec4{ 0,0,
 	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureIdx)->GetTextureSize().x,

@@ -24,6 +24,12 @@ GameObject::~GameObject()
 		delete pComp;
 		pComp = nullptr;
 	}
+
+	for (GameObject* pChild : m_Children)
+	{
+		delete pChild;
+		pChild = nullptr;
+	}
 }
 
 void GameObject::Initialize()
@@ -31,6 +37,11 @@ void GameObject::Initialize()
 	for (Component* comp : m_Components)
 	{
 		comp->Initialize();
+	}
+
+	for (GameObject* pChild : m_Children)
+	{
+		pChild->Initialize();
 	}
 }
 
@@ -43,6 +54,11 @@ void GameObject::Update()
 	{
 		comp->Update();
 	}
+
+	for (GameObject* pChild : m_Children)
+	{
+		pChild->Update();
+	}
 }
 
 void GameObject::FixedUpdate()
@@ -53,6 +69,11 @@ void GameObject::FixedUpdate()
 	for (Component* comp : m_Components)
 	{
 		comp->FixedUpdate();
+	}
+
+	for (GameObject* pChild : m_Children)
+	{
+		pChild->FixedUpdate();
 	}
 }
 
@@ -66,6 +87,11 @@ void GameObject::Render() const
 				dynamic_cast<Render2DComp*>(pComp)->Render();
 			}
 		});
+
+	for (GameObject* pChild : m_Children)
+	{
+		pChild->Render();
+	}
 }
 
 #ifdef _DEBUG
@@ -77,6 +103,11 @@ void GameObject::RenderGui()
 	for (Component* comp : m_Components)
 	{
 		comp->RenderGui();
+	}
+
+	for (GameObject* pChild : m_Children)
+	{
+		pChild->RenderGui();
 	}
 }
 #endif // _DEBUG
@@ -94,8 +125,8 @@ void GameObject::AddChild(GameObject* pGameObj)
 	//only adding if it was not yet added to the vector
 	if (it == m_Children.end())
 	{
-		pGameObj->SetParent(this);
 		m_Children.push_back(pGameObj);
+		pGameObj->SetParent(this);
 	}
 }
 
@@ -113,9 +144,6 @@ void GameObject::AddComponent(Component* pComp)
 	//setting the component game obj pointer to this
 	pComp->SetGameObj(this);
 
-	//subscibing the components observer to this game object
-	m_GameObjSubject.AddObserver(pComp);
-
 	m_Components.push_back(pComp);
 }
 
@@ -132,5 +160,10 @@ void GameObject::RemoveComponent(int idx)
 		LOGWARNING("failed to find component with the specified index");
 	else
 		m_Components.erase(it, m_Components.end());
+}
+
+void GameObject::AddObserver(Observer<Component>* pObserver)
+{
+	m_GameObjSubject.AddObserver(pObserver);
 }
 

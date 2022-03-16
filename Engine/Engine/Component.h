@@ -1,9 +1,10 @@
 #pragma once
-#include "Observer.h"
+#include <string>
+#include <vector>
 
 class GameObject;
 
-class Component : public Observer<Component*>
+class Component
 {
 public:
 	Component(const std::string& compName);
@@ -19,8 +20,6 @@ public:
 #ifdef _DEBUG
 	virtual void RenderGui() {};
 #endif // _DEBUG
-
-	virtual void Notify(Component*, Event) override {};
 
 	int GetIdx() const { return m_Idx; };
 	std::string GetCompName() const { return m_CompName; };
@@ -38,4 +37,3 @@ private:
 	std::string m_CompName{};
 	static std::vector<std::string> m_ComponentTypes;
 };
-

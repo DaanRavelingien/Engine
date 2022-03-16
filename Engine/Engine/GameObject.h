@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Subject.h"
+#include <string>
 
 class TransformComp;
 
@@ -25,6 +26,10 @@ public:
 	void Destroy() { m_Destroyed = true; };
 	bool IsDestroyed() const { return m_Destroyed; };
 
+	void Enable() { m_Disabled = false; };
+	void Disable() { m_Disabled = true; };
+	bool IsDisabled() const { return m_Disabled; };
+
 	std::string GetName() const { return m_Name; };
 	void Rename(const std::string& name) { m_Name = name; };
 
@@ -35,6 +40,8 @@ public:
 
 	void AddComponent(Component* comp);
 	void RemoveComponent(int idx);
+
+	void AddObserver(Observer<Component>* pObserver);
 
 	//removes all components of given type
 	template<typename T>
@@ -107,9 +114,10 @@ private:
 	GameObject* m_pParent{ nullptr };
 	std::vector<GameObject*> m_Children{};
 	bool m_Destroyed{ false };
+	bool m_Disabled{ false };
 
 	//add subject to the game object so it can send events to all its components
-	//with as payload a component pointer
-	Subject<Component*> m_GameObjSubject{};
+	//with as payload the component
+	Subject<Component> m_GameObjSubject{};
 };
 

@@ -8,7 +8,9 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
-#include "DemoScene.h"
+
+//scene includes
+#include "BurgerTimeLvl.h"
 
 using namespace std;
 
@@ -55,9 +57,9 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
-	//creating our demo scene
-	Scene* pDemoScene{ new DemoScene{} };
-	SceneManager::GetInstance().AddScene(pDemoScene);
+	//creating our lvl scene
+	Scene* pBurgerTimeLvl{ new BurgerTimeLvl{} };
+	SceneManager::GetInstance().AddScene(pBurgerTimeLvl);
 }
 
 void Engine::Cleanup()

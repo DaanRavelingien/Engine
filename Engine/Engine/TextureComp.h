@@ -8,6 +8,7 @@ class TextureComp final : public Component
 {
 public:
 	explicit TextureComp(const std::string& file);
+	explicit TextureComp(int textureIdx);
 	~TextureComp() = default;
 	TextureComp(const TextureComp& other) = delete;
 	TextureComp(TextureComp&& other) = delete;

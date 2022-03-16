@@ -6,6 +6,6 @@ class Observer
 {
 public:
 	virtual ~Observer() = default;
-	virtual void Notify(T payload, Event event) = 0;
+	virtual void Notify(T* payload, Event event) = 0;
 };
 

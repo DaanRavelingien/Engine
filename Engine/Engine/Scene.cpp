@@ -28,7 +28,8 @@ void Scene::InitializeScene()
 
 	for (auto& gameObj : m_GameObjs)
 	{
-		gameObj->Initialize();
+		if(!gameObj->IsDisabled())
+			gameObj->Initialize();
 	}
 }
 
@@ -39,7 +40,8 @@ void Scene::UpdateScene()
 
 	for(auto& gameObj : m_GameObjs)
 	{
-		gameObj->Update();
+		if (!gameObj->IsDisabled())
+			gameObj->Update();
 	}
 
 	RemoveDestroyedGameObjs();
@@ -52,7 +54,8 @@ void Scene::FixedUpdateScene()
 
 	for (auto& gameObj : m_GameObjs)
 	{
-		gameObj->FixedUpdate();
+		if (!gameObj->IsDisabled())
+			gameObj->FixedUpdate();
 	}
 
 	RemoveDestroyedGameObjs();
@@ -62,7 +65,8 @@ void Scene::Render() const
 {
 	for (const auto& object : m_GameObjs)
 	{
-		object->Render();
+		if(!object->IsDisabled())
+			object->Render();
 	}
 }
 
@@ -71,7 +75,8 @@ void Scene::RenderGui()
 {
 	for (auto& gameObj : m_GameObjs)
 	{
-		gameObj->RenderGui();
+		if(gameObj->IsDisabled())
+			gameObj->RenderGui();
 	}
 }
 #endif // _DEBUG

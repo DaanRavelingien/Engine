@@ -1,4 +1,5 @@
 #pragma once
+#include "EnginePCH.h"
 #include "Observer.h"
 
 //the type of payload the notify carries with it
@@ -27,7 +28,7 @@ public:
 
 	};
 
-	void Notify(T payload, Event event)
+	void Notify(T* payload, Event event)
 	{
 		for (Observer<T>* pObserver : m_Observers)
 		{

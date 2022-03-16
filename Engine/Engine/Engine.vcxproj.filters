@@ -106,6 +106,12 @@
     <ClInclude Include="DemoScene.h">
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClInclude>
+    <ClInclude Include="BurgerTimeLvl.h">
+      <Filter>Engine\Scenes\GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesDisplayComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -195,6 +201,12 @@
     </ClCompile>
     <ClCompile Include="DemoScene.cpp">
       <Filter>Engine\Scenes\GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimeLvl.cpp">
+      <Filter>Engine\Scenes\GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesDisplayComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
