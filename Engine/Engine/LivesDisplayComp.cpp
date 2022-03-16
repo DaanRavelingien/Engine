@@ -13,21 +13,21 @@
 
 LivesDisplayComp::LivesDisplayComp(GameObject* pObj, const std::string& liveTexturePath)
 	:Component(typeid(this).name())
-	,m_pObj{pObj}
+	,m_pPeterPepper{pObj}
 {
 	m_LivesTextureIdx = ResourceManager::GetInstance().LoadTexture(liveTexturePath);
 }
 
 LivesDisplayComp::LivesDisplayComp(GameObject* pObj, int livesTextureIdx)
 	: Component(typeid(this).name())
-	,m_pObj{pObj}
+	,m_pPeterPepper{pObj}
 	,m_LivesTextureIdx{livesTextureIdx}
 {
 }
 
 void LivesDisplayComp::Initialize()
 {
-	int maxLives = m_pObj->GetComponent<HealthComp>()->GetMaxHealth();
+	int maxLives = m_pPeterPepper->GetComponent<HealthComp>()->GetMaxHealth();
 
 	//create the objects that will display the lives
 	//just a simple object with a texture comp and a render comp
@@ -35,7 +35,7 @@ void LivesDisplayComp::Initialize()
 	{
 		int textureSize{ 8 };
 
-		GameObject* pLiveObj{ new GameObject{"LiveTex_" + std::to_string(i)} };
+		GameObject* pLiveObj{ new GameObject{"LiveTexObj_" + std::to_string(i)} };
 		pLiveObj->AddComponent(new Render2DComp{});
 
 		TextureComp* pTextureComp{ new TextureComp{ m_LivesTextureIdx } };
@@ -44,15 +44,15 @@ void LivesDisplayComp::Initialize()
 
 		pLiveObj->AddComponent(pTextureComp);
 		
-		int yPos{ ((maxLives * textureSize * (int)m_pGameObj->GetTransform()->GetScale().y)
-			- (textureSize * i * (int)m_pGameObj->GetTransform()->GetScale().y)) };
+		int yPos{ (textureSize * i * (int)m_pGameObj->GetTransform()->GetScale().y)
+			+ textureSize * (int)m_pGameObj->GetTransform()->GetScale().y };
 
 		pLiveObj->GetTransform()->SetPos({ 0,-(float)yPos,0 });
 		m_pGameObj->AddChild(pLiveObj);
 	}
 
 	//subscribe to the game object with lives
-	m_pObj->AddObserver(this);
+	m_pPeterPepper->AddObserver(this);
 }
 
 void LivesDisplayComp::Notify(Component* pComp, Event event)

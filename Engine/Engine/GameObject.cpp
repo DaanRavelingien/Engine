@@ -57,7 +57,8 @@ void GameObject::Update()
 
 	for (GameObject* pChild : m_Children)
 	{
-		pChild->Update();
+		if (!pChild->IsDisabled())
+			pChild->Update();
 	}
 }
 
@@ -73,7 +74,8 @@ void GameObject::FixedUpdate()
 
 	for (GameObject* pChild : m_Children)
 	{
-		pChild->FixedUpdate();
+		if (!pChild->IsDisabled())
+			pChild->FixedUpdate();
 	}
 }
 
@@ -90,7 +92,8 @@ void GameObject::Render() const
 
 	for (GameObject* pChild : m_Children)
 	{
-		pChild->Render();
+		if (!pChild->IsDisabled())
+			pChild->Render();
 	}
 }
 
@@ -107,7 +110,8 @@ void GameObject::RenderGui()
 
 	for (GameObject* pChild : m_Children)
 	{
-		pChild->RenderGui();
+		if (!pChild->IsDisabled())
+			pChild->RenderGui();
 	}
 }
 #endif // _DEBUG

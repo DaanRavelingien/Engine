@@ -91,7 +91,7 @@ class InputManager final : public Singleton<InputManager>
 {
 public:
 	InputManager() = default;
-	~InputManager() = default;
+	~InputManager();
 	bool ProcessInput();
 
 	bool IsPressed(const ControllerButton & button) const;

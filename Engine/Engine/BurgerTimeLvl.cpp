@@ -9,6 +9,7 @@
 #include "Render2DComp.h"
 #include "LivesDisplayComp.h"
 #include "HealthComp.h"
+#include "DamageInpComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -24,6 +25,7 @@ void BurgerTimeLvl::Initialize()
 	pPeterPepperTextureComp->SetDestRect({ 16,16,16,16 });
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
 	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
+	m_pPeterPepper->AddComponent(new DamageInpComp{});
 
 	m_pPeterPepper->GetTransform()->SetPos({ 270,250,0 });
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });

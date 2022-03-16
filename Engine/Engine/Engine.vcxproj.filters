@@ -112,6 +112,9 @@
     <ClInclude Include="LivesDisplayComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
+    <ClInclude Include="DamageInpComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -206,6 +209,9 @@
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClCompile>
     <ClCompile Include="LivesDisplayComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageInpComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
   </ItemGroup>

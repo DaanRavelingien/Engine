@@ -5,6 +5,29 @@
 #include "imgui_impl_sdl.h"
 #endif // _DEBUG
 
+InputManager::~InputManager()
+{
+	for (std::pair<ControllerButton, Input> controllerCmd : m_ControllerCommands)
+	{
+		delete controllerCmd.second.downCommand;
+		controllerCmd.second.downCommand = nullptr;
+		delete controllerCmd.second.upCommand;
+		controllerCmd.second.upCommand = nullptr;
+		delete controllerCmd.second.pressedCommand;
+		controllerCmd.second.pressedCommand = nullptr;
+	}
+
+	for (std::pair<KeyboardButton, Input> keyboardCmd : m_KeyboardCommands)
+	{
+		delete keyboardCmd.second.downCommand;
+		keyboardCmd.second.downCommand = nullptr;
+		delete keyboardCmd.second.upCommand;
+		keyboardCmd.second.upCommand = nullptr;
+		delete keyboardCmd.second.pressedCommand;
+		keyboardCmd.second.pressedCommand = nullptr;
+	}
+}
+
 bool InputManager::ProcessInput()
 {
 	//controller input
