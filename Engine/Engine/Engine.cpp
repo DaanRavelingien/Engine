@@ -8,6 +8,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
+#include "DemoScene.h"
 
 using namespace std;
 
@@ -54,8 +55,9 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
-	//loading our demo scene from a file
-	SceneManager::GetInstance().CreateSceneFromJson("../Data/Scenes/DemoScene.json");
+	//creating our demo scene
+	Scene* pDemoScene{ new DemoScene{} };
+	SceneManager::GetInstance().AddScene(pDemoScene);
 }
 
 void Engine::Cleanup()

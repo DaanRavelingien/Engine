@@ -3,12 +3,11 @@
 #include "Scene.h"
 #include <algorithm>
 #include "Logger.h"
-#include "ScenePharser.h"
 
 void SceneManager::Initialize()
 {
 	if (m_pActiveScene)
-		m_pActiveScene->Initialize();
+		m_pActiveScene->InitializeScene();
 	else
 		LOGERROR("failed to find an active scene");
 }
@@ -16,7 +15,7 @@ void SceneManager::Initialize()
 void SceneManager::Update()
 {
 	if (m_pActiveScene)
-		m_pActiveScene->Update();
+		m_pActiveScene->UpdateScene();
 	else
 		LOGERROR("failed to find an active scene");
 }
@@ -24,7 +23,7 @@ void SceneManager::Update()
 void SceneManager::FixedUpdate()
 {
 	if (m_pActiveScene)
-		m_pActiveScene->FixedUpdate();
+		m_pActiveScene->FixedUpdateScene();
 	else
 		LOGERROR("failed to find an active scene");
 }
@@ -56,22 +55,15 @@ SceneManager::~SceneManager()
 	}
 }
 
-void SceneManager::CreateSceneFromJson(const std::string& filePath)
+Scene& SceneManager::AddScene(Scene* pScene)
 {
-	ScenePharser pharser{};
-	pharser.CreateScene(filePath);
-}
-
-Scene& SceneManager::CreateScene(const std::string& name)
-{
-	const auto& scene = new Scene(name);
-	m_Scenes.push_back(scene);
+	m_Scenes.push_back(pScene);
 
 	//if no active scene was set set this one
 	if (!m_pActiveScene)
-		m_pActiveScene = scene;
+		m_pActiveScene = pScene;
 
-	return *scene;
+	return *pScene;
 }
 
 void SceneManager::SetActiveScene(const std::string& sceneName)

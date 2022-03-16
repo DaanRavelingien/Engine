@@ -195,6 +195,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="CompConstrucor.h" />
+    <ClInclude Include="DemoScene.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComp.h" />
@@ -211,7 +212,6 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="ScenePharser.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpriteComp.h" />
     <ClInclude Include="Subject.h" />
@@ -230,6 +230,7 @@
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComp.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -251,7 +252,6 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="ScenePharser.cpp" />
     <ClCompile Include="SpriteComp.cpp" />
     <ClCompile Include="TextComp.cpp" />
     <ClCompile Include="Texture2D.cpp" />

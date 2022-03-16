@@ -16,21 +16,27 @@ Scene::~Scene()
 	}
 }
 
-void Scene::Add(GameObject* pGameObj)
+void Scene::AddGameObj(GameObject* pGameObj)
 {
 	m_GameObjs.push_back(pGameObj);
 }
 
-void Scene::Initialize()
+void Scene::InitializeScene()
 {
+	//initialize the scene itself
+	Initialize();
+
 	for (auto& gameObj : m_GameObjs)
 	{
 		gameObj->Initialize();
 	}
 }
 
-void Scene::Update()
+void Scene::UpdateScene()
 {
+	//update the scene itself
+	Update();
+
 	for(auto& gameObj : m_GameObjs)
 	{
 		gameObj->Update();
@@ -39,8 +45,11 @@ void Scene::Update()
 	RemoveDestroyedGameObjs();
 }
 
-void Scene::FixedUpdate()
+void Scene::FixedUpdateScene()
 {
+	//update the scene itself
+	FixedUpdate();
+
 	for (auto& gameObj : m_GameObjs)
 	{
 		gameObj->FixedUpdate();

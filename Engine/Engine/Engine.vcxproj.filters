@@ -79,9 +79,6 @@
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h">
       <Filter>imgui</Filter>
     </ClInclude>
-    <ClInclude Include="ScenePharser.h">
-      <Filter>Engine\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="CompConstrucor.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
@@ -108,6 +105,9 @@
     </ClInclude>
     <ClInclude Include="FPSComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoScene.h">
+      <Filter>Engine\Scenes\GameScenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,9 +175,6 @@
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="ScenePharser.cpp">
-      <Filter>Engine\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Render2DComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClCompile>
@@ -198,6 +195,9 @@
     </ClCompile>
     <ClCompile Include="FPSComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoScene.cpp">
+      <Filter>Engine\Scenes\GameScenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +239,9 @@
     </Filter>
     <Filter Include="Engine\Components\GameComps">
       <UniqueIdentifier>{6620dbb8-cd61-49ca-963c-b073948d4b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scenes\GameScenes">
+      <UniqueIdentifier>{06dfc8a0-fdef-43a5-bb2b-7ae7ba3b2e28}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

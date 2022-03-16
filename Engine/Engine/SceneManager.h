@@ -8,8 +8,7 @@ class SceneManager final : public Singleton<SceneManager>
 public:
 	~SceneManager();
 
-	void CreateSceneFromJson(const std::string& filePath);
-	Scene& CreateScene(const std::string& name);
+	Scene& AddScene(Scene* pScene);
 	void SetActiveScene(const std::string& sceneName);
 
 	void Initialize();

@@ -119,7 +119,7 @@ void ScenePharser::CreateScene(const std::string& filePath)
             }
             
             //adding the game object to the scene
-            sceneRef.Add(pGameObj);
+            sceneRef.AddGameObj(pGameObj);
         }
 	}
 }

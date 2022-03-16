@@ -5,32 +5,34 @@ class GameObject;
 
 class Scene
 {
-	friend Scene& SceneManager::CreateScene(const std::string& name);
 public:
-	void Add(GameObject* pGameObj);
-
-	void Initialize();
-	void Update();
-	void FixedUpdate();
+	void InitializeScene();
+	void UpdateScene();
+	void FixedUpdateScene();
 	void Render() const;
 #ifdef _DEBUG
 	void RenderGui();
 #endif	//_DEBUG
 	std::string GetName() const { return m_Name; };
 
-	~Scene();
+	virtual ~Scene();
 	Scene(const Scene& other) = delete;
 	Scene(Scene&& other) = delete;
 	Scene& operator=(const Scene& other) = delete;
 	Scene& operator=(Scene&& other) = delete;
 
-private: 
+protected:
+	virtual void Update() {};
+	virtual void Initialize() {};
+	virtual void FixedUpdate() {};
+
 	explicit Scene(const std::string& name);
+	void AddGameObj(GameObject* pGameObj);
+private: 
+	std::vector <GameObject*> m_GameObjs{};
+	std::string m_Name;
 
 	void RemoveDestroyedGameObjs();
-
-	std::string m_Name;
-	std::vector <GameObject*> m_GameObjs{};
 };
 
 
