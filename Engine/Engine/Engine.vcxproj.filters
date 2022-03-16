@@ -79,9 +79,6 @@
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h">
       <Filter>imgui</Filter>
     </ClInclude>
-    <ClInclude Include="CompConstrucor.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Engine\Helpers\Patterns</Filter>
     </ClInclude>

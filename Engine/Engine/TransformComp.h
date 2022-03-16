@@ -19,8 +19,6 @@ public:
 	glm::vec3 GetRotation() const;
 	void SetRotation(const glm::vec3& rotation);
 
-	//static function to create comp from arguments
-	static Component* CreateComp(const rapidjson::Value& args);
 private:
 	glm::vec3 m_Position{ 0,0,0 };
 	glm::vec3 m_Scale{ 1,1,1 };

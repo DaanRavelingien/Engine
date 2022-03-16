@@ -3,32 +3,6 @@
 #include "GameObject.h"
 #include "TextureComp.h"
 
-//static function
-Component* SpriteComp::CreateComp(const rapidjson::Value& args)
-{
-	SpriteComp* pSpriteComp{ nullptr };
-
-	if (args.Empty())
-		LOGERROR("Expected arguments for component of type: SPRITECOMP");
-	else
-	{
-		if (!args[0].IsInt() || !args[1].IsArray() || !args[2].IsArray() || !args[3].IsFloat()
-			|| !args[1][0].IsInt() || !args[1][1].IsInt() || !args[2][0].IsInt() || !args[2][1].IsInt())
-			LOGERROR("Expected different type of argument for component of type : TEXTURECOMP");
-		else
-		{
-			pSpriteComp = new SpriteComp{
-				args[0].GetInt(),
-				glm::vec2{args[1][0].GetInt(),args[1][1].GetInt()},
-				glm::vec2{args[2][0].GetInt(),args[2][1].GetInt()},
-				args[3].GetFloat()
-			};
-		}
-	}
-
-	return pSpriteComp;
-}
-
 SpriteComp::SpriteComp(int frames,const glm::vec2& framePxlSize, const glm::vec2& startFramePos, float frameTime)
 	:Component(typeid(this).name())
 	, m_FrameCount{frames}

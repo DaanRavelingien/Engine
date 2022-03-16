@@ -17,8 +17,6 @@ public:
 	void Initialize() override;
 	void Update() override;
 
-	//static function to create comp from arguments
-	static Component* CreateComp(const rapidjson::Value& args);
 private:
 	int m_FrameCount{};
 	glm::vec2 m_FramePxlSize{};

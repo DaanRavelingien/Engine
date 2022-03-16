@@ -9,13 +9,6 @@
 #include "TransformComp.h"
 #include "TextureComp.h"
 
-//static function
-Component* Render2DComp::CreateComp(const rapidjson::Value&)
-{
-	Render2DComp* pRenderComp{ new Render2DComp{} };
-	return pRenderComp;
-}
-
 Render2DComp::Render2DComp()
 	:Component(typeid(this).name())
 {

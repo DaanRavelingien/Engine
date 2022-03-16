@@ -3,23 +3,6 @@
 #include "GameObject.h"
 #include "TextComp.h"
 
-//static function
-Component* FPSComp::CreateComp(const rapidjson::Value& args)
-{
-	FPSComp* pFPSComp{ nullptr };
-	if (args.Empty())
-		pFPSComp = new FPSComp{};
-	else
-	{
-		if (!args[0].IsFloat())
-			LOGERROR("Expected different type of argument for component of type: FPSCOMP");
-		else
-			pFPSComp = new FPSComp{ args[0].GetFloat() };
-	}
-
-	return pFPSComp;
-}
-
 FPSComp::FPSComp(float refreshRate)
 	:Component(typeid(this).name())
 	, m_RefreshRate{ refreshRate } 

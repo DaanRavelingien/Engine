@@ -16,8 +16,6 @@ public:
 
 	void Render();
 
-	//static function to create comp from arguments
-	static Component* CreateComp(const rapidjson::Value& args);
 private:
 	int MakeTextureFromText(const glm::vec3& color, int fontIdx, const std::string& text);
 	void AddTextureToRender(Component* pComp, int textureIdx);
