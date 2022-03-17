@@ -6,13 +6,14 @@
 //component includes
 #include "TextureComp.h"
 #include "TransformComp.h"
-#include "Render2DComp.h"
 #include "LivesDisplayComp.h"
 #include "HealthComp.h"
 #include "DamageInpComp.h"
 #include "TextComp.h"
 #include "ScoreCounterComp.h"
 #include "ScoreInpComp.h"
+#include "TextRenderComp.h"
+#include "TextureRenderComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -21,7 +22,7 @@ void BurgerTimeLvl::Initialize()
 
 	//creating peterPepper
 	m_pPeterPepper = new GameObject{ "PeterPepper" };
-	m_pPeterPepper->AddComponent(new Render2DComp{});
+	m_pPeterPepper->AddComponent(new TextureRenderComp{});
 
 	TextureComp* pPeterPepperTextureComp{ new TextureComp{burgerTimeTextureIdx} };
 	pPeterPepperTextureComp->SetSourceRect({ 16,0,16,16 });
@@ -45,13 +46,13 @@ void BurgerTimeLvl::Initialize()
 
 	GameObject* pScoreDisplay(new GameObject{ "ScoreDisplay" });
 	GameObject* pScoreLabel{ new GameObject{ "ScoreLabel" } };
-	pScoreLabel->AddComponent(new Render2DComp{});
+	pScoreLabel->AddComponent(new TextRenderComp{});
 	pScoreLabel->AddComponent(new TextComp{ "SCORE", "Fonts/ARCADECLASSIC.otf", 50,{1,0,0} });
 	pScoreLabel->GetTransform()->SetPos({ 0,0,0 });
 	pScoreDisplay->AddChild(pScoreLabel);
 
 	GameObject* pScoreCount{ new GameObject{"ScoreCount"} };
-	pScoreCount->AddComponent(new Render2DComp);
+	pScoreCount->AddComponent(new TextRenderComp);
 	pScoreCount->AddComponent(new TextComp{ "0", "Fonts/ARCADECLASSIC.otf", 50, {1,1,1} });
 	pScoreCount->AddComponent(new ScoreCounterComp{});
 	pScoreCount->AddComponent(new ScoreInpComp{});

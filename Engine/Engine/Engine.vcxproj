@@ -208,7 +208,6 @@
     <ClInclude Include="LivesDisplayComp.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="Render2DComp.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -220,8 +219,10 @@
     <ClInclude Include="SpriteComp.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TextComp.h" />
+    <ClInclude Include="TextRenderComp.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TextureComp.h" />
+    <ClInclude Include="TextureRenderComp.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="TransformComp.h" />
   </ItemGroup>
@@ -253,7 +254,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnginePCH.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Render2DComp.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -263,8 +263,10 @@
     <ClCompile Include="ScoreInpComp.cpp" />
     <ClCompile Include="SpriteComp.cpp" />
     <ClCompile Include="TextComp.cpp" />
+    <ClCompile Include="TextRenderComp.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TextureComp.cpp" />
+    <ClCompile Include="TextureRenderComp.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="TransformComp.cpp" />
   </ItemGroup>

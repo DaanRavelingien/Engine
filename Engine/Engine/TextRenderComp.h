@@ -2,18 +2,15 @@
 #include "Component.h"
 #include "Observer.h"
 
-class Font;
-class Texture2D;
-
-class Render2DComp final : public Component, public Observer<Component>
+class TextRenderComp : public Component, public Observer<Component>
 {
 public:
-	explicit Render2DComp();
-	~Render2DComp() = default;
-	Render2DComp(const Render2DComp& other) = delete;
-	Render2DComp(Render2DComp&& other) = delete;
-	Render2DComp& operator=(const Render2DComp& other) = delete;
-	Render2DComp& operator=(Render2DComp&& other) = delete;
+	explicit TextRenderComp();
+	~TextRenderComp() = default;
+	TextRenderComp(const TextRenderComp& other) = delete;
+	TextRenderComp(TextRenderComp&& other) = delete;
+	TextRenderComp& operator=(const TextRenderComp& other) = delete;
+	TextRenderComp& operator=(TextRenderComp&& other) = delete;
 
 	void Initialize() override;
 	void Render();

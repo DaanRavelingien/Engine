@@ -5,7 +5,7 @@
 #include "ResourceManager.h"
 
 //comp includes
-#include "Render2DComp.h"
+#include "TextureRenderComp.h"
 #include "TextureComp.h"
 #include "HealthComp.h"
 #include "TransformComp.h"
@@ -36,7 +36,7 @@ void LivesDisplayComp::Initialize()
 		int textureSize{ 8 };
 
 		GameObject* pLiveObj{ new GameObject{"LiveTexObj_" + std::to_string(i)} };
-		pLiveObj->AddComponent(new Render2DComp{});
+		pLiveObj->AddComponent(new TextureRenderComp{});
 
 		TextureComp* pTextureComp{ new TextureComp{ m_LivesTextureIdx } };
 		pTextureComp->SetSourceRect({ 201,0,textureSize,textureSize });

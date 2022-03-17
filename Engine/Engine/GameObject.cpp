@@ -3,7 +3,8 @@
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include "TransformComp.h"
-#include "Render2DComp.h"
+#include "TextureRenderComp.h"
+#include "TextRenderComp.h"
 
 GameObject::GameObject(const std::string& name)
 	:m_Name{name}
@@ -84,9 +85,13 @@ void GameObject::Render() const
 	//find all the render components of this game object and call the render function on them
 	std::for_each(m_Components.begin(), m_Components.end(), [](Component* pComp)
 		{
-			if (dynamic_cast<Render2DComp*>(pComp) != NULL)
+			if (dynamic_cast<TextureRenderComp*>(pComp) != NULL)
 			{
-				dynamic_cast<Render2DComp*>(pComp)->Render();
+				dynamic_cast<TextureRenderComp*>(pComp)->Render();
+			}
+			if (dynamic_cast<TextRenderComp*>(pComp) != NULL)
+			{
+				dynamic_cast<TextRenderComp*>(pComp)->Render();
 			}
 		});
 

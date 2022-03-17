@@ -82,9 +82,6 @@
     <ClInclude Include="Command.h">
       <Filter>Engine\Helpers\Patterns</Filter>
     </ClInclude>
-    <ClInclude Include="Render2DComp.h">
-      <Filter>Engine\Components\StandardComps</Filter>
-    </ClInclude>
     <ClInclude Include="SpriteComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClInclude>
@@ -121,6 +118,10 @@
     <ClInclude Include="ScoreInpComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
+    <ClInclude Include="TextRenderComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureRenderComp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -187,9 +188,6 @@
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Render2DComp.cpp">
-      <Filter>Engine\Components\StandardComps</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClCompile>
@@ -226,6 +224,10 @@
     <ClCompile Include="ScoreInpComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
+    <ClCompile Include="TextRenderComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureRenderComp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
