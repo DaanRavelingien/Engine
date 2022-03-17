@@ -87,6 +87,11 @@ enum class ButtonState
 	Down, Up, Pressed
 };
 
+enum class Player
+{
+	Player1 = 0, Player2 = 1
+};
+
 class InputManager final : public Singleton<InputManager>
 {
 public:
@@ -96,13 +101,14 @@ public:
 
 	bool IsPressed(const ControllerButton & button) const;
 	bool IsPressed(const KeyboardButton & button) const;
-	void SetCommand(const ControllerButton & button, ButtonState buttonState, Command * pCommand);
+	void SetCommand(const ControllerButton & button, ButtonState buttonState, Command * pCommand, Player player = Player::Player1);
 	//keyboard down commands do not work at the moment
 	void SetCommand(const KeyboardButton & button, ButtonState buttonState, Command * pCommand);
 private:
 	//only supports one command per button per action
 	struct Input
 	{
+		Player player{0};
 		Command* upCommand{ nullptr };
 		Command* pressedCommand{ nullptr };
 		Command* downCommand{ nullptr };
@@ -113,7 +119,7 @@ private:
 	std::map<ControllerButton, Input> m_ControllerCommands{};
 	std::map<KeyboardButton, Input> m_KeyboardCommands{};
 
-	void HandleControllerInput();
+	void HandleControllerInput(Player player);
 	void HandleKeyboardInput();
 };
 

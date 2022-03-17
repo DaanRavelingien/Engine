@@ -31,8 +31,12 @@ InputManager::~InputManager()
 bool InputManager::ProcessInput()
 {
 	//controller input
-	XInputGetKeystroke(0, 0, &m_Keystrokes);
-	HandleControllerInput();
+	//supports upto 2 controllers
+	for (int i{}; i < 2; i++)
+	{
+		XInputGetKeystroke((DWORD)i, 0, &m_Keystrokes);
+		HandleControllerInput((Player)i);
+	}
 
 	//keyboard / mouse input
 	while (SDL_PollEvent(&m_SDLEvent))
@@ -75,11 +79,20 @@ bool InputManager::IsPressed(const KeyboardButton& button) const
 	return false;
 }
 
-void InputManager::SetCommand(const ControllerButton& button, ButtonState buttonState, Command* pCommand)
+void InputManager::SetCommand(const ControllerButton& button, ButtonState buttonState, Command* pCommand, Player player)
 {
-	//if the command doesnt exist yet create it
-	Input input{ nullptr,nullptr,nullptr };
-	if (m_ControllerCommands.find(button) == m_ControllerCommands.end())
+	//if the input doesnt exist yet create it
+	Input input{ player,nullptr,nullptr,nullptr };
+
+	auto it = std::find_if(m_ControllerCommands.begin(), m_ControllerCommands.end(), [player, button]
+	(const std::pair<ControllerButton,Input>& input) 
+		{
+			if (input.second.player == player && button == input.first)
+				return true;
+			return false;
+		});
+
+	if (it == m_ControllerCommands.end())
 	{
 		switch (buttonState)
 		{
@@ -134,7 +147,7 @@ void InputManager::SetCommand(const ControllerButton& button, ButtonState button
 void InputManager::SetCommand(const KeyboardButton& button, ButtonState buttonState, Command* pCommand)
 {
 	//if the command doesnt exist yet create it
-	Input input{ nullptr,nullptr,nullptr };
+	Input input{ Player::Player1,nullptr,nullptr,nullptr };
 	if (m_KeyboardCommands.find(button) == m_KeyboardCommands.end())
 	{
 		switch (buttonState)
@@ -187,11 +200,15 @@ void InputManager::SetCommand(const KeyboardButton& button, ButtonState buttonSt
 	}
 }
 
-void InputManager::HandleControllerInput()
+void InputManager::HandleControllerInput(Player player)
 {
 	//going through all the buttons and checking wich ones are pressed
 	for (const std::pair<ControllerButton, Input>& input : m_ControllerCommands)
 	{
+		//check if the commands are for the correct user
+		if (input.second.player != player)
+			continue;
+
 		//if the button is pressed execute the commands associated with it
 		if (m_Keystrokes.Flags & XINPUT_KEYSTROKE_REPEAT)
 		{
