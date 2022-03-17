@@ -3,7 +3,7 @@
 #include "GameObject.h"
 
 HealthComp::HealthComp(int maxHealth)
-	: Component(typeid(this).name())
+	: Component{ typeid(this).name() }
 	, m_Health{ maxHealth }
 	,m_MaxHealth{maxHealth}
 {

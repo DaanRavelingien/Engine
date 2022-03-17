@@ -115,6 +115,12 @@
     <ClInclude Include="DamageInpComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreCounterComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreInpComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -212,6 +218,12 @@
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
     <ClCompile Include="DamageInpComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreCounterComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreInpComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
   </ItemGroup>

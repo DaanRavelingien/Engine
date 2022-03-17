@@ -12,7 +12,6 @@ public:
 
 protected:
 	void Initialize() override;
-	void Update() override;
 
 private:
 	GameObject* m_pPeterPepper{ nullptr };

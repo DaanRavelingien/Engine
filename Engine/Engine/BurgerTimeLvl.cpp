@@ -10,6 +10,9 @@
 #include "LivesDisplayComp.h"
 #include "HealthComp.h"
 #include "DamageInpComp.h"
+#include "TextComp.h"
+#include "ScoreCounterComp.h"
+#include "ScoreInpComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -37,20 +40,27 @@ void BurgerTimeLvl::Initialize()
 	GameObject* pLivesDisplay{ new GameObject{"LivesDisplay"} };
 	pLivesDisplay->AddComponent(new LivesDisplayComp(m_pPeterPepper, burgerTimeTextureIdx));
 	pLivesDisplay->GetTransform()->SetScale({ 3,3,3 });
+	pLivesDisplay->GetTransform()->SetPos({ 20,700,0 });
 	m_pHud->AddChild(pLivesDisplay);
 
 	GameObject* pScoreDisplay(new GameObject{ "ScoreDisplay" });
+	GameObject* pScoreLabel{ new GameObject{ "ScoreLabel" } };
+	pScoreLabel->AddComponent(new Render2DComp{});
+	pScoreLabel->AddComponent(new TextComp{ "SCORE", "Fonts/ARCADECLASSIC.otf", 50,{1,0,0} });
+	pScoreLabel->GetTransform()->SetPos({ 0,0,0 });
+	pScoreDisplay->AddChild(pScoreLabel);
 
+	GameObject* pScoreCount{ new GameObject{"ScoreCount"} };
+	pScoreCount->AddComponent(new Render2DComp);
+	pScoreCount->AddComponent(new TextComp{ "0", "Fonts/ARCADECLASSIC.otf", 50, {1,1,1} });
+	pScoreCount->AddComponent(new ScoreCounterComp{});
+	pScoreCount->AddComponent(new ScoreInpComp{});
+	pScoreCount->GetTransform()->SetPos({ 0,40,0 });
+	pScoreDisplay->AddChild(pScoreCount);
 
+	pScoreDisplay->GetTransform()->SetPos({ 20,10,0 });
 	m_pHud->AddChild(pScoreDisplay);
 
-	m_pHud->GetTransform()->SetPos({ 20,700,0 });
 	AddGameObj(m_pHud);
-
-}
-
-void BurgerTimeLvl::Update()
-{
-
 
 }

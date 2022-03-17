@@ -214,6 +214,8 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScoreCounterComp.h" />
+    <ClInclude Include="ScoreInpComp.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpriteComp.h" />
     <ClInclude Include="Subject.h" />
@@ -257,6 +259,8 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScoreCounterComp.cpp" />
+    <ClCompile Include="ScoreInpComp.cpp" />
     <ClCompile Include="SpriteComp.cpp" />
     <ClCompile Include="TextComp.cpp" />
     <ClCompile Include="Texture2D.cpp" />
