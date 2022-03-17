@@ -2,10 +2,12 @@
 #include "Component.h"
 #include "Command.h"
 
+enum class Controller;
+
 class ScoreInpComp : public Component
 {
 public:
-	ScoreInpComp();
+	ScoreInpComp(Controller inpController);
 	~ScoreInpComp() = default;
 	ScoreInpComp(const ScoreInpComp& other) = delete;
 	ScoreInpComp(ScoreInpComp&& other) = delete;
@@ -14,7 +16,7 @@ public:
 
 	void Initialize() override;
 private:
-
+	Controller m_InpController{};
 };
 
 class EnemyDiedCmd : public Command

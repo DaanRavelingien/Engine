@@ -15,6 +15,7 @@ protected:
 
 private:
 	GameObject* m_pPeterPepper{ nullptr };
+	GameObject* m_pSallySalt{ nullptr };
 	GameObject* m_pHud{ nullptr };
 };
 

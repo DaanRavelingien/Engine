@@ -87,9 +87,9 @@ enum class ButtonState
 	Down, Up, Pressed
 };
 
-enum class Player
+enum class Controller
 {
-	Player1 = 0, Player2 = 1
+	Controller_1 = 0, Controller_2 = 1
 };
 
 class InputManager final : public Singleton<InputManager>
@@ -99,27 +99,40 @@ public:
 	~InputManager();
 	bool ProcessInput();
 
-	bool IsPressed(const ControllerButton & button) const;
+	bool IsPressed(const ControllerButton& button) const;
 	bool IsPressed(const KeyboardButton & button) const;
-	void SetCommand(const ControllerButton & button, ButtonState buttonState, Command * pCommand, Player player = Player::Player1);
+	void SetCommand(const ControllerButton & button, ButtonState buttonState, Command * pCommand, Controller player);
 	//keyboard down commands do not work at the moment
 	void SetCommand(const KeyboardButton & button, ButtonState buttonState, Command * pCommand);
+	
+	void SetControllerAmount(int amount) { m_ControllerAmount = amount; };
+
 private:
 	//only supports one command per button per action
-	struct Input
+	struct KeyboardInput
 	{
-		Player player{0};
 		Command* upCommand{ nullptr };
 		Command* pressedCommand{ nullptr };
 		Command* downCommand{ nullptr };
 	};
 
+	struct ControllerInput
+	{
+		ControllerButton button{};
+		Controller player{ 0 };
+		Command* upCommand{ nullptr };
+		Command* pressedCommand{ nullptr };
+		Command* downCommand{ nullptr };
+	};
+
+	int m_ControllerAmount{ 0 };
+
 	XINPUT_KEYSTROKE m_Keystrokes{};
 	SDL_Event m_SDLEvent{};
-	std::map<ControllerButton, Input> m_ControllerCommands{};
-	std::map<KeyboardButton, Input> m_KeyboardCommands{};
+	std::map<int, ControllerInput> m_ControllerCommands{};
+	std::map<KeyboardButton, KeyboardInput> m_KeyboardCommands{};
 
-	void HandleControllerInput(Player player);
+	void HandleControllerInput(Controller player);
 	void HandleKeyboardInput();
 };
 

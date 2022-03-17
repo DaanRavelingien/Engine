@@ -5,22 +5,18 @@
 //component includes
 #include "HealthComp.h"
 
-DamageInpComp::DamageInpComp()
+DamageInpComp::DamageInpComp(Controller inpController)
 	: Component(typeid(this).name())
+	,m_InpController{ inpController }
 {
 }
 
 void DamageInpComp::Initialize()
 {
-	std::cout << "\n\nTo damage player press:\tD\nTo heal player press:\tH\n";
+	std::cout << "\n\nController:\nTo damage player press:\tX\nTo heal player press:\tY\n";
 
-	CreateCommands();
-}
-
-void DamageInpComp::CreateCommands()
-{
-	InputManager::GetInstance().SetCommand(KeyboardButton::D, ButtonState::Up, new Damage{ m_pGameObj });
-	InputManager::GetInstance().SetCommand(KeyboardButton::H, ButtonState::Up, new Heal{ m_pGameObj });
+	InputManager::GetInstance().SetCommand(ControllerButton::ButtonX, ButtonState::Up, new Damage{ m_pGameObj }, m_InpController);
+	InputManager::GetInstance().SetCommand(ControllerButton::ButtonY, ButtonState::Up, new Heal{ m_pGameObj }, m_InpController);
 }
 
 void Damage::Execute()

@@ -2,10 +2,12 @@
 #include "Component.h"
 #include "Command.h"
 
+enum class Controller;
+
 class DamageInpComp : public Component
 {
 public:
-	DamageInpComp();
+	DamageInpComp(Controller inpController);
 	~DamageInpComp() = default;
 	DamageInpComp(const DamageInpComp& other) = delete;
 	DamageInpComp(DamageInpComp&& other) = delete;
@@ -15,8 +17,7 @@ public:
 	void Initialize() override;
 
 private:
-	void CreateCommands();
-
+	Controller m_InpController{};
 	GameObject* m_pPeterPepper{ nullptr };
 };
 

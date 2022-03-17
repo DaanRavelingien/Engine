@@ -3,17 +3,19 @@
 #include "InputManager.h"
 #include "GameObject.h"
 
-ScoreInpComp::ScoreInpComp()
+ScoreInpComp::ScoreInpComp(Controller inpController)
 	:Component{typeid(this).name()}
+	,m_InpController{ inpController }
 {
 }
 
 void ScoreInpComp::Initialize()
 {
-	std::cout << "\n\nTo kill enemy press:\tK\nTo drop burger press:\tB\n";
+	std::cout << "\n\nController:\nTo kill enemy press:\tA\nTo drop burger press:\tB\n";
 
-	InputManager::GetInstance().SetCommand(KeyboardButton::K, ButtonState::Up, new EnemyDiedCmd{ m_pGameObj,this });
-	InputManager::GetInstance().SetCommand(KeyboardButton::B, ButtonState::Up, new BurgerDorpCmd{ m_pGameObj,this });
+	//controller input
+	InputManager::GetInstance().SetCommand(ControllerButton::ButtonA, ButtonState::Up, new EnemyDiedCmd{ m_pGameObj,this }, m_InpController);
+	InputManager::GetInstance().SetCommand(ControllerButton::ButtonB, ButtonState::Up, new BurgerDorpCmd{ m_pGameObj,this }, m_InpController);
 }
 
 void EnemyDiedCmd::Execute()

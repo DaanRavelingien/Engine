@@ -121,7 +121,9 @@
     <ClInclude Include="TextRenderComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClInclude>
-    <ClInclude Include="TextureRenderComp.h" />
+    <ClInclude Include="TextureRenderComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -227,7 +229,9 @@
     <ClCompile Include="TextRenderComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClCompile>
-    <ClCompile Include="TextureRenderComp.cpp" />
+    <ClCompile Include="TextureRenderComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
