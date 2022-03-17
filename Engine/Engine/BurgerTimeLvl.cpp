@@ -20,7 +20,7 @@
 void BurgerTimeLvl::Initialize()
 {
 	//saying to inputManager we expect 2 controllers
-	InputManager::GetInstance().SetControllerAmount(1);
+	InputManager::GetInstance().SetControllerAmount(2);
 
 	//loading the burgertime texture with all the sprites
 	int burgerTimeTextureIdx = ResourceManager::GetInstance().LoadTexture("Textures/BurgerTimeSprites.png");
