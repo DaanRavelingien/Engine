@@ -221,6 +221,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\steam_appid.txt $(Ou
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h" />
     <ClInclude Include="BurgerTimeLvl.h" />
+    <ClInclude Include="BurgerTimeStartMenu.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DamageInpComp.h" />
@@ -264,6 +265,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\steam_appid.txt $(Ou
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp" />
     <ClCompile Include="BurgerTimeLvl.cpp" />
+    <ClCompile Include="BurgerTimeStartMenu.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DamageInpComp.cpp" />
     <ClCompile Include="DemoScene.cpp" />

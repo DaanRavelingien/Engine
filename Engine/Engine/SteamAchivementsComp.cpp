@@ -25,11 +25,5 @@ void SteamAchivementsComp::Initialize()
 void SteamAchivementsComp::Notify(Component*, Event event)
 {
 	if (event == Event::GAME_WON)
-	{
 		SteamUserStats()->SetAchievement("ACH_WIN_ONE_GAME");
-		m_GamesWon++;
-
-		if(m_GamesWon==100)
-			SteamUserStats()->SetAchievement("ACH_WIN_100_GAMES");
-	}
 }

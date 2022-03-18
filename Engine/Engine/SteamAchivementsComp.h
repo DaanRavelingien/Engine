@@ -19,8 +19,6 @@ private:
 	//the scene to monitor for achievements
 	Scene* m_pScene{nullptr};
 
-	int m_GamesWon{0};
-
 	void Notify(Component* pComp, Event event) override;
 };
 

@@ -14,6 +14,7 @@
 #pragma warning(pop)
 
 //scene includes
+#include "BurgerTimeStartMenu.h"
 #include "BurgerTimeLvl.h"
 
 using namespace std;
@@ -61,6 +62,10 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
+	//creating our main menu scene
+	Scene* pMainMenuScene{ new BurgerTimeStartMenu{} };
+	SceneManager::GetInstance().AddScene(pMainMenuScene);
+
 	//creating our lvl scene
 	Scene* pBurgerTimeLvl{ new BurgerTimeLvl{} };
 	SceneManager::GetInstance().AddScene(pBurgerTimeLvl);

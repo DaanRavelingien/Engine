@@ -127,6 +127,9 @@
     <ClInclude Include="SteamAchivementsComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
+    <ClInclude Include="BurgerTimeStartMenu.h">
+      <Filter>Engine\Scenes\GameScenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -237,6 +240,9 @@
     </ClCompile>
     <ClCompile Include="SteamAchivementsComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimeStartMenu.cpp">
+      <Filter>Engine\Scenes\GameScenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
