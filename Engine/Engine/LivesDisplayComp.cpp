@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Events.h"
 #include "ResourceManager.h"
+#include "Scene.h"
 
 //comp includes
 #include "TextureRenderComp.h"
@@ -49,6 +50,9 @@ void LivesDisplayComp::Initialize()
 
 		pLiveObj->GetTransform()->SetPos({ 0,-(float)yPos,0 });
 		m_pGameObj->AddChild(pLiveObj);
+
+		//also add it to the scene so it can take ownership of it
+		m_pGameObj->GetScene()->AddGameObj(pLiveObj);
 	}
 
 	//subscribe to the game object with lives

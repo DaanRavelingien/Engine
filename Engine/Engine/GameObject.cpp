@@ -25,12 +25,6 @@ GameObject::~GameObject()
 		delete pComp;
 		pComp = nullptr;
 	}
-
-	for (GameObject* pChild : m_Children)
-	{
-		delete pChild;
-		pChild = nullptr;
-	}
 }
 
 void GameObject::Initialize()
@@ -38,11 +32,6 @@ void GameObject::Initialize()
 	for (Component* comp : m_Components)
 	{
 		comp->Initialize();
-	}
-
-	for (GameObject* pChild : m_Children)
-	{
-		pChild->Initialize();
 	}
 }
 
@@ -55,12 +44,6 @@ void GameObject::Update()
 	{
 		comp->Update();
 	}
-
-	for (GameObject* pChild : m_Children)
-	{
-		if (!pChild->IsDisabled())
-			pChild->Update();
-	}
 }
 
 void GameObject::FixedUpdate()
@@ -71,12 +54,6 @@ void GameObject::FixedUpdate()
 	for (Component* comp : m_Components)
 	{
 		comp->FixedUpdate();
-	}
-
-	for (GameObject* pChild : m_Children)
-	{
-		if (!pChild->IsDisabled())
-			pChild->FixedUpdate();
 	}
 }
 
@@ -94,12 +71,6 @@ void GameObject::Render() const
 				dynamic_cast<TextRenderComp*>(pComp)->Render();
 			}
 		});
-
-	for (GameObject* pChild : m_Children)
-	{
-		if (!pChild->IsDisabled())
-			pChild->Render();
-	}
 }
 
 #ifdef _DEBUG
@@ -111,12 +82,6 @@ void GameObject::RenderGui()
 	for (Component* comp : m_Components)
 	{
 		comp->RenderGui();
-	}
-
-	for (GameObject* pChild : m_Children)
-	{
-		if (!pChild->IsDisabled())
-			pChild->RenderGui();
 	}
 }
 #endif // _DEBUG
@@ -175,4 +140,3 @@ void GameObject::AddObserver(Observer<Component>* pObserver)
 {
 	m_GameObjSubject.AddObserver(pObserver);
 }
-

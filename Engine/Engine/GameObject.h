@@ -4,6 +4,7 @@
 #include <string>
 
 class TransformComp;
+class Scene;
 
 class GameObject final
 {
@@ -22,6 +23,8 @@ public:
 #ifdef _DEBUG
 	void RenderGui();
 #endif // _DEBUG
+	void SetScene(Scene* pScene) { m_pScene = pScene; };
+	Scene* GetScene() const { return m_pScene; };
 
 	void Destroy() { m_Destroyed = true; };
 	bool IsDestroyed() const { return m_Destroyed; };
@@ -29,6 +32,9 @@ public:
 	void Enable() { m_Disabled = false; };
 	void Disable() { m_Disabled = true; };
 	bool IsDisabled() const { return m_Disabled; };
+
+	bool IsInitialized() const { return m_Initialized; };
+	void SetInitialized(bool initialized) { m_Initialized = initialized; };
 
 	std::string GetName() const { return m_Name; };
 	void Rename(const std::string& name) { m_Name = name; };
@@ -115,6 +121,8 @@ private:
 	std::vector<GameObject*> m_Children{};
 	bool m_Destroyed{ false };
 	bool m_Disabled{ false };
+	bool m_Initialized{ false };
+	Scene* m_pScene{ nullptr };
 
 	//add subject to the game object so it can send events to all its components
 	//with as payload the component

@@ -16,6 +16,8 @@ public:
 	std::string GetName() const { return m_Name; };
 	std::vector<GameObject*> GetGameObjects() const { return m_GameObjs; };
 
+	void AddGameObj(GameObject* pGameObj);
+
 	virtual ~Scene();
 	Scene(const Scene& other) = delete;
 	Scene(Scene&& other) = delete;
@@ -28,11 +30,12 @@ protected:
 	virtual void FixedUpdate() {};
 
 	explicit Scene(const std::string& name);
-	void AddGameObj(GameObject* pGameObj);
 private: 
 	std::vector <GameObject*> m_GameObjs{};
+	std::vector <GameObject*> m_ObjsToAdd{};
 	std::string m_Name;
 
+	void AddNewGameObjs();
 	void RemoveDestroyedGameObjs();
 };
 
