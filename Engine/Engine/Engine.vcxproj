@@ -245,6 +245,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\steam_appid.txt $(Ou
     <ClInclude Include="ScoreInpComp.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpriteComp.h" />
+    <ClInclude Include="SteamAchivementsComp.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TextComp.h" />
     <ClInclude Include="TextRenderComp.h" />
@@ -290,6 +291,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\steam_appid.txt $(Ou
     <ClCompile Include="ScoreCounterComp.cpp" />
     <ClCompile Include="ScoreInpComp.cpp" />
     <ClCompile Include="SpriteComp.cpp" />
+    <ClCompile Include="SteamAchivementsComp.cpp" />
     <ClCompile Include="TextComp.cpp" />
     <ClCompile Include="TextRenderComp.cpp" />
     <ClCompile Include="Texture2D.cpp" />

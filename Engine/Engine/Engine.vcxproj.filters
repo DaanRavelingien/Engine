@@ -124,6 +124,9 @@
     <ClInclude Include="TextureRenderComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClInclude>
+    <ClInclude Include="SteamAchivementsComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -231,6 +234,9 @@
     </ClCompile>
     <ClCompile Include="TextureRenderComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
+    <ClCompile Include="SteamAchivementsComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

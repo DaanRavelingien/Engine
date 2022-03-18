@@ -14,6 +14,7 @@ public:
 	void RenderGui();
 #endif	//_DEBUG
 	std::string GetName() const { return m_Name; };
+	std::vector<GameObject*> GetGameObjects() const { return m_GameObjs; };
 
 	virtual ~Scene();
 	Scene(const Scene& other) = delete;

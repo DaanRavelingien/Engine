@@ -16,6 +16,7 @@
 #include "ScoreInpComp.h"
 #include "TextRenderComp.h"
 #include "TextureRenderComp.h"
+#include "SteamAchivementsComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -24,6 +25,12 @@ void BurgerTimeLvl::Initialize()
 
 	//loading the burgertime texture with all the sprites
 	int burgerTimeTextureIdx = ResourceManager::GetInstance().LoadTexture("Textures/BurgerTimeSprites.png");
+
+	//create the achievement manager for steam achievements
+	//=====================================================
+	GameObject* pSteamAchievementManager{ new GameObject{"AchievementManager"} };
+	pSteamAchievementManager->AddComponent(new SteamAchivementsComp{ this });
+	AddGameObj(pSteamAchievementManager);
 
 	//creating peterPepper
 	//====================
