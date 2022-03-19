@@ -38,6 +38,7 @@ void Scene::InitializeScene()
 {
 	//initialize the scene itself
 	Initialize();
+	m_Initialized = true;
 
 	//add all added objects
 	AddNewGameObjs();

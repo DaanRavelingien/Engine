@@ -80,6 +80,11 @@ void SceneManager::SetActiveScene(const std::string& sceneName)
 	if (sceneIt == m_Scenes.end())
 		LOGWARNING("failed to set the given scene as active");
 	else //otherwise set as active scene
+	{
+		if (!(*sceneIt)->IsInitialized())
+			(*sceneIt)->InitializeScene();
+
 		m_pActiveScene = *sceneIt;
+	}
 
 }

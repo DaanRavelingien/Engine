@@ -18,6 +18,8 @@ public:
 
 	void AddGameObj(GameObject* pGameObj);
 
+	bool IsInitialized() const { return m_Initialized; };
+
 	virtual ~Scene();
 	Scene(const Scene& other) = delete;
 	Scene(Scene&& other) = delete;
@@ -34,6 +36,8 @@ private:
 	std::vector <GameObject*> m_GameObjs{};
 	std::vector <GameObject*> m_ObjsToAdd{};
 	std::string m_Name;
+
+	bool m_Initialized{ false };
 
 	void AddNewGameObjs();
 	void RemoveDestroyedGameObjs();

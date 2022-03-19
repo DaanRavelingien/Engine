@@ -9,6 +9,9 @@
 #include "TextureRenderComp.h"
 #include "TextComp.h"
 #include "TextRenderComp.h"
+#include "MenuPointerComp.h"
+#include "MenuInputComp.h"
+#include "MainMenuManagerComp.h"
 
 void BurgerTimeStartMenu::Initialize()
 {
@@ -26,6 +29,8 @@ void BurgerTimeStartMenu::Initialize()
 	//=============
 
 	GameObject* pMenu{ new GameObject{"Menu"} };
+	pMenu->AddComponent(new MenuInputComp{});
+	pMenu->AddComponent(new MainMenuManagerComp{});
 
 	//single player selection
 	//==================================
@@ -66,6 +71,19 @@ void BurgerTimeStartMenu::Initialize()
 	pExitSelection->AddComponent(new TextComp{ "EXIT", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
 	pExitSelection->GetTransform()->SetPos({ 0, 160, 0 });
 	pMenu->AddChild(pExitSelection);
+
+	//Menu Pointer
+	//============
+	GameObject* pMenuPointer{ new GameObject{"MenuPointer"} };
+	pMenuPointer->AddComponent( new TextureRenderComp{} );
+	TextureComp* pTextureComp{ new TextureComp{"Textures/BurgerTimeSprites.png"} };
+	pTextureComp->SetSourceRect({ 98,145,8,7 });
+	pTextureComp->SetDestRect({ 0,0,8,7 });
+	pMenuPointer->AddComponent(pTextureComp);
+	pMenuPointer->GetTransform()->SetScale({ 2,2,2 });
+	pMenuPointer->AddComponent(new MenuPointerComp{});
+
+	pMenu->AddChild(pMenuPointer);
 
 	pMenu->GetTransform()->SetPos({ 230,300,0 });
 	AddGameObj(pMenu);

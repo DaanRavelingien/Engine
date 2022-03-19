@@ -82,7 +82,6 @@ public:
 
 		if (it == m_Components.end())
 		{
-			LOGWARNING("Could Not find a component of given type");
 			return nullptr;
 		}
 
@@ -101,7 +100,6 @@ public:
 
 		if (it == m_Components.end())
 		{
-			LOGWARNING("Could Not find a component of given type with given index");
 			return nullptr;
 		}
 
