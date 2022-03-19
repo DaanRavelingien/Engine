@@ -236,9 +236,11 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\steam_appid.txt $(Ou
     <ClInclude Include="EnginePCH.h" />
     <ClInclude Include="LivesDisplayComp.h" />
     <ClInclude Include="Logger.h" />
-    <ClInclude Include="MainMenuManagerComp.h" />
+    <ClInclude Include="MenuComp.h" />
+    <ClInclude Include="MenuSelectionComp.h" />
+    <ClInclude Include="MenuSelectionExitComp.h" />
+    <ClInclude Include="MenuSelectionStartComp.h" />
     <ClInclude Include="MenuInputComp.h" />
-    <ClInclude Include="MenuPointerComp.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
@@ -288,9 +290,11 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\steam_appid.txt $(Ou
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnginePCH.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="MainMenuManagerComp.cpp" />
+    <ClCompile Include="MenuComp.cpp" />
+    <ClCompile Include="MenuSelectionComp.cpp" />
+    <ClCompile Include="MenuSelectionExitComp.cpp" />
+    <ClCompile Include="MenuSelectionStartComp.cpp" />
     <ClCompile Include="MenuInputComp.cpp" />
-    <ClCompile Include="MenuPointerComp.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />

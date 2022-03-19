@@ -1,7 +1,7 @@
 #include "EnginePCH.h"
 #include "MenuInputComp.h"
 #include "InputManager.h"
-#include "MainMenuManagerComp.h"
+#include "MenuComp.h"
 
 MenuInputComp::MenuInputComp()
 	:Component{typeid(this).name()}
@@ -23,15 +23,15 @@ void MenuInputComp::Initialize()
 
 void MenuUpCmd::Execute()
 {
-	GetGameObject()->GetComponent<MainMenuManagerComp>()->SelectPrev();
+	GetGameObject()->GetComponent<MenuComp>()->SelectPrev();
 }
 
 void MenuDownCmd::Execute()
 {
-	GetGameObject()->GetComponent<MainMenuManagerComp>()->SelectNext();
+	GetGameObject()->GetComponent<MenuComp>()->SelectNext();
 }
 
 void MenuSelectCmd::Execute()
 {
-	GetGameObject()->GetComponent<MainMenuManagerComp>()->Select();
+	GetGameObject()->GetComponent<MenuComp>()->Select();
 }

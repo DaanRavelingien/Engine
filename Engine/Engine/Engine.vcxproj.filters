@@ -130,14 +130,20 @@
     <ClInclude Include="BurgerTimeStartMenu.h">
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClInclude>
-    <ClInclude Include="MenuPointerComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
     <ClInclude Include="MenuInputComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuManagerComp.h">
+    <ClInclude Include="MenuComp.h">
       <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionComp.h">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionStartComp.h">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionExitComp.h">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -253,14 +259,20 @@
     <ClCompile Include="BurgerTimeStartMenu.cpp">
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClCompile>
-    <ClCompile Include="MenuPointerComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClCompile>
     <ClCompile Include="MenuInputComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuManagerComp.cpp">
+    <ClCompile Include="MenuComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionComp.cpp">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionStartComp.cpp">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionExitComp.cpp">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +317,9 @@
     </Filter>
     <Filter Include="Engine\Scenes\GameScenes">
       <UniqueIdentifier>{06dfc8a0-fdef-43a5-bb2b-7ae7ba3b2e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\GameComps\MenuSelectionComps">
+      <UniqueIdentifier>{b0dac77e-ef17-4f28-8f85-2fd71680b0dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
