@@ -2,6 +2,7 @@
 #include "BurgerTimeStartMenu.h"
 #include "GameObject.h"
 #include "ResourceManager.h"
+#include "InputManager.h"
 
 //component includes
 #include "TransformComp.h"
@@ -15,6 +16,9 @@
 
 void BurgerTimeStartMenu::Initialize()
 {
+	//setting the controller amount for the input manager
+	InputManager::GetInstance().SetControllerAmount(2);
+
 	//creating the burger time logo
 	//=============================
 	GameObject* pBurgerTimeLogo{ new GameObject{"BurgerTimeLogo"} };

@@ -80,6 +80,7 @@ enum class KeyboardButton
 	RCTRL = SDL_SCANCODE_RCTRL,
 	ESC = SDL_SCANCODE_ESCAPE,
 	TAB = SDL_SCANCODE_TAB,
+	ENTER = SDL_SCANCODE_RETURN
 };
 
 enum class ButtonState
