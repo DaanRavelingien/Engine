@@ -4,6 +4,7 @@
 #include "TextComp.h"
 #include "MenuPointerComp.h"
 #include "SceneManager.h"
+#include "InputManager.h"
 
 MainMenuManagerComp::MainMenuManagerComp()
 	:Component{typeid(this).name()}
@@ -50,18 +51,18 @@ void MainMenuManagerComp::SelectPrev()
 
 void MainMenuManagerComp::Select()
 {
-	if (m_SelectedMenuOption.compare("1 PLAYER"))
+	if (m_SelectedMenuOption.compare("1 PLAYER") == 0)
 		SceneManager::GetInstance().SetActiveScene("BurgerTimeLvl");
 
-	if (m_SelectedMenuOption.compare("2 PLAYERS CO OP"))
+	if (m_SelectedMenuOption.compare("2 PLAYERS CO OP") == 0)
 		SceneManager::GetInstance().SetActiveScene("BurgerTimeLvl");
 
-	if (m_SelectedMenuOption.compare("2 PLAYERS VERSUS"))
+	if (m_SelectedMenuOption.compare("2 PLAYERS VERSUS") == 0)
 		SceneManager::GetInstance().SetActiveScene("BurgerTimeLvl");
 
-	if (m_SelectedMenuOption.compare("OPTIONS"))
+	if (m_SelectedMenuOption.compare("OPTIONS") == 0)
 		SceneManager::GetInstance().SetActiveScene("BurgerTimeLvl");
 
-	if (m_SelectedMenuOption.compare("EXIT"))
-		SceneManager::GetInstance().SetActiveScene("BurgerTimeLvl");
+	if (m_SelectedMenuOption.compare("EXIT") == 0)
+		InputManager::GetInstance().QuitGame();
 }

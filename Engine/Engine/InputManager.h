@@ -107,6 +107,7 @@ public:
 	void SetCommand(const KeyboardButton & button, ButtonState buttonState, Command * pCommand);
 	
 	void SetControllerAmount(int amount) { m_ControllerAmount = amount; };
+	void QuitGame() { m_Quit = true; };
 
 private:
 	//only supports one command per button per action
@@ -127,6 +128,7 @@ private:
 	};
 
 	int m_ControllerAmount{ 0 };
+	bool m_Quit{ false };
 
 	XINPUT_KEYSTROKE m_Keystrokes{};
 	SDL_Event m_SDLEvent{};

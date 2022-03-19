@@ -30,6 +30,10 @@ InputManager::~InputManager()
 
 bool InputManager::ProcessInput()
 {
+	//check if we need to quit the game
+	if (m_Quit)
+		return false;
+
 	//controller input
 	//supports upto 2 controllers
 	for (int i{}; i < m_ControllerAmount; i++)
