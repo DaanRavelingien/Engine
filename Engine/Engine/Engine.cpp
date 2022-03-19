@@ -16,6 +16,8 @@
 //scene includes
 #include "BurgerTimeStartMenu.h"
 #include "BurgerTimeLvl.h"
+#include "BurgerTimeOptionsMenu.h"
+#include "BurgerTimePauseMenu.h"
 
 using namespace std;
 
@@ -65,6 +67,14 @@ void Engine::LoadGame() const
 	//creating our main menu scene
 	Scene* pMainMenuScene{ new BurgerTimeStartMenu{} };
 	SceneManager::GetInstance().AddScene(pMainMenuScene);
+
+	//creating our options menu
+	Scene* pOptionsMenuScene{ new BurgerTimeOptionsMenu{} };
+	SceneManager::GetInstance().AddScene(pOptionsMenuScene);
+
+	//creating our pause menu
+	Scene* pPauseMenuScene(new BurgerTimePauseMenu{});
+	SceneManager::GetInstance().AddScene(pPauseMenuScene);
 
 	//creating our lvl scene
 	Scene* pBurgerTimeLvl{ new BurgerTimeLvl{} };

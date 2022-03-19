@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "Command.h"
+
 class BurgerTimeLvl final: public Scene
 {
 public:
@@ -17,5 +19,13 @@ private:
 	GameObject* m_pPeterPepper{ nullptr };
 	GameObject* m_pSallySalt{ nullptr };
 	GameObject* m_pHud{ nullptr };
+
+	//general inputs for this scene
+	class PauseCmd : public Command
+	{
+	public:
+		PauseCmd(GameObject* pGameObject) :Command{ pGameObject } {};
+		void Execute() override;
+	};
 };
 

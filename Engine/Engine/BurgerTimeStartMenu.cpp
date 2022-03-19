@@ -53,17 +53,17 @@ void BurgerTimeStartMenu::Initialize()
 
 	//2 player CoOp selection
 	//=======================
-	GameObject* pSingleCoOpSelection{ new GameObject{"TwoPlayerCoOpSelection"} };
-	pSingleCoOpSelection->AddComponent(new MenuSelectionStartComp{});
-	pSingleCoOpSelection->AddComponent(new TextRenderComp{});
-	pSingleCoOpSelection->AddComponent(new TextComp{ "2 PLAYERS CO OP", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
-	pSingleCoOpSelection->GetTransform()->SetPos({ 0, 40, 0 });
-	pMenu->AddChild(pSingleCoOpSelection);
+	GameObject* pCoOpSelection{ new GameObject{"TwoPlayerCoOpSelection"} };
+	//pCoOpSelection->AddComponent(new MenuSelectionStartComp{});
+	pCoOpSelection->AddComponent(new TextRenderComp{});
+	pCoOpSelection->AddComponent(new TextComp{ "2 PLAYERS CO OP", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
+	pCoOpSelection->GetTransform()->SetPos({ 0, 40, 0 });
+	pMenu->AddChild(pCoOpSelection);
 
 	//2 player VS selection
 	//=====================
 	GameObject* pVSPlayerSelection{ new GameObject{"TwoPlayerVSSelection"} };
-	pVSPlayerSelection->AddComponent(new MenuSelectionStartComp{});
+	//pVSPlayerSelection->AddComponent(new MenuSelectionStartComp{});
 	pVSPlayerSelection->AddComponent(new TextRenderComp{});
 	pVSPlayerSelection->AddComponent(new TextComp{ "2 PLAYERS VERSUS", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
 	pVSPlayerSelection->GetTransform()->SetPos({ 0, 80, 0 });
@@ -72,7 +72,7 @@ void BurgerTimeStartMenu::Initialize()
 	//Options selection
 	//=================
 	GameObject* pOptionsSelection{ new GameObject{"OptionSelection"} };
-	pOptionsSelection->AddComponent(new MenuSelectionStartComp{});
+	//pOptionsSelection->AddComponent(new MenuSelectionStartComp{});
 	pOptionsSelection->AddComponent(new TextRenderComp{});
 	pOptionsSelection->AddComponent(new TextComp{ "OPTIONS", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
 	pOptionsSelection->GetTransform()->SetPos({ 0, 120, 0 });
@@ -89,9 +89,4 @@ void BurgerTimeStartMenu::Initialize()
 
 	pMenu->GetTransform()->SetPos({ 230,300,0 });
 	AddGameObj(pMenu);
-}
-
-void BurgerTimeStartMenu::Update()
-{
-
 }

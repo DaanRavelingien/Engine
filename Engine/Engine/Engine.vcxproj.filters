@@ -145,6 +145,12 @@
     <ClInclude Include="MenuSelectionExitComp.h">
       <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClInclude>
+    <ClInclude Include="BurgerTimePauseMenu.h">
+      <Filter>Engine\Scenes\GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerTimeOptionsMenu.h">
+      <Filter>Engine\Scenes\GameScenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -273,6 +279,12 @@
     </ClCompile>
     <ClCompile Include="MenuSelectionExitComp.cpp">
       <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimePauseMenu.cpp">
+      <Filter>Engine\Scenes\GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimeOptionsMenu.cpp">
+      <Filter>Engine\Scenes\GameScenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

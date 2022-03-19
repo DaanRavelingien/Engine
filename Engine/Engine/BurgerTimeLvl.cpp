@@ -23,6 +23,10 @@ void BurgerTimeLvl::Initialize()
 	//saying to inputManager we expect 2 controllers
 	InputManager::GetInstance().SetControllerAmount(2);
 
+	//setting some general inputs like pausing the game
+	InputManager::GetInstance().SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr });
+	InputManager::GetInstance().SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
+
 	//loading the burgertime texture with all the sprites
 	int burgerTimeTextureIdx = ResourceManager::GetInstance().LoadTexture("Textures/BurgerTimeSprites.png");
 
@@ -119,4 +123,9 @@ void BurgerTimeLvl::Initialize()
 
 	AddGameObj(m_pHud);
 
+}
+
+void BurgerTimeLvl::PauseCmd::Execute()
+{
+	SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
 }

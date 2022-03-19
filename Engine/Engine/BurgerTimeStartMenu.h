@@ -14,11 +14,7 @@ public:
 	BurgerTimeStartMenu& operator=(BurgerTimeStartMenu&& other) = delete;
 
 protected:
-
 	void Initialize() override;
-	void Update() override;
-
-private:
 
 };
 

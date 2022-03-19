@@ -24,7 +24,8 @@ enum class ControllerButton
 	LeftThumb = VK_PAD_LTHUMB_PRESS,
 	RightBumper = VK_PAD_RSHOULDER,
 	RightThumb = VK_PAD_RTHUMB_PRESS,
-	NR_OF_BUTTONS = 18
+	StartButton = VK_PAD_START,
+	NR_OF_BUTTONS = 19
 };
 
 enum class KeyboardButton
