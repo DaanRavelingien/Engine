@@ -114,18 +114,18 @@ private:
 	//only supports one command per button per action
 	struct KeyboardInput
 	{
-		Command* upCommand{ nullptr };
-		Command* pressedCommand{ nullptr };
-		Command* downCommand{ nullptr };
+		std::vector<Command*> upCommands{};
+		std::vector<Command*> pressedCommands{};
+		std::vector<Command*> downCommands{};
 	};
 
 	struct ControllerInput
 	{
 		ControllerButton button{};
 		Controller player{ 0 };
-		Command* upCommand{ nullptr };
-		Command* pressedCommand{ nullptr };
-		Command* downCommand{ nullptr };
+		std::vector<Command*> upCommands{};
+		std::vector<Command*> pressedCommands{};
+		std::vector<Command*> downCommands{};
 	};
 
 	int m_ControllerAmount{ 0 };

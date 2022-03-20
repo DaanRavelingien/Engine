@@ -4,14 +4,6 @@
 #include <algorithm>
 #include "Logger.h"
 
-void SceneManager::Initialize()
-{
-	if (m_pActiveScene)
-		m_pActiveScene->InitializeScene();
-	else
-		LOGERROR("failed to find an active scene");
-}
-
 void SceneManager::Update()
 {
 	if (m_pActiveScene)
@@ -61,7 +53,7 @@ Scene& SceneManager::AddScene(Scene* pScene)
 
 	//if no active scene was set set this one
 	if (!m_pActiveScene)
-		m_pActiveScene = pScene;
+		SetActiveScene(pScene->GetName());
 
 	return *pScene;
 }

@@ -9,22 +9,40 @@ InputManager::~InputManager()
 {
 	for (std::pair<int, ControllerInput> controllerCmd : m_ControllerCommands)
 	{
-		delete controllerCmd.second.downCommand;
-		controllerCmd.second.downCommand = nullptr;
-		delete controllerCmd.second.upCommand;
-		controllerCmd.second.upCommand = nullptr;
-		delete controllerCmd.second.pressedCommand;
-		controllerCmd.second.pressedCommand = nullptr;
+		for (Command* pCommand : controllerCmd.second.downCommands)
+		{
+			delete pCommand;
+			pCommand = nullptr;
+		}
+		for (Command* pCommand : controllerCmd.second.pressedCommands)
+		{
+			delete pCommand;
+			pCommand = nullptr;
+		}
+		for (Command* pCommand : controllerCmd.second.upCommands)
+		{
+			delete pCommand;
+			pCommand = nullptr;
+		}
 	}
 
 	for (std::pair<KeyboardButton, KeyboardInput> keyboardCmd : m_KeyboardCommands)
 	{
-		delete keyboardCmd.second.downCommand;
-		keyboardCmd.second.downCommand = nullptr;
-		delete keyboardCmd.second.upCommand;
-		keyboardCmd.second.upCommand = nullptr;
-		delete keyboardCmd.second.pressedCommand;
-		keyboardCmd.second.pressedCommand = nullptr;
+		for (Command* pCommand : keyboardCmd.second.downCommands)
+		{
+			delete pCommand;
+			pCommand = nullptr;
+		}
+		for (Command* pCommand : keyboardCmd.second.pressedCommands)
+		{
+			delete pCommand;
+			pCommand = nullptr;
+		}
+		for (Command* pCommand : keyboardCmd.second.upCommands)
+		{
+			delete pCommand;
+			pCommand = nullptr;
+		}
 	}
 }
 
@@ -87,7 +105,7 @@ bool InputManager::IsPressed(const KeyboardButton& button) const
 void InputManager::SetCommand(const ControllerButton& button, ButtonState buttonState, Command* pCommand, Controller player = Controller::Controller_1)
 {
 	//if the input doesnt exist yet create it
-	ControllerInput input{ button, player,nullptr,nullptr,nullptr };
+	ControllerInput input{ button, player,std::vector<Command*>{},std::vector<Command*>{},std::vector<Command*>{} };
 
 	auto it = std::find_if(m_ControllerCommands.begin(), m_ControllerCommands.end(), [player, button]
 	(const std::pair<int,ControllerInput>& input) 
@@ -102,46 +120,37 @@ void InputManager::SetCommand(const ControllerButton& button, ButtonState button
 		switch (buttonState)
 		{
 		case ButtonState::Down:
-			input.downCommand = pCommand;
+			input.downCommands.push_back(pCommand);
 			m_ControllerCommands.emplace(int(m_ControllerCommands.size()), input);
 			break;
 		case ButtonState::Up:
-			input.upCommand = pCommand;
+			input.upCommands.push_back(pCommand);
 			m_ControllerCommands.emplace(int(m_ControllerCommands.size()), input);
 			break;
 		case ButtonState::Pressed:
-			input.pressedCommand = pCommand;
+			input.pressedCommands.push_back(pCommand);
 			m_ControllerCommands.emplace(int(m_ControllerCommands.size()), input);
 			break;
 		default:
 			break;
 		}
 	}
-	//if it does exist remove the old command and put the new one in place
+	//if it does exist just add the new command to the list
 	else
 	{
 		switch (buttonState)
 		{
 		case ButtonState::Down:
-			//removing the old command
-			if (m_ControllerCommands.at(it->first).downCommand != nullptr)
-				delete m_ControllerCommands.at(it->first).downCommand;
-			//setting the new command
-			m_ControllerCommands.at(it->first).downCommand = pCommand;
+			//adding the new command to the list
+			m_ControllerCommands.at(it->first).downCommands.push_back(pCommand);
 			break;
 		case ButtonState::Up:
-			//removing the old command
-			if (m_ControllerCommands.at(it->first).upCommand != nullptr)
-				delete m_ControllerCommands.at(it->first).upCommand;
-			//setting the new command
-			m_ControllerCommands.at(it->first).upCommand = pCommand;
+			//adding the new command to the list
+			m_ControllerCommands.at(it->first).upCommands.push_back(pCommand);
 			break;
 		case ButtonState::Pressed:
-			//removing the old command
-			if (m_ControllerCommands.at(it->first).pressedCommand != nullptr)
-				delete m_ControllerCommands.at(it->first).pressedCommand;
-			//setting the new command
-			m_ControllerCommands.at(it->first).pressedCommand = pCommand;
+			//adding the new command to the list
+			m_ControllerCommands.at(it->first).pressedCommands.push_back(pCommand);
 			break;
 		default:
 			break;
@@ -152,52 +161,43 @@ void InputManager::SetCommand(const ControllerButton& button, ButtonState button
 void InputManager::SetCommand(const KeyboardButton& button, ButtonState buttonState, Command* pCommand)
 {
 	//if the command doesnt exist yet create it
-	KeyboardInput input{ nullptr,nullptr,nullptr };
+	KeyboardInput input{ std::vector<Command*>{},std::vector<Command*>{},std::vector<Command*>{} };
 	if (m_KeyboardCommands.find(button) == m_KeyboardCommands.end())
 	{
 		switch (buttonState)
 		{
 		case ButtonState::Down:
-			input.downCommand = pCommand;
+			input.downCommands.push_back(pCommand);
 			m_KeyboardCommands.emplace(button, input);
 			break;
 		case ButtonState::Up:
-			input.upCommand = pCommand;
+			input.upCommands.push_back(pCommand);
 			m_KeyboardCommands.emplace(button, input);
 			break;
 		case ButtonState::Pressed:
-			input.pressedCommand = pCommand;
+			input.pressedCommands.push_back(pCommand);
 			m_KeyboardCommands.emplace(button, input);
 			break;
 		default:
 			break;
 		}
 	}
-	//if it does exist remove the old command and put the new one in place
+	//if it does exist just add the new command to the list
 	else
 	{
 		switch (buttonState)
 		{
 		case ButtonState::Down:
-			//removing the old command
-			if (m_KeyboardCommands.at(button).downCommand != nullptr)
-				delete m_KeyboardCommands.at(button).downCommand;
-			//setting the new command
-			m_KeyboardCommands.at(button).downCommand = pCommand;
+			//adding the new command to the list
+			m_KeyboardCommands.at(button).downCommands.push_back(pCommand);
 			break;
 		case ButtonState::Up:
-			//removing the old command
-			if (m_KeyboardCommands.at(button).upCommand != nullptr)
-				delete m_KeyboardCommands.at(button).upCommand;
-			//setting the new command
-			m_KeyboardCommands.at(button).upCommand = pCommand;
+			//adding the new command to the list
+			m_KeyboardCommands.at(button).upCommands.push_back(pCommand);
 			break;
 		case ButtonState::Pressed:
-			//removing the old command
-			if (m_KeyboardCommands.at(button).pressedCommand != nullptr)
-				delete m_KeyboardCommands.at(button).pressedCommand;
-			//setting the new command
-			m_KeyboardCommands.at(button).pressedCommand = pCommand;
+			//adding the new command to the list
+			m_KeyboardCommands.at(button).pressedCommands.push_back(pCommand);
 			break;
 		default:
 			break;
@@ -219,8 +219,11 @@ void InputManager::HandleControllerInput(Controller player)
 		{
 			if (IsPressed(input.second.button))
 			{
-				if (m_ControllerCommands.at(input.first).pressedCommand != nullptr)
-					m_ControllerCommands.at(input.first).pressedCommand->Execute();
+				for (Command* pCommand : m_ControllerCommands.at(input.first).pressedCommands)
+				{
+					if (pCommand != nullptr)
+						pCommand->Execute();
+				}
 			}
 		}
 		//if the button is released execute the commands associated with it
@@ -228,8 +231,11 @@ void InputManager::HandleControllerInput(Controller player)
 		{
 			if (IsPressed(input.second.button))
 			{
-				if (m_ControllerCommands.at(input.first).upCommand != nullptr)
-					m_ControllerCommands.at(input.first).upCommand->Execute();
+				for (Command* pCommand : m_ControllerCommands.at(input.first).upCommands)
+				{
+					if (pCommand != nullptr)
+						pCommand->Execute();
+				}
 			}
 		}
 		//if the button is pressed down execute the commands associated with it
@@ -237,8 +243,11 @@ void InputManager::HandleControllerInput(Controller player)
 		{
 			if (IsPressed(input.second.button))
 			{
-				if (m_ControllerCommands.at(input.first).downCommand != nullptr)
-					m_ControllerCommands.at(input.first).downCommand->Execute();
+				for (Command* pCommand : m_ControllerCommands.at(input.first).downCommands)
+				{
+					if (pCommand != nullptr)
+						pCommand->Execute();
+				}
 			}
 		}
 	}
@@ -256,13 +265,19 @@ void InputManager::HandleKeyboardInput()
 	//TODO: make the down command work as well withs some kind of flag or look a bit more into sdl
 	if (m_SDLEvent.type == SDL_KEYDOWN)
 	{
-		if (it->second.pressedCommand != nullptr)
-			it->second.pressedCommand->Execute();
+		for (Command* pCommand : it->second.pressedCommands)
+		{
+			if (pCommand != nullptr)
+				pCommand->Execute();
+		}
 	}
 	if (m_SDLEvent.type == SDL_KEYUP)
 	{
-		if (it->second.upCommand != nullptr)
-			it->second.upCommand->Execute();
+		for (Command* pCommand : it->second.upCommands)
+		{
+			if (pCommand != nullptr)
+				pCommand->Execute();
+		}
 	}
 }
 

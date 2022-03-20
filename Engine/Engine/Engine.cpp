@@ -64,6 +64,9 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
+	//setting up the input manager for 2 controllers
+	InputManager::GetInstance().SetControllerAmount(2);
+
 	//creating our main menu scene
 	Scene* pMainMenuScene{ new BurgerTimeStartMenu{} };
 	SceneManager::GetInstance().AddScene(pMainMenuScene);
@@ -100,7 +103,6 @@ void Engine::Run()
 
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
-	sceneManager.Initialize();	//initialize the current active scene
 	auto& input = InputManager::GetInstance();
 
 	bool doContinue = true;

@@ -2,6 +2,8 @@
 #include "MenuInputComp.h"
 #include "InputManager.h"
 #include "MenuComp.h"
+#include "SceneManager.h"
+#include "Scene.h"
 
 MenuInputComp::MenuInputComp()
 	:Component{typeid(this).name()}
@@ -23,15 +25,18 @@ void MenuInputComp::Initialize()
 
 void MenuUpCmd::Execute()
 {
-	GetGameObject()->GetComponent<MenuComp>()->SelectPrev();
+	if(SceneManager::GetInstance().GetActiveScene()->GetName().compare(GetGameObject()->GetScene()->GetName()) == 0)
+		GetGameObject()->GetComponent<MenuComp>()->SelectPrev();
 }
 
 void MenuDownCmd::Execute()
 {
-	GetGameObject()->GetComponent<MenuComp>()->SelectNext();
+	if (SceneManager::GetInstance().GetActiveScene()->GetName().compare(GetGameObject()->GetScene()->GetName()) == 0)
+		GetGameObject()->GetComponent<MenuComp>()->SelectNext();
 }
 
 void MenuSelectCmd::Execute()
 {
-	GetGameObject()->GetComponent<MenuComp>()->Select();
+	if (SceneManager::GetInstance().GetActiveScene()->GetName().compare(GetGameObject()->GetScene()->GetName()) == 0)
+		GetGameObject()->GetComponent<MenuComp>()->Select();
 }

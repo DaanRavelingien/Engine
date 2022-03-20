@@ -20,9 +20,6 @@
 
 void BurgerTimeLvl::Initialize()
 {
-	//saying to inputManager we expect 2 controllers
-	InputManager::GetInstance().SetControllerAmount(2);
-
 	//setting some general inputs like pausing the game
 	InputManager::GetInstance().SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr });
 	InputManager::GetInstance().SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
@@ -127,5 +124,6 @@ void BurgerTimeLvl::Initialize()
 
 void BurgerTimeLvl::PauseCmd::Execute()
 {
-	SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
+	if (SceneManager::GetInstance().GetActiveScene()->GetName().compare("BurgerTimeLvl") == 0)
+		SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
 }

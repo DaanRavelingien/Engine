@@ -14,12 +14,10 @@
 #include "MenuComp.h"
 #include "MenuSelectionExitComp.h"
 #include "MenuSelectionStartComp.h"
+#include "MenuSelectionMainMenuComp.h"
 
 void BurgerTimePauseMenu::Initialize()
 {
-	//setting the controller amount for the input manager
-	InputManager::GetInstance().SetControllerAmount(2);
-
 	//creating the burger time logo
 	//=============================
 	GameObject* pPauseLable{ new GameObject{"PauseLabel"} };
@@ -42,7 +40,7 @@ void BurgerTimePauseMenu::Initialize()
 	pTextureComp->SetDestRect({ 0,0,16,14 });
 	pMenu->AddComponent(pTextureComp);
 
-	//single player selection
+	//Resume selection
 	//==================================
 	GameObject* pResumeSelection{ new GameObject{"ResumeSelection"} };
 	pResumeSelection->AddComponent(new MenuSelectionStartComp{});
@@ -54,7 +52,7 @@ void BurgerTimePauseMenu::Initialize()
 	//MainMenu selection
 	//=======================
 	GameObject* pMainMenuSelection{ new GameObject{"MainMenuSelection"} };
-	pMainMenuSelection->AddComponent(new MenuSelectionStartComp{});
+	pMainMenuSelection->AddComponent(new MenuSelectionMainMenuComp{});
 	pMainMenuSelection->AddComponent(new TextRenderComp{});
 	pMainMenuSelection->AddComponent(new TextComp{ "MAIN MENU", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
 	pMainMenuSelection->GetTransform()->SetPos({ 0, 40, 0 });

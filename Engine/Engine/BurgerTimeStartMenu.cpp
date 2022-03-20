@@ -17,9 +17,6 @@
 
 void BurgerTimeStartMenu::Initialize()
 {
-	//setting the controller amount for the input manager
-	InputManager::GetInstance().SetControllerAmount(2);
-
 	//creating the burger time logo
 	//=============================
 	GameObject* pBurgerTimeLogo{ new GameObject{"BurgerTimeLogo"} };

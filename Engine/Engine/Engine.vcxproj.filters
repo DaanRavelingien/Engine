@@ -151,6 +151,9 @@
     <ClInclude Include="BurgerTimeOptionsMenu.h">
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClInclude>
+    <ClInclude Include="MenuSelectionMainMenuComp.h">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -285,6 +288,9 @@
     </ClCompile>
     <ClCompile Include="BurgerTimeOptionsMenu.cpp">
       <Filter>Engine\Scenes\GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionMainMenuComp.cpp">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

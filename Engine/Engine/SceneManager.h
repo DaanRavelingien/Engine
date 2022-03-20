@@ -12,8 +12,8 @@ public:
 
 	Scene& AddScene(Scene* pScene);
 	void SetActiveScene(const std::string& sceneName);
+	Scene* GetActiveScene() const { return m_pActiveScene; };
 
-	void Initialize();
 	void Update();
 	void FixedUpdate();
 	void Render();
