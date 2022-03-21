@@ -16,22 +16,19 @@
 #include "ScoreInpComp.h"
 #include "TextRenderComp.h"
 #include "TextureRenderComp.h"
-#include "SteamAchivementsComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
+	//setting the input controller amount to 2
+	GetInputManager()->SetControllerAmount(2);
+
 	//setting some general inputs like pausing the game
 	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{nullptr});
 	GetInputManager()->SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
+	GetInputManager()->SetCommand(ControllerButton::BackButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
 
 	//loading the burgertime texture with all the sprites
 	int burgerTimeTextureIdx = ResourceManager::GetInstance().LoadTexture("Textures/BurgerTimeSprites.png");
-
-	//create the achievement manager for steam achievements
-	//=====================================================
-	GameObject* pSteamAchievementManager{ new GameObject{"AchievementManager"} };
-	pSteamAchievementManager->AddComponent(new SteamAchivementsComp{ this });
-	AddGameObj(pSteamAchievementManager);
 
 	//creating peterPepper
 	//====================

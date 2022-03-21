@@ -46,7 +46,7 @@ void BurgerTimeOptionsMenu::Initialize()
 	pMainMenuSelection->AddComponent(new MenuSelectionMainMenuComp{});
 	pMainMenuSelection->AddComponent(new TextRenderComp{});
 	pMainMenuSelection->AddComponent(new TextComp{ "MAIN MENU", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
-	pMainMenuSelection->GetTransform()->SetPos({ 0, 40, 0 });
+	pMainMenuSelection->GetTransform()->SetPos({ 0, 0, 0 });
 	pMenu->AddChild(pMainMenuSelection);
 
 	//Future options will come here

@@ -24,6 +24,7 @@ enum class ControllerButton
 	RightBumper = VK_PAD_RSHOULDER,
 	RightThumb = VK_PAD_RTHUMB_PRESS,
 	StartButton = VK_PAD_START,
+	BackButton = VK_PAD_BACK,
 	NR_OF_BUTTONS = 19
 };
 
@@ -127,7 +128,7 @@ private:
 		std::vector<Command*> downCommands{};
 	};
 
-	int m_ControllerAmount{ 0 };
+	int m_ControllerAmount{ 1 };
 	bool m_Quit{ false };
 
 	XINPUT_KEYSTROKE m_Keystrokes{};

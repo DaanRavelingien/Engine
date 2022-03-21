@@ -8,10 +8,6 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#include <steam_api.h>
-#pragma warning(pop)
 
 //scene includes
 #include "BurgerTimeStartMenu.h"
@@ -121,9 +117,6 @@ void Engine::Run()
 
 		doContinue = sceneManager.GetActiveScene()->GetInputManager()->ProcessInput();
 		sceneManager.Update();
-
-		//for the steam api
-		SteamAPI_RunCallbacks();
 
 		renderer.Render();
 	}

@@ -124,9 +124,6 @@
     <ClInclude Include="TextureRenderComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClInclude>
-    <ClInclude Include="SteamAchivementsComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
     <ClInclude Include="BurgerTimeStartMenu.h">
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClInclude>
@@ -264,9 +261,6 @@
     </ClCompile>
     <ClCompile Include="TextureRenderComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
-    </ClCompile>
-    <ClCompile Include="SteamAchivementsComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
     <ClCompile Include="BurgerTimeStartMenu.cpp">
       <Filter>Engine\Scenes\GameScenes</Filter>
