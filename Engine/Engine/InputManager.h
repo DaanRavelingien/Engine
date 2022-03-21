@@ -1,6 +1,5 @@
 #pragma once
 #include <XInput.h>
-#include "Singleton.h"
 #include "Command.h"
 #include <map>
 
@@ -94,7 +93,7 @@ enum class Controller
 	Controller_1 = 0, Controller_2 = 1
 };
 
-class InputManager final : public Singleton<InputManager>
+class InputManager final
 {
 public:
 	InputManager() = default;

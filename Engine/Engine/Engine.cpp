@@ -64,9 +64,6 @@ void Engine::Initialize()
  */
 void Engine::LoadGame() const
 {
-	//setting up the input manager for 2 controllers
-	InputManager::GetInstance().SetControllerAmount(2);
-
 	//creating our main menu scene
 	Scene* pMainMenuScene{ new BurgerTimeStartMenu{} };
 	SceneManager::GetInstance().AddScene(pMainMenuScene);
@@ -103,7 +100,6 @@ void Engine::Run()
 
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
-	auto& input = InputManager::GetInstance();
 
 	bool doContinue = true;
 	int lag = 0; //lag in Ms
@@ -123,7 +119,7 @@ void Engine::Run()
 			lag -= MsPerFrame;
 		}
 
-		doContinue = input.ProcessInput();
+		doContinue = sceneManager.GetActiveScene()->GetInputManager()->ProcessInput();
 		sceneManager.Update();
 
 		//for the steam api

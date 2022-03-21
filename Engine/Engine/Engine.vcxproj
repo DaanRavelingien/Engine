@@ -242,6 +242,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\steam_appid.txt $(Ou
     <ClInclude Include="MenuSelectionComp.h" />
     <ClInclude Include="MenuSelectionExitComp.h" />
     <ClInclude Include="MenuSelectionMainMenuComp.h" />
+    <ClInclude Include="MenuSelectionOptionsComp.h" />
     <ClInclude Include="MenuSelectionStartComp.h" />
     <ClInclude Include="MenuInputComp.h" />
     <ClInclude Include="Observer.h" />
@@ -299,6 +300,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\steam_appid.txt $(Ou
     <ClCompile Include="MenuSelectionComp.cpp" />
     <ClCompile Include="MenuSelectionExitComp.cpp" />
     <ClCompile Include="MenuSelectionMainMenuComp.cpp" />
+    <ClCompile Include="MenuSelectionOptionsComp.cpp" />
     <ClCompile Include="MenuSelectionStartComp.cpp" />
     <ClCompile Include="MenuInputComp.cpp" />
     <ClCompile Include="Renderer.cpp" />

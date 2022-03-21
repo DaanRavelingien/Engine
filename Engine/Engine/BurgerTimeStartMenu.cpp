@@ -14,6 +14,7 @@
 #include "MenuComp.h"
 #include "MenuSelectionExitComp.h"
 #include "MenuSelectionStartComp.h"
+#include "MenuSelectionOptionsComp.h"
 
 void BurgerTimeStartMenu::Initialize()
 {
@@ -69,7 +70,7 @@ void BurgerTimeStartMenu::Initialize()
 	//Options selection
 	//=================
 	GameObject* pOptionsSelection{ new GameObject{"OptionSelection"} };
-	//pOptionsSelection->AddComponent(new MenuSelectionStartComp{});
+	pOptionsSelection->AddComponent(new MenuSelectionOptionsComp{});
 	pOptionsSelection->AddComponent(new TextRenderComp{});
 	pOptionsSelection->AddComponent(new TextComp{ "OPTIONS", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
 	pOptionsSelection->GetTransform()->SetPos({ 0, 120, 0 });

@@ -21,8 +21,8 @@
 void BurgerTimeLvl::Initialize()
 {
 	//setting some general inputs like pausing the game
-	InputManager::GetInstance().SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr });
-	InputManager::GetInstance().SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
+	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{nullptr});
+	GetInputManager()->SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
 
 	//loading the burgertime texture with all the sprites
 	int burgerTimeTextureIdx = ResourceManager::GetInstance().LoadTexture("Textures/BurgerTimeSprites.png");
@@ -124,6 +124,5 @@ void BurgerTimeLvl::Initialize()
 
 void BurgerTimeLvl::PauseCmd::Execute()
 {
-	if (SceneManager::GetInstance().GetActiveScene()->GetName().compare("BurgerTimeLvl") == 0)
-		SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
+	SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
 }

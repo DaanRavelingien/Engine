@@ -1,10 +1,13 @@
 #include "EnginePCH.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include "InputManager.h"
 
 Scene::Scene(const std::string& name) 
 	: m_Name(name)
 {
+	//create the input manager
+	m_pInputManager = new InputManager{};
 }
 
 Scene::~Scene()
@@ -20,6 +23,9 @@ Scene::~Scene()
 		delete pGameObj;
 		pGameObj = nullptr;
 	}
+
+	delete m_pInputManager;
+	m_pInputManager = nullptr;
 }
 
 void Scene::AddGameObj(GameObject* pGameObj)
@@ -91,6 +97,11 @@ void Scene::FixedUpdateScene()
 	}
 
 	RemoveDestroyedGameObjs();
+}
+
+bool Scene::ProcessInput()
+{
+	return m_pInputManager->ProcessInput();
 }
 
 void Scene::Render() const

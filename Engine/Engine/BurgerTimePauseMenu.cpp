@@ -18,7 +18,7 @@
 
 void BurgerTimePauseMenu::Initialize()
 {
-	//creating the burger time logo
+	//creating the pause lable
 	//=============================
 	GameObject* pPauseLable{ new GameObject{"PauseLabel"} };
 	pPauseLable->AddComponent(new TextRenderComp{});

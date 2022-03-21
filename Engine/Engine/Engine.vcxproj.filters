@@ -154,6 +154,9 @@
     <ClInclude Include="MenuSelectionMainMenuComp.h">
       <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClInclude>
+    <ClInclude Include="MenuSelectionOptionsComp.h">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -290,6 +293,9 @@
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClCompile>
     <ClCompile Include="MenuSelectionMainMenuComp.cpp">
+      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionOptionsComp.cpp">
       <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClCompile>
   </ItemGroup>
