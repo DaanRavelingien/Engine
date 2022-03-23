@@ -16,6 +16,8 @@
 #include "ScoreInpComp.h"
 #include "TextRenderComp.h"
 #include "TextureRenderComp.h"
+#include "HitboxManagerComp.h"
+#include "HitboxComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -30,6 +32,13 @@ void BurgerTimeLvl::Initialize()
 	//loading the burgertime texture with all the sprites
 	int burgerTimeTextureIdx = ResourceManager::GetInstance().LoadTexture("Textures/BurgerTimeSprites.png");
 
+	//creating a hitbox manager object
+	//================================
+	GameObject* pHitboxManager{ new GameObject{"HitboxManager"} };
+	HitboxManagerComp* pHitboxManagerComp{ new HitboxManagerComp{} };
+	pHitboxManager->AddComponent(pHitboxManagerComp);
+	AddGameObj(pHitboxManager);
+
 	//creating peterPepper
 	//====================
 	m_pPeterPepper = new GameObject{ "PeterPepper" };
@@ -37,10 +46,11 @@ void BurgerTimeLvl::Initialize()
 
 	TextureComp* pPeterPepperTextureComp{ new TextureComp{burgerTimeTextureIdx} };
 	pPeterPepperTextureComp->SetSourceRect({ 16,0,16,16 });
-	pPeterPepperTextureComp->SetDestRect({ 16,16,16,16 });
+	pPeterPepperTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
 	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
 	m_pPeterPepper->AddComponent(new DamageInpComp{Controller::Controller_1});
+	m_pPeterPepper->AddComponent(new HitboxComp{ pHitboxManagerComp,16,16 });
 
 	m_pPeterPepper->GetTransform()->SetPos({ 270,250,0 });
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });
@@ -53,10 +63,11 @@ void BurgerTimeLvl::Initialize()
 
 	pPeterPepperTextureComp = new TextureComp{burgerTimeTextureIdx};
 	pPeterPepperTextureComp->SetSourceRect({ 16,0,16,16 });
-	pPeterPepperTextureComp->SetDestRect({ 16,16,16,16 });
+	pPeterPepperTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pSallySalt->AddComponent(pPeterPepperTextureComp);
 	m_pSallySalt->AddComponent(new HealthComp{ 5 });
 	m_pSallySalt->AddComponent(new DamageInpComp{ Controller::Controller_2 });
+	m_pSallySalt->AddComponent(new HitboxComp{ pHitboxManagerComp,16,16 });
 
 	m_pSallySalt->GetTransform()->SetPos({ 350,250,0 });
 	m_pSallySalt->GetTransform()->SetScale({ 3,3,3 });

@@ -20,7 +20,7 @@ public:
 	bool IsOverlapping(HitboxComp* other);
 	void ClearOverlappingHitboxes() { m_OverlappingHitboxes.clear(); };
 	std::vector<HitboxComp*> GetOverlappingHitboxes() const { return m_OverlappingHitboxes; };
-	glm::vec2 GetSize() const { return m_HitboxSize; };
+	glm::vec2 GetSize() const;
 
 private:
 	glm::vec2 m_HitboxSize{};

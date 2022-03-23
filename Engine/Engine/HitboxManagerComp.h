@@ -4,7 +4,7 @@
 
 class HitboxComp;
 
-class HitboxManagerComp : Component
+class HitboxManagerComp : public Component
 {
 public:
 	HitboxManagerComp();

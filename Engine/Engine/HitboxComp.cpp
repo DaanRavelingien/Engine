@@ -37,3 +37,12 @@ bool HitboxComp::IsOverlapping(HitboxComp* other)
 	m_OverlappingHitboxes.push_back(other);
 	return true;
 }
+
+glm::vec2 HitboxComp::GetSize() const
+{
+	glm::vec2 size{ m_HitboxSize };
+	size.x *= m_pGameObj->GetTransform()->GetScale().x;
+	size.y *= m_pGameObj->GetTransform()->GetScale().y;
+
+	return size;
+}
