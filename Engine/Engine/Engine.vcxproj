@@ -224,6 +224,8 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="FPSComp.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HealthComp.h" />
+    <ClInclude Include="HitboxComp.h" />
+    <ClInclude Include="HitboxManagerComp.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EnginePCH.h" />
@@ -272,6 +274,8 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="FPSComp.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HealthComp.cpp" />
+    <ClCompile Include="HitboxComp.cpp" />
+    <ClCompile Include="HitboxManagerComp.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LivesDisplayComp.cpp" />
     <ClCompile Include="Logger.cpp" />

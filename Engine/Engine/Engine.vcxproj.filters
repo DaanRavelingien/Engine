@@ -148,6 +148,12 @@
     <ClInclude Include="MenuSelectionMainMenuComp.h">
       <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClInclude>
+    <ClInclude Include="HitboxComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxManagerComp.h">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -280,6 +286,12 @@
     <ClCompile Include="MenuSelectionMainMenuComp.cpp">
       <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClCompile>
+    <ClCompile Include="HitboxComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
+    <ClCompile Include="HitboxManagerComp.cpp">
+      <Filter>Engine\Components\StandardComps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -326,6 +338,9 @@
     </Filter>
     <Filter Include="Engine\Components\GameComps\MenuSelectionComps">
       <UniqueIdentifier>{b0dac77e-ef17-4f28-8f85-2fd71680b0dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Hitboxes">
+      <UniqueIdentifier>{02d8da47-e3b7-4206-b733-4af5966cd6f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
