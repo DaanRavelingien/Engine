@@ -213,7 +213,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h" />
     <ClInclude Include="BurgerTimeLvl.h" />
-    <ClInclude Include="BurgerTimeOptionsMenu.h" />
     <ClInclude Include="BurgerTimePauseMenu.h" />
     <ClInclude Include="BurgerTimeStartMenu.h" />
     <ClInclude Include="Command.h" />
@@ -234,7 +233,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="MenuSelectionComp.h" />
     <ClInclude Include="MenuSelectionExitComp.h" />
     <ClInclude Include="MenuSelectionMainMenuComp.h" />
-    <ClInclude Include="MenuSelectionOptionsComp.h" />
     <ClInclude Include="MenuSelectionStartComp.h" />
     <ClInclude Include="MenuInputComp.h" />
     <ClInclude Include="Observer.h" />
@@ -265,7 +263,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp" />
     <ClCompile Include="BurgerTimeLvl.cpp" />
-    <ClCompile Include="BurgerTimeOptionsMenu.cpp" />
     <ClCompile Include="BurgerTimePauseMenu.cpp" />
     <ClCompile Include="BurgerTimeStartMenu.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -291,7 +288,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="MenuSelectionComp.cpp" />
     <ClCompile Include="MenuSelectionExitComp.cpp" />
     <ClCompile Include="MenuSelectionMainMenuComp.cpp" />
-    <ClCompile Include="MenuSelectionOptionsComp.cpp" />
     <ClCompile Include="MenuSelectionStartComp.cpp" />
     <ClCompile Include="MenuInputComp.cpp" />
     <ClCompile Include="Renderer.cpp" />

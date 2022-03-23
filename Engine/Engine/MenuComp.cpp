@@ -17,20 +17,42 @@ void MenuComp::Initialize()
 
 void MenuComp::SelectNext()
 {
+	//deselect the old option
+	MenuSelectionComp* pSelection{};
+	pSelection = m_pGameObj->GetChildren().at(m_SelectedOption)->GetComponent<MenuSelectionComp>();
+	if(pSelection)
+		pSelection->Deselect();
+
 	m_SelectedOption++;
 
 	if (m_SelectedOption == (int)m_pGameObj->GetChildren().size())
 		m_SelectedOption = 0;
+
+	//select the new option
+	pSelection = m_pGameObj->GetChildren().at(m_SelectedOption)->GetComponent<MenuSelectionComp>();
+	if(pSelection)
+		pSelection->Select();
 
 	UpdateMenuPointer();
 }
 
 void MenuComp::SelectPrev()
 {
+	//deselect the old option
+	MenuSelectionComp* pSelection{};
+	pSelection = m_pGameObj->GetChildren().at(m_SelectedOption)->GetComponent<MenuSelectionComp>();
+	if(pSelection)
+		pSelection->Deselect();
+
 	m_SelectedOption--;
 
 	if (m_SelectedOption < 0)
 		m_SelectedOption = (int)m_pGameObj->GetChildren().size() - 1;
+
+	//select the new option
+	pSelection = m_pGameObj->GetChildren().at(m_SelectedOption)->GetComponent<MenuSelectionComp>();
+	if(pSelection)
+		pSelection->Select();
 
 	UpdateMenuPointer();
 }

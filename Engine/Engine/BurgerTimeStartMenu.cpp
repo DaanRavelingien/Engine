@@ -14,7 +14,6 @@
 #include "MenuComp.h"
 #include "MenuSelectionExitComp.h"
 #include "MenuSelectionStartComp.h"
-#include "MenuSelectionOptionsComp.h"
 
 void BurgerTimeStartMenu::Initialize()
 {
@@ -67,22 +66,13 @@ void BurgerTimeStartMenu::Initialize()
 	pVSPlayerSelection->GetTransform()->SetPos({ 0, 80, 0 });
 	pMenu->AddChild(pVSPlayerSelection);
 
-	//Options selection
-	//=================
-	GameObject* pOptionsSelection{ new GameObject{"OptionSelection"} };
-	pOptionsSelection->AddComponent(new MenuSelectionOptionsComp{});
-	pOptionsSelection->AddComponent(new TextRenderComp{});
-	pOptionsSelection->AddComponent(new TextComp{ "OPTIONS", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
-	pOptionsSelection->GetTransform()->SetPos({ 0, 120, 0 });
-	pMenu->AddChild(pOptionsSelection);
-
 	//Exit selection
 	//==============
 	GameObject* pExitSelection{ new GameObject{"ExitSelection"} };
 	pExitSelection->AddComponent(new MenuSelectionExitComp{});
 	pExitSelection->AddComponent(new TextRenderComp{});
 	pExitSelection->AddComponent(new TextComp{ "EXIT", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
-	pExitSelection->GetTransform()->SetPos({ 0, 160, 0 });
+	pExitSelection->GetTransform()->SetPos({ 0, 120, 0 });
 	pMenu->AddChild(pExitSelection);
 
 	pMenu->GetTransform()->SetPos({ 230,300,0 });
