@@ -218,7 +218,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="BurgerTimeStartMenu.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="DamageInpComp.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="Font.h" />
@@ -245,7 +244,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScoreCounterComp.h" />
-    <ClInclude Include="ScoreInpComp.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpriteComp.h" />
     <ClInclude Include="Subject.h" />
@@ -270,7 +268,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="BurgerTimePauseMenu.cpp" />
     <ClCompile Include="BurgerTimeStartMenu.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="DamageInpComp.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComp.cpp" />
@@ -302,7 +299,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreCounterComp.cpp" />
-    <ClCompile Include="ScoreInpComp.cpp" />
     <ClCompile Include="SpriteComp.cpp" />
     <ClCompile Include="TextComp.cpp" />
     <ClCompile Include="TextRenderComp.cpp" />

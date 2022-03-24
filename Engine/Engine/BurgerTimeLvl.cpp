@@ -10,10 +10,8 @@
 #include "TransformComp.h"
 #include "LivesDisplayComp.h"
 #include "HealthComp.h"
-#include "DamageInpComp.h"
 #include "TextComp.h"
 #include "ScoreCounterComp.h"
-#include "ScoreInpComp.h"
 #include "TextRenderComp.h"
 #include "TextureRenderComp.h"
 #include "HitboxManagerComp.h"
@@ -64,7 +62,6 @@ void BurgerTimeLvl::Initialize()
 	pPeterPepperTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
 	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
-	m_pPeterPepper->AddComponent(new DamageInpComp{Controller::Controller_1});
 	m_pPeterPepper->AddComponent(new HitboxComp{ pHitboxManagerComp, HitboxTag::Player, 16,16 });
 	m_pPeterPepper->AddComponent(new EntityMoveComp{ pPlatform });
 
@@ -93,7 +90,6 @@ void BurgerTimeLvl::Initialize()
 	pScoreCount->AddComponent(new TextRenderComp);
 	pScoreCount->AddComponent(new TextComp{ "0", "Fonts/ARCADECLASSIC.otf", 50, {1,1,1} });
 	pScoreCount->AddComponent(new ScoreCounterComp{});
-	pScoreCount->AddComponent(new ScoreInpComp{Controller::Controller_1});
 	pScoreCount->GetTransform()->SetPos({ 0,40,0 });
 	pScoreDisplay->AddChild(pScoreCount);
 
