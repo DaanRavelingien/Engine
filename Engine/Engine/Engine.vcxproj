@@ -212,6 +212,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h" />
+    <ClInclude Include="EntityMoveComp.h" />
     <ClInclude Include="BurgerTimeLvl.h" />
     <ClInclude Include="BurgerTimePauseMenu.h" />
     <ClInclude Include="BurgerTimeStartMenu.h" />
@@ -264,6 +265,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_impl_sdl.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.87\imgui_widgets.cpp" />
+    <ClCompile Include="EntityMoveComp.cpp" />
     <ClCompile Include="BurgerTimeLvl.cpp" />
     <ClCompile Include="BurgerTimePauseMenu.cpp" />
     <ClCompile Include="BurgerTimeStartMenu.cpp" />

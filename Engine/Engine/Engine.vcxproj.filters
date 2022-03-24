@@ -148,11 +148,14 @@
     <ClInclude Include="MenuSelectionMainMenuComp.h">
       <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClInclude>
+    <ClInclude Include="EntityMoveComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
     <ClInclude Include="HitboxComp.h">
-      <Filter>Engine\Components\StandardComps</Filter>
+      <Filter>Engine\Components\GameComps\Hitbox</Filter>
     </ClInclude>
     <ClInclude Include="HitboxManagerComp.h">
-      <Filter>Engine\Components\StandardComps</Filter>
+      <Filter>Engine\Components\GameComps\Hitbox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -286,11 +289,14 @@
     <ClCompile Include="MenuSelectionMainMenuComp.cpp">
       <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
     </ClCompile>
+    <ClCompile Include="EntityMoveComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
     <ClCompile Include="HitboxComp.cpp">
-      <Filter>Engine\Components\StandardComps</Filter>
+      <Filter>Engine\Components\GameComps\Hitbox</Filter>
     </ClCompile>
     <ClCompile Include="HitboxManagerComp.cpp">
-      <Filter>Engine\Components\StandardComps</Filter>
+      <Filter>Engine\Components\GameComps\Hitbox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +344,9 @@
     </Filter>
     <Filter Include="Engine\Components\GameComps\MenuSelectionComps">
       <UniqueIdentifier>{b0dac77e-ef17-4f28-8f85-2fd71680b0dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\GameComps\Hitbox">
+      <UniqueIdentifier>{9067f613-d94b-4273-b654-8e2ff2db9296}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

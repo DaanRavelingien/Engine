@@ -51,8 +51,11 @@ glm::vec4 TextureComp::GetDestRect() const
 {
 	glm::vec4 rect{ m_DestRect };
 
+	rect.x *= m_pGameObj->GetTransform()->GetScale().x;
+	rect.y *= m_pGameObj->GetTransform()->GetScale().y;
 	rect.x += m_pGameObj->GetTransform()->GetPos().x;
 	rect.y += m_pGameObj->GetTransform()->GetPos().y;
+
 	rect.z *= m_pGameObj->GetTransform()->GetScale().x;
 	rect.w *= m_pGameObj->GetTransform()->GetScale().y;
 

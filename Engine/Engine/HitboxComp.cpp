@@ -7,10 +7,11 @@
 #include "TransformComp.h"
 #include "HitboxManagerComp.h"
 
-HitboxComp::HitboxComp(HitboxManagerComp* pHitboxmanager, float width, float height)
+HitboxComp::HitboxComp(HitboxManagerComp* pHitboxmanager, HitboxTag tag, float width, float height)
 	:Component{typeid(this).name()}
 	,m_HitboxSize{width,height}
 	,m_pHitboxManager{pHitboxmanager}
+	,m_Tag{tag}
 {}
 
 void HitboxComp::Initialize()
