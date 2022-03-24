@@ -151,6 +151,9 @@
     <ClInclude Include="HitboxManagerComp.h">
       <Filter>Engine\Components\GameComps\Hitbox</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerInputComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -285,6 +288,9 @@
     </ClCompile>
     <ClCompile Include="HitboxManagerComp.cpp">
       <Filter>Engine\Components\GameComps\Hitbox</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInputComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

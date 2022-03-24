@@ -19,7 +19,7 @@ public:
 	void MoveUp();
 	void MoveDown();
 	void MoveLeft();
-	void MoreRight();
+	void MoveRight();
 
 private:
 	void FindLadder();
@@ -27,7 +27,7 @@ private:
 
 	HitboxComp* m_pHitbox{ nullptr };
 	float m_Reach{ 10.f };
-	float m_MoveSpeed{ 10.f };
+	float m_MoveSpeed{ 100.f };
 
 	//TODO: create platform comp and ladder comp
 	GameObject* m_pPlatform{ nullptr };

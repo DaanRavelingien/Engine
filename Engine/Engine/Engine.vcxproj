@@ -238,6 +238,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="MenuSelectionStartComp.h" />
     <ClInclude Include="MenuInputComp.h" />
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="PlayerInputComp.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -293,6 +294,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="MenuSelectionMainMenuComp.cpp" />
     <ClCompile Include="MenuSelectionStartComp.cpp" />
     <ClCompile Include="MenuInputComp.cpp" />
+    <ClCompile Include="PlayerInputComp.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />

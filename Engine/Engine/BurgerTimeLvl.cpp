@@ -17,6 +17,7 @@
 #include "HitboxManagerComp.h"
 #include "HitboxComp.h"
 #include "EntityMoveComp.h"
+#include "PlayerInputComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -49,8 +50,22 @@ void BurgerTimeLvl::Initialize()
 	pPlatform->AddComponent(pPlatformTexture);
 
 	pPlatform->GetTransform()->SetPos({ 200,400,0 });
-	pPlatform->GetTransform()->SetScale({ 15,3,3 });
+	pPlatform->GetTransform()->SetScale({ 3,3,3 });
 	AddGameObj(pPlatform);
+
+	//create a test ladder
+	//====================
+	GameObject* pLadder{ new GameObject{"Ladder"} };
+	pLadder->AddComponent(new HitboxComp{ pHitboxManagerComp,HitboxTag::Ladder,16,64 });
+	pLadder->AddComponent(new TextureRenderComp{});
+	TextureComp* pLadderTexture{ new TextureComp{burgerTimeTextureIdx} };
+	pLadderTexture->SetSourceRect({ 114,65,28,6 });
+	pLadderTexture->SetDestRect({ 0,16,16,64 });
+	pLadder->AddComponent(pLadderTexture);
+
+	pLadder->GetTransform()->SetPos({ 200,400,0 });
+	pLadder->GetTransform()->SetScale({ 3,3,3 });
+	AddGameObj(pLadder);
 
 	//creating peterPepper
 	//====================
@@ -64,6 +79,7 @@ void BurgerTimeLvl::Initialize()
 	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
 	m_pPeterPepper->AddComponent(new HitboxComp{ pHitboxManagerComp, HitboxTag::Player, 16,16 });
 	m_pPeterPepper->AddComponent(new EntityMoveComp{ pPlatform });
+	m_pPeterPepper->AddComponent(new PlayerInputComp{});
 
 	m_pPeterPepper->GetTransform()->SetPos({ 270,250,0 });
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });

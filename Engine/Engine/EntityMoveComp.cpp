@@ -18,6 +18,26 @@ void EntityMoveComp::Initialize()
 	m_pHitbox = m_pGameObj->GetComponent<HitboxComp>();
 	if (!m_pHitbox)
 		LOGWARNING("could not fine a hitbox component");
+
+	//clamping the position of the object to the size of the start platform
+	if (m_pPlatform)
+	{
+		glm::vec3 currentPos{ m_pGameObj->GetTransform()->GetPos() };
+		glm::vec3 platformPos{ m_pPlatform->GetTransform()->GetPos() };
+
+		//setting the object on top of the platform
+		m_pGameObj->GetTransform()->SetPos({ currentPos.x,platformPos.y,currentPos.z });
+		currentPos = m_pGameObj->GetTransform()->GetPos();
+
+		//clamping the pos to the lenght of the platform
+		if (m_pGameObj->GetTransform()->GetPos().x < platformPos.x)
+			m_pGameObj->GetTransform()->SetPos({ platformPos.x,currentPos.y,currentPos.z });
+
+		float right{ m_pPlatform->GetTransform()->GetPos().x + m_pPlatform->GetComponent<HitboxComp>()->GetSize().x
+			- m_pGameObj->GetComponent<HitboxComp>()->GetSize().x };
+		if (m_pGameObj->GetTransform()->GetPos().x > right)
+			m_pGameObj->GetTransform()->SetPos({ right, currentPos.y ,currentPos.z });
+	}
 }
 
 void EntityMoveComp::Update()
@@ -127,7 +147,7 @@ void EntityMoveComp::MoveLeft()
 	}
 }
 
-void EntityMoveComp::MoreRight()
+void EntityMoveComp::MoveRight()
 {
 	//checking if we need to find a platform
 	if (!m_pPlatform)
@@ -164,7 +184,7 @@ void EntityMoveComp::FindLadder()
 {
 	//first checking if the ladder is close enought by checking if the hitboxes are overlapping
 	std::vector<HitboxComp*> hitboxes{ m_pHitbox->GetOverlappingHitboxes() };
-	if (hitboxes.size() < 0)
+	if (hitboxes.size() > 0)
 	{
 		//going through overlapping hitboxes and looking for a ladder
 		for (HitboxComp* pHitbox : hitboxes)
@@ -186,7 +206,7 @@ void EntityMoveComp::FindPlatform()
 {
 	//first checking if the platform is close enought by checking if the hitboxes are overlapping
 	std::vector<HitboxComp*> hitboxes{ m_pHitbox->GetOverlappingHitboxes() };
-	if (hitboxes.size() < 0)
+	if (hitboxes.size() > 0)
 	{
 		//going through overlapping hitboxes and looking for a platform
 		for (HitboxComp* pHitbox : hitboxes)
