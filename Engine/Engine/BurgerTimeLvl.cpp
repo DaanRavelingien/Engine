@@ -54,7 +54,7 @@ void BurgerTimeLvl::Initialize()
 	m_pPeterPepper->AddComponent(new EntityMoveComp{});
 	m_pPeterPepper->AddComponent(new PlayerInputComp{});
 
-	m_pPeterPepper->GetTransform()->SetPos({ 250,250,0 });
+	m_pPeterPepper->GetTransform()->SetPos({ 200,400,0 });
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });
 	AddGameObj(m_pPeterPepper);
 

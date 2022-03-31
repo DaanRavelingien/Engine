@@ -97,7 +97,7 @@ void LevelLoaderComp::CreateLevel()
 		pPlatformTexture->SetDestRect({ 0,16,hitboxSize.x,hitboxSize.y });
 		pPlatform->AddComponent(pPlatformTexture);
 
-		glm::vec2 hitboxPos{ platform["Position"][0].GetFloat(),platform["Position"][0].GetFloat() };
+		glm::vec2 hitboxPos{ platform["Position"][0].GetFloat(),platform["Position"][1].GetFloat() };
 		pPlatform->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,0 });
 
 		//adding the ladder object as a child of the level
@@ -124,7 +124,7 @@ void LevelLoaderComp::CreateLevel()
 		pLadderTexture->SetDestRect({ 0,16,hitboxSize.x,hitboxSize.y });
 		pLadder->AddComponent(pLadderTexture);
 
-		glm::vec2 hitboxPos{ ladder["Position"][0].GetFloat(),ladder["Position"][0].GetFloat() };
+		glm::vec2 hitboxPos{ ladder["Position"][0].GetFloat(),ladder["Position"][1].GetFloat() };
 		pLadder->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,0 });
 
 		//adding the ladder object as a child of the level

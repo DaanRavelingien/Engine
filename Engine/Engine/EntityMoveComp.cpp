@@ -41,6 +41,15 @@ void EntityMoveComp::Initialize()
 
 void EntityMoveComp::Update()
 {
+	//setting a platform or ladder if we dont have one
+	//mainly for the start of the game so we just can place entities on platforms to spawn them
+	if (!m_pPlatform && !m_pLadder)
+	{
+		FindPlatform();
+		if(!m_pPlatform)
+			FindLadder();
+	}
+
 	glm::vec3 currentPos{ m_pGameObj->GetTransform()->GetPos() };
 
 	//allign to the floor or ladder you are currently on
