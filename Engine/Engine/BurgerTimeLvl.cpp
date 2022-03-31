@@ -18,6 +18,7 @@
 #include "HitboxComp.h"
 #include "EntityMoveComp.h"
 #include "PlayerInputComp.h"
+#include "LevelLoaderComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -34,38 +35,10 @@ void BurgerTimeLvl::Initialize()
 
 	//creating a hitbox manager object
 	//================================
-	GameObject* pHitboxManager{ new GameObject{"HitboxManager"} };
+	m_pHitboxManager = new GameObject{"HitboxManager"};
 	HitboxManagerComp* pHitboxManagerComp{ new HitboxManagerComp{} };
-	pHitboxManager->AddComponent(pHitboxManagerComp);
-	AddGameObj(pHitboxManager);
-
-	//creating a test platform
-	//========================
-	GameObject* pPlatform{ new GameObject{"Platform"} };
-	pPlatform->AddComponent(new HitboxComp{ pHitboxManagerComp,HitboxTag::Platform,28,16 });
-	pPlatform->AddComponent(new TextureRenderComp{});
-	TextureComp* pPlatformTexture{ new TextureComp{burgerTimeTextureIdx} };
-	pPlatformTexture->SetSourceRect({ 114,65,28,6 });
-	pPlatformTexture->SetDestRect({ 0,16,28,6 });
-	pPlatform->AddComponent(pPlatformTexture);
-
-	pPlatform->GetTransform()->SetPos({ 200,400,0 });
-	pPlatform->GetTransform()->SetScale({ 3,3,3 });
-	AddGameObj(pPlatform);
-
-	//create a test ladder
-	//====================
-	GameObject* pLadder{ new GameObject{"Ladder"} };
-	pLadder->AddComponent(new HitboxComp{ pHitboxManagerComp,HitboxTag::Ladder,16,64 });
-	pLadder->AddComponent(new TextureRenderComp{});
-	TextureComp* pLadderTexture{ new TextureComp{burgerTimeTextureIdx} };
-	pLadderTexture->SetSourceRect({ 114,65,28,6 });
-	pLadderTexture->SetDestRect({ 0,16,16,64 });
-	pLadder->AddComponent(pLadderTexture);
-
-	pLadder->GetTransform()->SetPos({ 200,400,0 });
-	pLadder->GetTransform()->SetScale({ 3,3,3 });
-	AddGameObj(pLadder);
+	m_pHitboxManager->AddComponent(pHitboxManagerComp);
+	AddGameObj(m_pHitboxManager);
 
 	//creating peterPepper
 	//====================
@@ -77,11 +50,11 @@ void BurgerTimeLvl::Initialize()
 	pPeterPepperTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
 	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
-	m_pPeterPepper->AddComponent(new HitboxComp{ pHitboxManagerComp, HitboxTag::Player, 16,16 });
-	m_pPeterPepper->AddComponent(new EntityMoveComp{ pPlatform });
+	m_pPeterPepper->AddComponent(new HitboxComp{HitboxTag::Player, 16,16 });
+	m_pPeterPepper->AddComponent(new EntityMoveComp{});
 	m_pPeterPepper->AddComponent(new PlayerInputComp{});
 
-	m_pPeterPepper->GetTransform()->SetPos({ 270,250,0 });
+	m_pPeterPepper->GetTransform()->SetPos({ 250,250,0 });
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });
 	AddGameObj(m_pPeterPepper);
 
@@ -91,11 +64,13 @@ void BurgerTimeLvl::Initialize()
 	//creating the display for the lives and score of player 1
 	GameObject* pLivesDisplay{ new GameObject{"LivesDisplay"} };
 	pLivesDisplay->AddComponent(new LivesDisplayComp(m_pPeterPepper, burgerTimeTextureIdx));
+
 	pLivesDisplay->GetTransform()->SetScale({ 3,3,3 });
 	pLivesDisplay->GetTransform()->SetPos({ 20,700,0 });
 	m_pHud->AddChild(pLivesDisplay);
 
 	GameObject* pScoreDisplay{ new GameObject{ "ScoreDisplay" } };
+
 	GameObject* pScoreLabel{ new GameObject{ "ScoreLabel" } };
 	pScoreLabel->AddComponent(new TextRenderComp{});
 	pScoreLabel->AddComponent(new TextComp{ "SCORE P1", "Fonts/ARCADECLASSIC.otf", 50,{1,0,0} });
@@ -114,6 +89,13 @@ void BurgerTimeLvl::Initialize()
 
 	AddGameObj(m_pHud);
 
+	//creating the level from a json
+	//==============================
+	GameObject* pLevel{ new GameObject{"Level"} };
+	pLevel->AddComponent(new LevelLoaderComp{ "../Data/Levels/Level1.json" });
+	pLevel->GetTransform()->SetScale({ 3,3,3 });
+	pLevel->GetTransform()->SetPos({ 0,0,-1 });
+	AddGameObj(pLevel);
 }
 
 void BurgerTimeLvl::PauseCmd::Execute()

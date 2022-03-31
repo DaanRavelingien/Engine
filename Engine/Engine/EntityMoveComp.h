@@ -6,7 +6,7 @@ class HitboxComp;
 class EntityMoveComp : public Component
 {
 public:
-	EntityMoveComp(GameObject* pStartPlatform);
+	EntityMoveComp();
 	~EntityMoveComp() = default;
 	EntityMoveComp(const EntityMoveComp& other) = delete;
 	EntityMoveComp(EntityMoveComp&& other) = delete;

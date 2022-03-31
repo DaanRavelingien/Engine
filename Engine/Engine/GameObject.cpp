@@ -5,6 +5,7 @@
 #include "TransformComp.h"
 #include "TextureRenderComp.h"
 #include "TextRenderComp.h"
+#include "Scene.h"
 
 GameObject::GameObject(const std::string& name)
 	:m_Name{name}

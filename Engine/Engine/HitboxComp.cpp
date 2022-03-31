@@ -1,23 +1,22 @@
 #include "EnginePCH.h"
 #include "HitboxComp.h"
 #include "GameObject.h"
-#include "Scene.h"
+#include "BurgerTimeLvl.h"
 
 //component includes
 #include "TransformComp.h"
 #include "HitboxManagerComp.h"
 
-HitboxComp::HitboxComp(HitboxManagerComp* pHitboxmanager, HitboxTag tag, float width, float height)
+HitboxComp::HitboxComp(HitboxTag tag, float width, float height)
 	:Component{typeid(this).name()}
 	,m_HitboxSize{width,height}
-	,m_pHitboxManager{pHitboxmanager}
 	,m_Tag{tag}
 {}
 
 void HitboxComp::Initialize()
 {
 	//adding the new hitbox to the hitboxManager
-	m_pHitboxManager->AddHitbox(this);
+	dynamic_cast<BurgerTimeLvl*>(m_pGameObj->GetScene())->GetHitboxManager()->GetComponent<HitboxManagerComp>()->AddHitbox(this);
 }
 
 bool HitboxComp::IsOverlapping(HitboxComp* other)

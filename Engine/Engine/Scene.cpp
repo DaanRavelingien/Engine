@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "InputManager.h"
+#include "TransformComp.h"
 
 Scene::Scene(const std::string& name) 
 	: m_Name(name)
@@ -126,11 +127,25 @@ void Scene::RenderGui()
 
 void Scene::AddNewGameObjs()
 {
-	for (GameObject* pObj : m_ObjsToAdd)
+	if (m_ObjsToAdd.size() > 0)
 	{
-		m_GameObjs.push_back(pObj);
+
+		for (GameObject* pObj : m_ObjsToAdd)
+		{
+			m_GameObjs.push_back(pObj);
+		}
+
+		//order the new game objects from closest z distance to furthest
+		//so they are rendered correctly
+		std::sort(m_GameObjs.begin(), m_GameObjs.end(), [](GameObject* pGameObj, GameObject* pOtherGameObj)
+			{
+				if (pGameObj->GetTransform()->GetPos().z < pOtherGameObj->GetTransform()->GetPos().z)
+					return true;
+				return false;
+			});
+
+		m_ObjsToAdd.clear();
 	}
-	m_ObjsToAdd.clear();
 }
 
 void Scene::RemoveDestroyedGameObjs()

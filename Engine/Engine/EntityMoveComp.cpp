@@ -7,9 +7,8 @@
 #include "TransformComp.h"
 #include "HitboxComp.h"
 
-EntityMoveComp::EntityMoveComp(GameObject* pStartPlatform)
+EntityMoveComp::EntityMoveComp()
 	:Component{typeid(this).name()}
-	,m_pPlatform{pStartPlatform}
 {
 }
 

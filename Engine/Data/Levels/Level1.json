@@ -1,0 +1,18 @@
+{
+	"LevelName": "Level_1",
+	"PlayerSpawn": [0, 0],
+	"EnemySpawns": [
+		[0, 0],
+		[0, 0]
+	],
+	"Platforms": [{
+			"Size": [28, 16],
+			"Position": [200, 400]
+		}
+	],
+	"Ladders": [{
+			"Size": [16, 64],
+			"Position": [200, 400]
+		}
+	]
+}

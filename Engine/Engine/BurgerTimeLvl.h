@@ -12,12 +12,14 @@ public:
 	BurgerTimeLvl& operator=(const BurgerTimeLvl& other) = delete;
 	BurgerTimeLvl& operator=(BurgerTimeLvl&& other) = delete;
 
+	GameObject* GetHitboxManager() const { return m_pHitboxManager; };
+
 protected:
 	void Initialize() override;
 
 private:
+	GameObject* m_pHitboxManager{ nullptr };
 	GameObject* m_pPeterPepper{ nullptr };
-	GameObject* m_pSallySalt{ nullptr };
 	GameObject* m_pHud{ nullptr };
 
 	//general inputs for this scene
