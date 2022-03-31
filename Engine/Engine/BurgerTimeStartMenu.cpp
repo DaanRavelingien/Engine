@@ -35,7 +35,7 @@ void BurgerTimeStartMenu::Initialize()
 	pMenu->AddComponent(new MenuComp{});
 	pMenu->AddComponent(new TextureRenderComp{});
 	TextureComp* pTextureComp{ new TextureComp{"Textures/BurgerTimeSprites.png"} };
-	pTextureComp->SetSourceRect({ 98,145,8,7 });
+	pTextureComp->SetSourceRect({ 0,144,8,7 });
 	pTextureComp->SetDestRect({ 0,0,16,14 });
 	pMenu->AddComponent(pTextureComp);
 

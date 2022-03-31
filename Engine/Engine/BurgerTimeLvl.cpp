@@ -66,7 +66,7 @@ void BurgerTimeLvl::Initialize()
 	pLivesDisplay->AddComponent(new LivesDisplayComp(m_pPeterPepper, burgerTimeTextureIdx));
 
 	pLivesDisplay->GetTransform()->SetScale({ 3,3,3 });
-	pLivesDisplay->GetTransform()->SetPos({ 20,700,0 });
+	pLivesDisplay->GetTransform()->SetPos({ 10,700,0 });
 	m_pHud->AddChild(pLivesDisplay);
 
 	GameObject* pScoreDisplay{ new GameObject{ "ScoreDisplay" } };
@@ -94,7 +94,7 @@ void BurgerTimeLvl::Initialize()
 	GameObject* pLevel{ new GameObject{"Level"} };
 	pLevel->AddComponent(new LevelLoaderComp{ "../Data/Levels/Level1.json" });
 	pLevel->GetTransform()->SetScale({ 3,3,3 });
-	pLevel->GetTransform()->SetPos({ 0,0,-1 });
+	pLevel->GetTransform()->SetPos({ 48,60,-1 });
 	AddGameObj(pLevel);
 }
 

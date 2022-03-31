@@ -40,7 +40,7 @@ void LivesDisplayComp::Initialize()
 		pLiveObj->AddComponent(new TextureRenderComp{});
 
 		TextureComp* pTextureComp{ new TextureComp{ m_LivesTextureIdx } };
-		pTextureComp->SetSourceRect({ 201,0,textureSize,textureSize });
+		pTextureComp->SetSourceRect({ 146,0,textureSize,textureSize });
 		pTextureComp->SetDestRect({ 0,0,textureSize,textureSize });
 
 		pLiveObj->AddComponent(pTextureComp);

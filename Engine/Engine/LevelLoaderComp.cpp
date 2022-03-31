@@ -93,11 +93,12 @@ void LevelLoaderComp::CreateLevel()
 
 		pPlatform->AddComponent(new TextureRenderComp{});
 		TextureComp* pPlatformTexture{ new TextureComp{burgerTimeTextureIdx} };
-		pPlatformTexture->SetSourceRect({ 114,65,28,6 });
-		pPlatformTexture->SetDestRect({ 0,16,hitboxSize.x,hitboxSize.y });
+		pPlatformTexture->SetSourceRect({ 0,165,hitboxSize.x,3 });
+		pPlatformTexture->SetDestRect({ 0,16,hitboxSize.x,3 });
 		pPlatform->AddComponent(pPlatformTexture);
 
-		glm::vec2 hitboxPos{ platform["Position"][0].GetFloat(),platform["Position"][1].GetFloat() };
+		glm::vec2 hitboxPos{ platform["Position"][0].GetFloat() * m_pGameObj->GetTransform()->GetScale().x,
+			platform["Position"][1].GetFloat() * m_pGameObj->GetTransform()->GetScale().y };
 		pPlatform->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,0 });
 
 		//adding the ladder object as a child of the level
@@ -120,12 +121,13 @@ void LevelLoaderComp::CreateLevel()
 
 		pLadder->AddComponent(new TextureRenderComp{});
 		TextureComp* pLadderTexture{ new TextureComp{burgerTimeTextureIdx} };
-		pLadderTexture->SetSourceRect({ 114,65,28,6 });
-		pLadderTexture->SetDestRect({ 0,16,hitboxSize.x,hitboxSize.y });
+		pLadderTexture->SetSourceRect({ 195,1,10,hitboxSize.y });
+		pLadderTexture->SetDestRect({ ((int)hitboxSize.x - 10) / 2,16,10,hitboxSize.y });
 		pLadder->AddComponent(pLadderTexture);
 
-		glm::vec2 hitboxPos{ ladder["Position"][0].GetFloat(),ladder["Position"][1].GetFloat() };
-		pLadder->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,0 });
+		glm::vec2 hitboxPos{ ladder["Position"][0].GetFloat() * m_pGameObj->GetTransform()->GetScale().x,
+			ladder["Position"][1].GetFloat() * m_pGameObj->GetTransform()->GetScale().y };
+		pLadder->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,-2 });
 
 		//adding the ladder object as a child of the level
 		m_pGameObj->AddChild(pLadder);
