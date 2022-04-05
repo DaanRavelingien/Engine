@@ -21,7 +21,7 @@ void BurgerTimeStartMenu::Initialize()
 	//=============================
 	GameObject* pBurgerTimeLogo{ new GameObject{"BurgerTimeLogo"} };
 	pBurgerTimeLogo->AddComponent(new TextureRenderComp{});
-	pBurgerTimeLogo->AddComponent(new TextureComp{ "Textures/BurgerTimeLogo.png" });
+	pBurgerTimeLogo->AddComponent(new TextureComp{ "BurgerTimeLogo" });
 
 	pBurgerTimeLogo->GetTransform()->SetPos({ 80,50,0 });
 	pBurgerTimeLogo->GetTransform()->SetScale({ 0.5f,0.5f,0.5f });
@@ -34,7 +34,7 @@ void BurgerTimeStartMenu::Initialize()
 	pMenu->AddComponent(new MenuInputComp{});
 	pMenu->AddComponent(new MenuComp{});
 	pMenu->AddComponent(new TextureRenderComp{});
-	TextureComp* pTextureComp{ new TextureComp{"Textures/BurgerTimeSprites.png"} };
+	TextureComp* pTextureComp{ new TextureComp{"BurgerTimeTexture"} };
 	pTextureComp->SetSourceRect({ 0,144,8,7 });
 	pTextureComp->SetDestRect({ 0,0,16,14 });
 	pMenu->AddComponent(pTextureComp);
@@ -44,7 +44,7 @@ void BurgerTimeStartMenu::Initialize()
 	GameObject* pSinglePlayerSelection{ new GameObject{"SinglePlayerSelection"} };
 	pSinglePlayerSelection->AddComponent(new MenuSelectionStartComp{});
 	pSinglePlayerSelection->AddComponent(new TextRenderComp{});
-	pSinglePlayerSelection->AddComponent(new TextComp{ "1 PLAYER", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
+	pSinglePlayerSelection->AddComponent(new TextComp{ "1 PLAYER", "ArcadeClassic_Size30",{1,1,1} });
 	pSinglePlayerSelection->GetTransform()->SetPos({0, 0, 0});
 	pMenu->AddChild(pSinglePlayerSelection);
 
@@ -53,7 +53,7 @@ void BurgerTimeStartMenu::Initialize()
 	GameObject* pCoOpSelection{ new GameObject{"TwoPlayerCoOpSelection"} };
 	//pCoOpSelection->AddComponent(new MenuSelectionStartComp{});
 	pCoOpSelection->AddComponent(new TextRenderComp{});
-	pCoOpSelection->AddComponent(new TextComp{ "2 PLAYERS CO OP", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
+	pCoOpSelection->AddComponent(new TextComp{ "2 PLAYERS CO OP", "ArcadeClassic_Size30",{1,1,1} });
 	pCoOpSelection->GetTransform()->SetPos({ 0, 40, 0 });
 	pMenu->AddChild(pCoOpSelection);
 
@@ -62,7 +62,7 @@ void BurgerTimeStartMenu::Initialize()
 	GameObject* pVSPlayerSelection{ new GameObject{"TwoPlayerVSSelection"} };
 	//pVSPlayerSelection->AddComponent(new MenuSelectionStartComp{});
 	pVSPlayerSelection->AddComponent(new TextRenderComp{});
-	pVSPlayerSelection->AddComponent(new TextComp{ "2 PLAYERS VERSUS", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
+	pVSPlayerSelection->AddComponent(new TextComp{ "2 PLAYERS VERSUS", "ArcadeClassic_Size30",{1,1,1} });
 	pVSPlayerSelection->GetTransform()->SetPos({ 0, 80, 0 });
 	pMenu->AddChild(pVSPlayerSelection);
 
@@ -71,7 +71,7 @@ void BurgerTimeStartMenu::Initialize()
 	GameObject* pExitSelection{ new GameObject{"ExitSelection"} };
 	pExitSelection->AddComponent(new MenuSelectionExitComp{});
 	pExitSelection->AddComponent(new TextRenderComp{});
-	pExitSelection->AddComponent(new TextComp{ "EXIT", "Fonts/ARCADECLASSIC.otf", 30,{1,1,1} });
+	pExitSelection->AddComponent(new TextComp{ "EXIT", "ArcadeClassic_Size30",{1,1,1} });
 	pExitSelection->GetTransform()->SetPos({ 0, 120, 0 });
 	pMenu->AddChild(pExitSelection);
 

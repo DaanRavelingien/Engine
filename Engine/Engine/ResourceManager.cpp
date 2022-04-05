@@ -9,10 +9,10 @@
 
 ResourceManager::~ResourceManager()
 {
-	for (Resource* resource : m_Resources)
+	for (std::pair<std::string, Resource*> resource : m_Resources)
 	{
-		delete resource;
-		resource = nullptr;
+		delete resource.second;
+		resource.second = nullptr;
 	}
 }
 
@@ -38,154 +38,79 @@ void ResourceManager::Init(const std::string& dataPath)
 	}
 }
 
-int ResourceManager::LoadTexture(const std::string& file)
+std::string ResourceManager::LoadTexture(const std::string& textureName, const std::string& file)
 {
 	Texture2D* pTexture{ new Texture2D{m_DataPath + file}};
 
-	m_Resources.push_back(pTexture);
+	//checking if we are not overriding already existing textures
+	if (m_Resources.find(textureName) != m_Resources.end())
+		LOGWARNING("replacing a resource that already exists");
 
-	return pTexture->GetIdx();
+	m_Resources.emplace(std::pair<std::string, Resource*>{textureName, pTexture});
+
+	return textureName;
 }
 
-int ResourceManager::LoadTexture(SDL_Texture* pTexture)
+std::string ResourceManager::LoadTexture(const std::string& textureName, SDL_Texture* pTexture)
 {
 	Texture2D* pNewTexture{ new Texture2D{pTexture} };
 
-	m_Resources.push_back(pNewTexture);
+	//checking if we are not overriding already existing textures
+	if (m_Resources.find(textureName) != m_Resources.end())
+		LOGWARNING("replacing a resource that already exists");
 
-	return pNewTexture->GetIdx();
+	m_Resources.emplace(std::pair<std::string, Resource*>{textureName, pNewTexture});
+
+	return textureName;
 }
 
-int ResourceManager::LoadFont(const std::string& file, unsigned int size)
+std::string ResourceManager::LoadFont(const std::string& fontName ,const std::string& file, unsigned int size)
 {
 	Font* pFont{ new Font{ m_DataPath + file, size } };
 	
-	m_Resources.push_back(pFont);
+	m_Resources.emplace(std::pair<std::string, Resource*>{fontName, pFont});
 
-	return pFont->GetIdx();
+	return fontName;
 }
 
-int ResourceManager::ReplaceResource(int oldResource, int newResource)
+std::string ResourceManager::ReplaceResource(const std::string& name, const std::string& otherName)
 {
-	//finding the texture to replace
-	auto itOld = std::find_if(m_Resources.begin(), m_Resources.end(), [oldResource](Resource* pResource)
-		{
-			if (pResource->GetIdx() == oldResource)
-				return true;
-			return false;
-		});
+	Resource* pOldResource{ m_Resources.at(name) };
+	Resource* pNewResource{ m_Resources.at(otherName) };
 
-	//finding the texture to replace it with and placing that one at the back
-	auto itNew = std::remove_if(m_Resources.begin(), m_Resources.end(), [newResource](Resource* pResource)
-		{
-			if (pResource->GetIdx() == newResource)
-				return true;
-			return false;
-		});
+	//replacing the old resource 
+	delete pOldResource;
+	pOldResource = pNewResource;
 
-	if (itOld == m_Resources.end())
-	{
-		LOGWARNING("No resources found with given idx to replace");
-		return -1;
-	}
-	if (itNew == m_Resources.end())
-	{
-		LOGWARNING("No resources found with given idx to replace the other texture with");
-		return -1;
-	}
+	//removing the new resource
+	m_Resources.erase(otherName);
 
-	//we will keep the same idx
-	int idx{ (*itOld)->GetIdx() };
-
-	//deleting the old texture
-	delete* itOld;
-	*itOld = nullptr;
-
-	//making the new texture and placing it in the old textures place
-	*itOld = *itNew;
-	(*itOld)->m_Idx = idx;
-
-	//removing the other resource from our vector
-	m_Resources.erase(itNew, m_Resources.end());
-
-	return (*itOld)->GetIdx();
+	return name;
 }
 
-int ResourceManager::ReplaceTexture(int idxOldTexture, const std::string& newTextureFile)
+std::string ResourceManager::ReplaceTexture(const std::string& name, const std::string& newTextureFile)
 {
-	//finding the texture to replace
-	auto it = std::find_if(m_Resources.begin(), m_Resources.end(), [idxOldTexture](Resource* pResource) 
-		{
-			if (pResource->GetIdx() == idxOldTexture)
-				return true;
-			return false;
-		});
+	Resource* pOldResource{ m_Resources.at(name) };
 
-	if (it == m_Resources.end())
-	{
-		LOGWARNING("No texture found with given idx to replace");
-		return -1;
-	}
+	//replacing the resource with the new one
+	delete pOldResource;
+	pOldResource = new Texture2D{ newTextureFile };
 
-	//we will keep the same idx
-	int idx{ (*it)->GetIdx() };
-
-	//deleting the old texture
-	delete* it;
-	*it = nullptr;
-
-	//making the new texture and placing it in the old textures place
-	*it = new Texture2D{ idx, m_DataPath + newTextureFile };
-
-	return (*it)->GetIdx();
+	return name;
 }
 
-int ResourceManager::ReplaceFont(int idxOldFont, const std::string& newFontfile, unsigned int newFontSize)
+std::string ResourceManager::ReplaceFont(const std::string& name, const std::string& newFontfile, unsigned int newFontSize)
 {
-	//finding the font we want to replace
-	auto it = std::find_if(m_Resources.begin(), m_Resources.end(), [idxOldFont](Resource* pResource)
-		{
-			if (pResource->GetIdx() == idxOldFont)
-				return true;
-			return false;
-		});
+	Resource* pOldResource{ m_Resources.at(name) };
 
-	if (it == m_Resources.end())
-	{
-		LOGWARNING("No Font found with given idx to replace");
-		return -1;
-	}
+	//replacing the old font
+	delete pOldResource;
+	pOldResource = new Font{ m_DataPath + newFontfile, newFontSize };
 
-	//we will keep the same idx
-	int idx{ (*it)->GetIdx() };
-
-	//deleting the old font
-	delete* it;
-	*it = nullptr;
-
-	//creating the new font and placing it in the place of the old one
-	*it = new Font{ idx,m_DataPath + newFontfile, newFontSize };
-
-	return (*it)->GetIdx();
+	return name;
 }
 
-void ResourceManager::RemoveResource(int idx)
+void ResourceManager::RemoveResource(const std::string& name)
 {
-	auto it = std::remove_if(m_Resources.begin(), m_Resources.end(), [idx](Resource* pResource)
-		{
-			if (pResource->GetIdx() == idx)
-				return true;
-			return false;
-		});
-
-	if (it == m_Resources.end())
-	{
-		LOGWARNING("No resource found with given idx");
-		return;
-	}
-
-	delete* it;
-	*it = nullptr;
-
-	m_Resources.erase(it, m_Resources.end());
+	m_Resources.erase(name);
 }

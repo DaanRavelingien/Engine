@@ -11,18 +11,10 @@ public:
 	Resource& operator= (const Resource&) = delete;
 	Resource& operator= (const Resource&&) = delete;
 
-	int GetIdx() const { return m_Idx; };
-
 protected:
 	friend class ResourceManager;
 
-	Resource();
-	Resource(int idx);
+	Resource() = default;
 	virtual ~Resource() = default;
-
-private:
-	int m_Idx;
-
-	static int m_ResourceCounter;
 };
 

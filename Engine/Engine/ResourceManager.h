@@ -1,5 +1,6 @@
 #pragma once
 #include "Singleton.h"
+#include <map>
 
 class Resource;
 
@@ -9,61 +10,27 @@ public:
 	~ResourceManager();
 	void Init(const std::string& data);
 	//creating resources
-	int LoadTexture(const std::string& file);
-	int LoadTexture(SDL_Texture* pTexture);
-	int LoadFont(const std::string& file, unsigned int size);
+	std::string LoadTexture(const std::string& textureName, const std::string& file);
+	std::string LoadTexture(const std::string& textureName, SDL_Texture* pTexture);
+	std::string LoadFont(const std::string& fontName, const std::string& file, unsigned int size);
 	
 	//this function replaces the old resource with the new one given and then removes the new one from the list
-	int ReplaceResource(int oldResource, int newResource);
+	std::string ReplaceResource(const std::string& name, const std::string& otherName);
 
-	int ReplaceTexture(int idxOldTexture, const std::string& newTextureFile);
-	int ReplaceFont(int idxOldFont, const std::string& newFontfile, unsigned int newFontSize);
+	std::string ReplaceTexture(const std::string& name, const std::string& newTextureFile);
+	std::string ReplaceFont(const std::string& name, const std::string& newFontfile, unsigned int newFontSize);
 
 	template<typename T>
-	T* GetResource(int idx) const
+	T* GetResource(const std::string& name) const
 	{
-		auto it = std::find_if(m_Resources.begin(), m_Resources.end(), [idx](Resource* pResource)
-			{
-				if (dynamic_cast<T*>(pResource) && pResource->GetIdx() == idx)
-					return true;
-				return false;
-			});
-
-		if (it == m_Resources.end())
-		{
-			LOGWARNING("No resource found of given type with given id");
-			return nullptr;
-		}
-
-		return dynamic_cast<T*>(*it);
+		return dynamic_cast<T*>(m_Resources.at(name));
 	}
-	void RemoveResource(int idx);
-	template<typename T>
-	void RemoveResource(int idx)
-	{
-		auto it = std::remove_if(m_Resources.begin(), m_Resources.end(), [idx](Resource* pResource)
-			{
-				if (dynamic_cast<T*>(pResource) && pResource->GetIdx() == idx)
-					return true;
-				return false;
-			});
-
-		if (it == m_Resources.end())
-		{
-			LOGWARNING("No resource found of given type with given idx");
-			return;
-		}
-
-		delete* it;
-		*it = nullptr;
-
-		m_Resources.erase(it, m_Resources.end());
-	}
+	void RemoveResource(const std::string& name);
 
 private:
 	friend class Singleton<ResourceManager>;
 	ResourceManager() = default;
 	
 	std::string m_DataPath;
-	std::vector<Resource*> m_Resources{};
+	std::map<std::string, Resource*> m_Resources{};
 };

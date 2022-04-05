@@ -92,5 +92,86 @@
 			"Size": [ 16, 48 ],
 			"Position": [ 192, 109 ]
 		}
+	],
+	"BurgerTrays": [
+		{
+			"Position": [ 13, 195 ]
+		},
+		{
+			"Position": [ 61, 195 ]
+		},
+		{
+			"Position": [ 109, 195 ]
+		},
+		{
+			"Position": [ 157, 195 ]
+		}
+	],
+	"BurgerIngredients": [
+		{
+			"Type": "TOPBUN",
+			"Position": [ 16, 40 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 64, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 112, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 160, 8 ]
+		},
+		{
+			"Type": "LETTUCE",
+			"Position": [ 16, 72 ]
+		},
+		{
+			"Type": "LETTUCE",
+			"Position": [ 64, 88 ]
+		},
+		{
+			"Type": "LETTUCE",
+			"Position": [ 112, 40 ]
+		},
+		{
+			"Type": "LETTUCE",
+			"Position": [ 160, 40 ]
+		},
+		{
+			"Type": "PATTY",
+			"Position": [ 18, 120 ]
+		},
+		{
+			"Type": "PATTY",
+			"Position": [ 66, 120 ]
+		},
+		{
+			"Type": "PATTY",
+			"Position": [ 114, 88 ]
+		},
+		{
+			"Type": "PATTY",
+			"Position": [ 162, 72 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 16, 152 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 64, 152 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 112, 152 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 160, 104 ]
+		}
 	]
+
 }

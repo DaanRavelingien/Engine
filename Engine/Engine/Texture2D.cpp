@@ -35,28 +35,15 @@ glm::vec2 Texture2D::GetTextureSize() const
 	return glm::vec2{ textureWidth,textureHeight };
 }
 
-Texture2D::Texture2D(int idx, const std::string& filePath)
-	:Resource(idx)
-	,m_Texture{nullptr}
-{
-	MakeTexture(filePath);
-}
-
 Texture2D::Texture2D(const std::string& filePath)
-	:Resource()
+	:Resource{}
 	, m_Texture{nullptr}
 {
 	MakeTexture(filePath);
 }
 
-Texture2D::Texture2D(int idx, SDL_Texture* pTexture)
-	:Resource(idx)
-	,m_Texture{pTexture}
-{
-}
-
 Texture2D::Texture2D(SDL_Texture* pTexture)
-	:Resource()
+	: Resource{}
 	, m_Texture{pTexture}
 {
 }

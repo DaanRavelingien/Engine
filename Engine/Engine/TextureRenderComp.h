@@ -16,10 +16,10 @@ public:
 	void Render();
 
 private:
-	void AddTextureToRender(Component * pComp, int textureIdx);
+	void AddTextureToRender(Component * pComp, const std::string& name);
 
 	void Notify(Component * pComp, Event event) override;
 
-	std::vector<std::pair<Component*, int>> m_CompsToRender{};
+	std::vector<std::pair<Component*, std::string>> m_CompsToRender{};
 };
 

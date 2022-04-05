@@ -22,9 +22,7 @@ public:
 private:
 	friend class ResourceManager;
 	//should be created through the resource manager
-	explicit Texture2D(int idx, const std::string& filePath);
 	explicit Texture2D(const std::string& filePath);
-	explicit Texture2D(int idx, SDL_Texture* pTexture);
 	explicit Texture2D(SDL_Texture* pTexture);
 	~Texture2D();
 

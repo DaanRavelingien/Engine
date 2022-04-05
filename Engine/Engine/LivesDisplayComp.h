@@ -18,7 +18,7 @@ public:
 	void Initialize() override;
 private:
 	GameObject* m_pPeterPepper{ nullptr };
-	int m_LivesTextureIdx{};
+	std::string m_TextureName{};
 
 	void Notify(Component* pComp, Event event) override;
 };

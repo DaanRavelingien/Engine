@@ -100,9 +100,6 @@
     <ClInclude Include="FPSComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClInclude>
-    <ClInclude Include="DemoScene.h">
-      <Filter>Engine\Scenes\GameScenes</Filter>
-    </ClInclude>
     <ClInclude Include="BurgerTimeLvl.h">
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClInclude>
@@ -155,6 +152,9 @@
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
     <ClInclude Include="LevelLoaderComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="IngredientManagerComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
   </ItemGroup>
@@ -241,9 +241,6 @@
     <ClCompile Include="FPSComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClCompile>
-    <ClCompile Include="DemoScene.cpp">
-      <Filter>Engine\Scenes\GameScenes</Filter>
-    </ClCompile>
     <ClCompile Include="BurgerTimeLvl.cpp">
       <Filter>Engine\Scenes\GameScenes</Filter>
     </ClCompile>
@@ -296,6 +293,9 @@
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
     <ClCompile Include="LevelLoaderComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="IngredientManagerComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
   </ItemGroup>

@@ -3,7 +3,7 @@
 class LevelLoaderComp : public Component
 {
 public:
-	LevelLoaderComp(const std::string& levelFilePath);
+	LevelLoaderComp(const std::string& levelFilePath, const std::string& textureName);
 	~LevelLoaderComp() = default;
 	LevelLoaderComp(const LevelLoaderComp& other) = delete;
 	LevelLoaderComp(LevelLoaderComp&& other) = delete;
@@ -14,6 +14,7 @@ public:
 
 private:
 	std::string m_FilePath{};
+	std::string m_TextureName{};
 
 	void CreateLevel();
 };

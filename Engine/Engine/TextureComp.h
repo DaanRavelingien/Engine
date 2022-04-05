@@ -7,8 +7,7 @@ class Texture2D;
 class TextureComp final : public Component
 {
 public:
-	explicit TextureComp(const std::string& file);
-	explicit TextureComp(int textureIdx);
+	explicit TextureComp(const std::string& textureName);
 	~TextureComp() = default;
 	TextureComp(const TextureComp& other) = delete;
 	TextureComp(TextureComp&& other) = delete;
@@ -17,8 +16,8 @@ public:
 
 	void Initialize() override;
 
-	void ChangeTexture(const std::string& file);
-	int GetTextureIdx() const { return m_TextureIdx; };
+	void ChangeTexture(const std::string& newTextureName);
+	std::string GetTextureName() const { return m_TextureName; };
 
 	void SetSourceRect(const glm::vec4& rect) { m_SourceRect = rect; };
 	glm::vec4 GetSourceRect() const { return m_SourceRect; };
@@ -26,10 +25,8 @@ public:
 	glm::vec4 GetDestRect() const;
 
 private:
-	std::string m_FilePath{};
+	std::string m_TextureName{};
 	glm::vec4 m_SourceRect{};
 	glm::vec4 m_DestRect{};
-
-	int m_TextureIdx{};
 };
 

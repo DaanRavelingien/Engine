@@ -13,9 +13,10 @@
 #include "HitboxComp.h"
 #include "HitboxManagerComp.h"
 
-LevelLoaderComp::LevelLoaderComp(const std::string& levelFilePath)
+LevelLoaderComp::LevelLoaderComp(const std::string& levelFilePath, const std::string& textureName)
 	:Component{typeid(this).name()}
 	,m_FilePath{levelFilePath}
+	,m_TextureName{textureName}
 {
 }
 
@@ -77,9 +78,6 @@ void LevelLoaderComp::CreateLevel()
 		return;
 	}
 
-	//loading the burgertime texture for the platform and ladder sprites
-	int burgerTimeTextureIdx = ResourceManager::GetInstance().LoadTexture("Textures/BurgerTimeSprites.png");
-
 	//creating the platforms
 	int platformCount{};
 	for (auto& platform : levelDocument["Platforms"].GetArray())
@@ -92,7 +90,7 @@ void LevelLoaderComp::CreateLevel()
 		pPlatform->AddComponent(new HitboxComp{ HitboxTag::Platform,hitboxSize.x,hitboxSize.y });
 
 		pPlatform->AddComponent(new TextureRenderComp{});
-		TextureComp* pPlatformTexture{ new TextureComp{burgerTimeTextureIdx} };
+		TextureComp* pPlatformTexture{ new TextureComp{m_TextureName} };
 		pPlatformTexture->SetSourceRect({ 0,165,hitboxSize.x,3 });
 		pPlatformTexture->SetDestRect({ 0,16,hitboxSize.x,3 });
 		pPlatform->AddComponent(pPlatformTexture);
@@ -120,14 +118,14 @@ void LevelLoaderComp::CreateLevel()
 		pLadder->AddComponent(new HitboxComp{ HitboxTag::Ladder,hitboxSize.x,hitboxSize.y });
 
 		pLadder->AddComponent(new TextureRenderComp{});
-		TextureComp* pLadderTexture{ new TextureComp{burgerTimeTextureIdx} };
+		TextureComp* pLadderTexture{ new TextureComp{m_TextureName} };
 		pLadderTexture->SetSourceRect({ 195,1,10,hitboxSize.y });
 		pLadderTexture->SetDestRect({ ((int)hitboxSize.x - 10) / 2,16,10,hitboxSize.y });
 		pLadder->AddComponent(pLadderTexture);
 
 		glm::vec2 hitboxPos{ ladder["Position"][0].GetFloat() * m_pGameObj->GetTransform()->GetScale().x,
 			ladder["Position"][1].GetFloat() * m_pGameObj->GetTransform()->GetScale().y };
-		pLadder->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,-2 });
+		pLadder->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,-1 });
 
 		//adding the ladder object as a child of the level
 		m_pGameObj->AddChild(pLadder);
@@ -135,4 +133,102 @@ void LevelLoaderComp::CreateLevel()
 		//also adding the game object to the scene to it can manage it
 		m_pGameObj->GetScene()->AddGameObj(pLadder);
 	}
+
+	//creating burger trays
+	int trayCount{ 0 };
+	for (auto& tray : levelDocument["BurgerTrays"].GetArray())
+	{
+		GameObject* pTray{ new GameObject{"Tray" + std::to_string(trayCount)} };
+		++trayCount;
+
+		//adding the nessecary components
+		pTray->AddComponent(new HitboxComp{ HitboxTag::Tray, 38,5 });
+		pTray->AddComponent(new TextureRenderComp{});
+		TextureComp* pTrayTexture{ new TextureComp{m_TextureName} };
+		pTrayTexture->SetSourceRect({ 101,87,38,5 });
+		pTrayTexture->SetDestRect({ 0,0,38,5 });
+		pTray->AddComponent(pTrayTexture);
+
+		glm::vec2 pos{ tray["Position"][0].GetFloat() * m_pGameObj->GetTransform()->GetScale().x,
+			tray["Position"][1].GetFloat() * m_pGameObj->GetTransform()->GetScale().y };
+		pTray->GetTransform()->SetPos({ pos.x,pos.y,0 });
+
+		//adding the ladder object as a child of the level
+		m_pGameObj->AddChild(pTray);
+
+		//also adding the game object to the scene to it can manage it
+		m_pGameObj->GetScene()->AddGameObj(pTray);
+	}
+
+	//for the ingredients we will store them seperatly under an ingredient obj
+	GameObject* pIngredients{ new GameObject{"Ingredients"} };
+	m_pGameObj->AddChild(pIngredients);
+
+	//adding the ingredients to the scene
+	int ingredientCount{ 0 };
+	for (auto& ingredient : levelDocument["BurgerIngredients"].GetArray())
+	{
+		GameObject* pIngredient{ new GameObject{"Ingredient" + std::to_string(ingredientCount)} };
+		ingredientCount++;
+
+		//adding the neccesary components
+		pIngredient->AddComponent(new TextureRenderComp{});
+		TextureComp* pIngredientTexture{ new TextureComp{m_TextureName} };
+		pIngredient->AddComponent(pIngredientTexture);
+
+		//handeling the different sizes for the ingredients
+		std::string lable{ ingredient["Type"].GetString() };
+		if (lable.compare("TOPBUN") == 0)
+		{
+			pIngredient->AddComponent(new HitboxComp{ HitboxTag::Ingredient,31,7 });
+
+			pIngredientTexture->SetSourceRect({ 102,37,31,7 });
+			pIngredientTexture->SetDestRect({ 0,0,31,7 });
+		}
+		else if (lable.compare("BOTTOMBUN") == 0)
+		{
+			pIngredient->AddComponent(new HitboxComp{ HitboxTag::Ingredient,31,7 });
+
+			pIngredientTexture->SetSourceRect({ 102,45,31,7 });
+			pIngredientTexture->SetDestRect({ 0,0,31,7 });
+		}
+		else if (lable.compare("LETTUCE") == 0)
+		{
+			pIngredient->AddComponent(new HitboxComp{ HitboxTag::Ingredient,31,7 });
+
+			pIngredientTexture->SetSourceRect({ 102,77,31,7 });
+			pIngredientTexture->SetDestRect({ 0,0,31,7 });
+		}
+		else if (lable.compare("CHEESE") == 0)
+		{
+			pIngredient->AddComponent(new HitboxComp{ HitboxTag::Ingredient,28,6 });
+
+			pIngredientTexture->SetSourceRect({ 104,53,28,6 });
+			pIngredientTexture->SetDestRect({ 0,0,28,6 });
+		}
+		else if (lable.compare("PATTY") == 0)
+		{
+			pIngredient->AddComponent(new HitboxComp{ HitboxTag::Ingredient,28,7 });
+
+			pIngredientTexture->SetSourceRect({ 104,61,28,7 });
+			pIngredientTexture->SetDestRect({ 0,0,28,7 });
+		}
+		else if(lable.compare("TOMATO") == 0)
+		{
+			pIngredient->AddComponent(new HitboxComp{ HitboxTag::Ingredient,30,7 });
+
+			pIngredientTexture->SetSourceRect({ 103,69,30,7 });
+			pIngredientTexture->SetDestRect({ 0,0,30,7 });
+		}
+
+		glm::vec2 pos{ ingredient["Position"][0].GetFloat() * pIngredients->GetTransform()->GetScale().x,
+			(ingredient["Position"][1].GetFloat() + 16) * pIngredients->GetTransform()->GetScale().y };
+		pIngredient->GetTransform()->SetPos({ pos.x,pos.y,0 });
+
+		pIngredients->AddChild(pIngredient);
+	}
+
+	//adding the ingredients to the scene so they are managed and updated
+	m_pGameObj->GetScene()->AddGameObj(pIngredients);
 }
+

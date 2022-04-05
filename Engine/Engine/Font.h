@@ -16,10 +16,12 @@ public:
 	Font(Font &&) = delete;
 	Font & operator= (const Font &) = delete;
 	Font & operator= (const Font &&) = delete;
+
+	unsigned int GetFontSize() { return m_Size; };
+
 private:
 	friend class ResourceManager;
 	//should only be created through the resource manager
-	explicit Font(int idx, const std::string& fullPath, unsigned int size);
 	explicit Font(const std::string& fullPath, unsigned int size);
 	~Font();
 

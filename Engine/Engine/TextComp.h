@@ -6,7 +6,7 @@ class Font;
 class TextComp final : public Component
 {
 public:
-	explicit TextComp(const std::string& text, const std::string& file, unsigned int fontSize, const glm::vec3& color = glm::vec3{ 1,1,1 });
+	explicit TextComp(const std::string& text, const std::string& fontName, const glm::vec3& color = glm::vec3{ 1,1,1 });
 	~TextComp() = default;
 	TextComp(const TextComp& other) = delete;
 	TextComp(TextComp&& other) = delete;
@@ -18,7 +18,7 @@ public:
 	void SetText(const std::string& text);
 	std::string GetText() const { return m_Text; };
 	void SetFont(const std::string& file);
-	int GetFontIdx() { return m_FontIdx; };
+	std::string GetFontName() { return m_FontName; };
 	void SetColor(const glm::vec3& color) { m_Color = color; };
 	glm::vec3 GetColor() const { return m_Color; };
 	void SetFontSize(unsigned int fontSize);
@@ -26,9 +26,7 @@ public:
 
 private:
 	std::string m_Text;
-	int m_FontIdx;
-	std::string m_FontFile;
+	std::string m_FontName;
 	glm::vec3 m_Color;
-	unsigned int m_FontSize;
 };
 

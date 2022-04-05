@@ -10,7 +10,9 @@ enum class HitboxTag
 	Player,
 	Platform,
 	Ladder,
-	Enemy
+	Enemy,
+	Tray,
+	Ingredient
 };
 
 class HitboxComp : public Component

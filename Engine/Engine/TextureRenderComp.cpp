@@ -21,10 +21,10 @@ void TextureRenderComp::Initialize()
 
 void TextureRenderComp::Render()
 {
-	for (std::pair<Component*, int> pair : m_CompsToRender)
+	for (std::pair<Component*, std::string> pair : m_CompsToRender)
 	{
 		//check if the texture is something
-		if (pair.second >= 0)
+		if (!pair.second.empty())
 		{
 			TextureComp* pTextureComp{ dynamic_cast<TextureComp*>(pair.first) };
 
@@ -39,28 +39,28 @@ void TextureRenderComp::Render()
 	}
 }
 
-void TextureRenderComp::AddTextureToRender(Component* pComp, int textureIdx)
+void TextureRenderComp::AddTextureToRender(Component* pComp, const std::string& name)
 {
 	//first we do a check if its already in the vector 
-	auto it = std::find_if(m_CompsToRender.begin(), m_CompsToRender.end(), [pComp](const std::pair<Component*, int>& pair)
+	auto it = std::find_if(m_CompsToRender.begin(), m_CompsToRender.end(), [pComp](const std::pair<Component*, std::string>& pair)
 		{
 			if (pair.first == pComp)
 				return true;
 			return false;
 		});
 
-	int newTextureIdx{ textureIdx };
+	std::string newTextureName{ name };
 
 	//if its already in there do not add the component again, just change the texture
 	if (it != m_CompsToRender.end())
 	{
-		newTextureIdx = ResourceManager::GetInstance().ReplaceResource(it->second, textureIdx);
-		(*it).second = newTextureIdx;
+		newTextureName = ResourceManager::GetInstance().ReplaceResource(it->second, name);
+		(*it).second = newTextureName;
 		return;
 	}
 
 	//else add it to the vector
-	m_CompsToRender.push_back({ pComp,newTextureIdx });
+	m_CompsToRender.push_back({ pComp,newTextureName });
 }
 
 void TextureRenderComp::Notify(Component* pComp, Event event)
@@ -68,6 +68,6 @@ void TextureRenderComp::Notify(Component* pComp, Event event)
 	if (event == Event::COMPONENT_TEXTURE_RENDER)
 	{
 		TextureComp* pTextureComp{ m_pGameObj->GetComponent<TextureComp>(pComp->GetIdx()) };
-		AddTextureToRender(pComp, pTextureComp->GetTextureIdx());
+		AddTextureToRender(pComp, pTextureComp->GetTextureName());
 	}
 }

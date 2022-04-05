@@ -5,31 +5,14 @@
 #include "Texture2D.h"
 #include "TransformComp.h"
 
-TextureComp::TextureComp(const std::string& file)
+TextureComp::TextureComp(const std::string& textureName)
 	:Component{ typeid(this).name() }
-	, m_FilePath{file}
-	, m_TextureIdx{ -1 }
-{
-	//creating our texture on the resource manager so we dont need to take ownership of it
-	m_TextureIdx = ResourceManager::GetInstance().LoadTexture(m_FilePath);
-
-	//setting the default source rectangle to the size of the whole texture
-	m_SourceRect = glm::vec4{ 0,0,
-	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureIdx)->GetTextureSize().x,
-	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureIdx)->GetTextureSize().y };
-
-	//setting the destination rectangle to the same size as well
-	m_DestRect = m_SourceRect;
-}
-
-TextureComp::TextureComp(int textureIdx)
-	:Component{ typeid(this).name() }
-	, m_TextureIdx{textureIdx}
+	, m_TextureName{textureName}
 {
 	//setting the default source rectangle to the size of the whole texture
 	m_SourceRect = glm::vec4{ 0,0,
-	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureIdx)->GetTextureSize().x,
-	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureIdx)->GetTextureSize().y };
+	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureName)->GetTextureSize().x,
+	ResourceManager::GetInstance().GetResource<Texture2D>(m_TextureName)->GetTextureSize().y };
 
 	//setting the destination rectangle to the same size as well
 	m_DestRect = m_SourceRect;
@@ -40,10 +23,9 @@ void TextureComp::Initialize()
 	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXTURE_RENDER);
 }
 
-void TextureComp::ChangeTexture(const std::string& file)
+void TextureComp::ChangeTexture(const std::string& newTextureName)
 {
-	m_TextureIdx = ResourceManager::GetInstance().ReplaceTexture(m_TextureIdx, file);
-
+	m_TextureName = newTextureName;
 	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXTURE_RENDER);
 }
 

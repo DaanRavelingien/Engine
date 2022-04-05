@@ -30,9 +30,6 @@ void BurgerTimeLvl::Initialize()
 	GetInputManager()->SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
 	GetInputManager()->SetCommand(ControllerButton::BackButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
 
-	//loading the burgertime texture with all the sprites
-	int burgerTimeTextureIdx = ResourceManager::GetInstance().LoadTexture("Textures/BurgerTimeSprites.png");
-
 	//creating a hitbox manager object
 	//================================
 	m_pHitboxManager = new GameObject{"HitboxManager"};
@@ -45,7 +42,7 @@ void BurgerTimeLvl::Initialize()
 	m_pPeterPepper = new GameObject{ "PeterPepper" };
 	m_pPeterPepper->AddComponent(new TextureRenderComp{});
 
-	TextureComp* pPeterPepperTextureComp{ new TextureComp{burgerTimeTextureIdx} };
+	TextureComp* pPeterPepperTextureComp{ new TextureComp{"BurgerTimeTexture"} };
 	pPeterPepperTextureComp->SetSourceRect({ 16,0,16,16 });
 	pPeterPepperTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
@@ -63,7 +60,7 @@ void BurgerTimeLvl::Initialize()
 	m_pHud = new GameObject{ "Hud" };
 	//creating the display for the lives and score of player 1
 	GameObject* pLivesDisplay{ new GameObject{"LivesDisplay"} };
-	pLivesDisplay->AddComponent(new LivesDisplayComp(m_pPeterPepper, burgerTimeTextureIdx));
+	pLivesDisplay->AddComponent(new LivesDisplayComp(m_pPeterPepper, "BurgerTimeTexture"));
 
 	pLivesDisplay->GetTransform()->SetScale({ 3,3,3 });
 	pLivesDisplay->GetTransform()->SetPos({ 10,700,0 });
@@ -73,13 +70,13 @@ void BurgerTimeLvl::Initialize()
 
 	GameObject* pScoreLabel{ new GameObject{ "ScoreLabel" } };
 	pScoreLabel->AddComponent(new TextRenderComp{});
-	pScoreLabel->AddComponent(new TextComp{ "SCORE P1", "Fonts/ARCADECLASSIC.otf", 50,{1,0,0} });
+	pScoreLabel->AddComponent(new TextComp{ "SCORE P1", "ArcadeClassic_Size50",{1,0,0} });
 	pScoreLabel->GetTransform()->SetPos({ 0,0,0 });
 	pScoreDisplay->AddChild(pScoreLabel);
 
 	GameObject* pScoreCount{ new GameObject{"ScoreCount"} };
 	pScoreCount->AddComponent(new TextRenderComp);
-	pScoreCount->AddComponent(new TextComp{ "0", "Fonts/ARCADECLASSIC.otf", 50, {1,1,1} });
+	pScoreCount->AddComponent(new TextComp{ "0", "ArcadeClassic_Size50", {1,1,1} });
 	pScoreCount->AddComponent(new ScoreCounterComp{});
 	pScoreCount->GetTransform()->SetPos({ 0,40,0 });
 	pScoreDisplay->AddChild(pScoreCount);
@@ -92,7 +89,7 @@ void BurgerTimeLvl::Initialize()
 	//creating the level from a json
 	//==============================
 	GameObject* pLevel{ new GameObject{"Level"} };
-	pLevel->AddComponent(new LevelLoaderComp{ "../Data/Levels/Level1.json" });
+	pLevel->AddComponent(new LevelLoaderComp{ "../Data/Levels/Level1.json", "BurgerTimeTexture"});
 	pLevel->GetTransform()->SetScale({ 3,3,3 });
 	pLevel->GetTransform()->SetPos({ 48,60,-1 });
 	AddGameObj(pLevel);

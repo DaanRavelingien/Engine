@@ -12,17 +12,10 @@
 #include "TransformComp.h"
 
 
-LivesDisplayComp::LivesDisplayComp(GameObject* pObj, const std::string& liveTexturePath)
+LivesDisplayComp::LivesDisplayComp(GameObject* pObj, const std::string& textureName)
 	:Component(typeid(this).name())
 	,m_pPeterPepper{pObj}
-{
-	m_LivesTextureIdx = ResourceManager::GetInstance().LoadTexture(liveTexturePath);
-}
-
-LivesDisplayComp::LivesDisplayComp(GameObject* pObj, int livesTextureIdx)
-	: Component(typeid(this).name())
-	,m_pPeterPepper{pObj}
-	,m_LivesTextureIdx{livesTextureIdx}
+	,m_TextureName{textureName}
 {
 }
 
@@ -39,7 +32,7 @@ void LivesDisplayComp::Initialize()
 		GameObject* pLiveObj{ new GameObject{"LiveTexObj_" + std::to_string(i)} };
 		pLiveObj->AddComponent(new TextureRenderComp{});
 
-		TextureComp* pTextureComp{ new TextureComp{ m_LivesTextureIdx } };
+		TextureComp* pTextureComp{ new TextureComp{ m_TextureName } };
 		pTextureComp->SetSourceRect({ 146,0,textureSize,textureSize });
 		pTextureComp->SetDestRect({ 0,0,textureSize,textureSize });
 
