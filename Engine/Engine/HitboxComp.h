@@ -12,7 +12,8 @@ enum class HitboxTag
 	Ladder,
 	Enemy,
 	Tray,
-	Ingredient
+	Ingredient,
+	ingredientPiece
 };
 
 class HitboxComp : public Component

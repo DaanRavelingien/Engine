@@ -157,6 +157,9 @@
     <ClInclude Include="IngredientManagerComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
+    <ClInclude Include="IngredientPieceComp.h">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -296,6 +299,9 @@
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
     <ClCompile Include="IngredientManagerComp.cpp">
+      <Filter>Engine\Components\GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="IngredientPieceComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include <map>
 
 class GameObject;
 
@@ -16,7 +17,8 @@ public:
 	void CreateIngredient(const std::string& type, const glm::vec2& pos);
 
 private:
-	std::vector<GameObject*> m_Ingredients{};
+	void CreateIngredientParts(GameObject* pIngredient, const std::string& type);
 
+	std::map<std::string, glm::vec4> m_IngredientTypes{};
 };
 
