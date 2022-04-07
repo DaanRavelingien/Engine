@@ -63,7 +63,7 @@ void IngredientManagerComp::CreateIngredientParts(GameObject* pIngredient, const
 		pTextureComp->SetSourceRect({ ingrSourceRect.x + pieceWidth * i,ingrSourceRect.y,pieceWidth,ingrSourceRect.w });
 		pTextureComp->SetDestRect({ 0,0,pieceWidth,ingrSourceRect.w});
 		
-		pIngredientPiece->AddComponent(new HitboxComp{ HitboxTag::ingredientPiece,pieceWidth,ingrSourceRect.w });
+		pIngredientPiece->AddComponent(new HitboxComp{ HitboxTag::ingredientPiece,pieceWidth,ingrSourceRect.w, HitboxManagerComp::CollisionGroup::CollisionGroup2 });
 
 		pIngredientPiece->GetTransform()->SetPos({ pieceWidth * i * m_pGameObj->GetTransform()->GetScale().x,0,0 });
 

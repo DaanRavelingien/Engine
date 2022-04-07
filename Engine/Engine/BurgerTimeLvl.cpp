@@ -47,7 +47,9 @@ void BurgerTimeLvl::Initialize()
 	pPeterPepperTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
 	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
-	m_pPeterPepper->AddComponent(new HitboxComp{HitboxTag::Player, 16,16 });
+	m_pPeterPepper->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
+		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1 
+			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
 	m_pPeterPepper->AddComponent(new EntityMoveComp{});
 	m_pPeterPepper->AddComponent(new PlayerInputComp{});
 

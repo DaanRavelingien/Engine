@@ -1,12 +1,19 @@
 #pragma once
 #include "Component.h"
-#include <vector>
 
 class HitboxComp;
 
 class HitboxManagerComp : public Component
 {
 public:
+	enum class CollisionGroup
+	{
+		CollisionGroup1 = 0b0001,
+		CollisionGroup2 = 0b0010,
+		CollisionGroup3 = 0b0100,
+		CollisionGroup4 = 0b1000
+	};
+
 	HitboxManagerComp();
 	~HitboxManagerComp() = default;
 	HitboxManagerComp(const HitboxManagerComp& other) = delete;
@@ -16,7 +23,8 @@ public:
 
 	void Update() override;
 
-	void AddHitbox(HitboxComp* pHitbox) { m_Hitboxes.push_back(pHitbox); };
+	bool AreOverlapping(const glm::vec4& hitbox1, const glm::vec4& hitbox2);
+	void AddHitbox(HitboxComp* pHitbox);
 
 private:
 	std::vector<HitboxComp*> m_Hitboxes{};
