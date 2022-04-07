@@ -9,6 +9,8 @@
 #include "TextureRenderComp.h"
 #include "TextureComp.h"
 #include "IngredientPieceComp.h"
+#include "IngredientComp.h"
+#include "GravityComp.h"
 
 IngredientManagerComp::IngredientManagerComp()
 	:Component{typeid(this).name()}
@@ -29,15 +31,22 @@ void IngredientManagerComp::CreateIngredient(const std::string& type, const glm:
 
 	GameObject* pIngredient{ new GameObject{"Ingredient" + std::to_string(m_pGameObj->GetChildren().size())} };
 
+	pIngredient->AddComponent(new IngredientComp{});
+	pIngredient->AddComponent(new GravityComp{});
+
 	//adding the pieces to the ingedient
 	CreateIngredientParts(pIngredient, type);
 
 	//adding hitbox to the ingredient
 	glm::vec4 sourceRect{ m_IngredientTypes.at(type) };
-	//pIngredient->AddComponent(new HitboxComp{ HitboxTag::Ingredient, sourceRect.z, sourceRect.w });
+	pIngredient->AddComponent(new HitboxComp{ HitboxTag::Ingredient, sourceRect.z, sourceRect.w });
 
 	glm::vec2 position{ pos.x * m_pGameObj->GetTransform()->GetScale().x,
 		(pos.y + 16) * m_pGameObj->GetTransform()->GetScale().y };
+
+	//this +1 is just so the ingredient avoids clipping any platforms when falling down
+	position.x += 1;
+
 	pIngredient->GetTransform()->SetPos({ position.x,position.y,0 });
 
 	m_pGameObj->AddChild(pIngredient);

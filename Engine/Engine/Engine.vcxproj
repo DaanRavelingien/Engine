@@ -222,9 +222,11 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComp.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GravityComp.h" />
     <ClInclude Include="HealthComp.h" />
     <ClInclude Include="HitboxComp.h" />
     <ClInclude Include="HitboxManagerComp.h" />
+    <ClInclude Include="IngredientComp.h" />
     <ClInclude Include="IngredientManagerComp.h" />
     <ClInclude Include="IngredientPieceComp.h" />
     <ClInclude Include="InputManager.h" />
@@ -274,9 +276,11 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComp.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GravityComp.cpp" />
     <ClCompile Include="HealthComp.cpp" />
     <ClCompile Include="HitboxComp.cpp" />
     <ClCompile Include="HitboxManagerComp.cpp" />
+    <ClCompile Include="IngredientComp.cpp" />
     <ClCompile Include="IngredientManagerComp.cpp" />
     <ClCompile Include="IngredientPieceComp.cpp" />
     <ClCompile Include="InputManager.cpp" />

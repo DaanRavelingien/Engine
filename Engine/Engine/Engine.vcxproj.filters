@@ -155,9 +155,15 @@
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
     <ClInclude Include="IngredientManagerComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
+      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
     </ClInclude>
     <ClInclude Include="IngredientPieceComp.h">
+      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
+    </ClInclude>
+    <ClInclude Include="IngredientComp.h">
+      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
   </ItemGroup>
@@ -299,9 +305,15 @@
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
     <ClCompile Include="IngredientManagerComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
+      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
     </ClCompile>
     <ClCompile Include="IngredientPieceComp.cpp">
+      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
+    </ClCompile>
+    <ClCompile Include="IngredientComp.cpp">
+      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
   </ItemGroup>
@@ -353,6 +365,9 @@
     </Filter>
     <Filter Include="Engine\Components\GameComps\Hitbox">
       <UniqueIdentifier>{9067f613-d94b-4273-b654-8e2ff2db9296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\GameComps\IngredientComps">
+      <UniqueIdentifier>{7d4236f3-b584-4762-9d96-5ca3e97d4fae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

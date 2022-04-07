@@ -16,7 +16,8 @@ public:
 	void Initialize() override;
 	void Update() override;
 
-	void LowerIngredientPart();
+	void ResetPiece();
+	bool IsTrampled() const { return m_IsTrampled; };
 
 private:
 	bool m_IsTrampled{ false };
