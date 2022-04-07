@@ -81,8 +81,12 @@ void IngredientComp::UpdateOnPlatform()
 		{
 			if (pHitbox->GetTag() == HitboxTag::Ingredient)
 			{
-				needsToFall = true;
-				break;
+				//check if its actually above this ingredient
+				if (pHitbox->GetGameObj()->GetTransform()->GetPos().y < m_pGameObj->GetTransform()->GetPos().y)
+				{
+					needsToFall = true;
+					break;
+				}
 			}
 		}
 	}
@@ -146,7 +150,7 @@ void IngredientComp::UpdateFalling()
 		//handeling encountering an engredient that is already on a tray
 		if (pHitbox->GetTag() == HitboxTag::Ingredient && pHitbox->GetGameObj()->GetComponent<IngredientComp>()->GetState() == State::OnTray)
 		{
-			float ingredientOffset{ 1 };
+			float ingredientOffset{ 2 };
 
 			glm::vec3 newPos{ m_pGameObj->GetTransform()->GetPos() - m_pGameObj->GetParent()->GetTransform()->GetPos() };
 			newPos.y -= ingredientOffset * m_pGameObj->GetTransform()->GetScale().y;
