@@ -13,7 +13,7 @@ glm::vec3 TransformComp::GetPos() const
 void TransformComp::SetPos(const glm::vec3& pos)
 {
 	m_Position = pos;
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TRANSFORM_MOVED);
+	m_pGameObj->SendNotification(this, Event::TRANSFORM_MOVED);
 }
 
 glm::vec3 TransformComp::GetScale() const
@@ -27,7 +27,7 @@ glm::vec3 TransformComp::GetScale() const
 void TransformComp::SetScale(const glm::vec3& scale)
 {
 	m_Scale = scale;
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TRANSFORM_SCALED);
+	m_pGameObj->SendNotification(this, Event::TRANSFORM_SCALED);
 }
 
 glm::vec3 TransformComp::GetRotation() const
@@ -41,6 +41,6 @@ glm::vec3 TransformComp::GetRotation() const
 void TransformComp::SetRotation(const glm::vec3& rotation)
 {
 	m_Rotation = rotation;
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TRANSFORM_ROTATED);
+	m_pGameObj->SendNotification(this, Event::TRANSFORM_ROTATED);
 }
 

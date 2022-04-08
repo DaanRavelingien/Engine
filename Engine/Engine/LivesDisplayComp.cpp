@@ -54,7 +54,7 @@ void LivesDisplayComp::Initialize()
 
 void LivesDisplayComp::Notify(Component* pComp, Event event)
 {
-	if (event == Event::COMPONENT_HEALTH_CHANGED)
+	if (event == Event::HEALTH_CHANGED)
 	{
 		int currentLives{ static_cast<HealthComp*>(pComp)->GetHealth() };
 

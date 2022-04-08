@@ -1,6 +1,7 @@
 #include "EnginePCH.h"
 #include "IngredientComp.h"
 #include "GameObject.h"
+#include "Scene.h"
 
 //component includes
 #include "IngredientPieceComp.h"
@@ -93,6 +94,9 @@ void IngredientComp::UpdateOnPlatform()
 
 	if (needsToFall)
 	{
+		//sending notification to the scene
+		m_pGameObj->GetScene()->SendNotification(this, Event::BURGER_DROPS);
+
 		m_State = State::Falling;
 
 		//setting the old platform
@@ -150,7 +154,7 @@ void IngredientComp::UpdateFalling()
 		//handeling encountering an engredient that is already on a tray
 		if (pHitbox->GetTag() == HitboxTag::Ingredient && pHitbox->GetGameObj()->GetComponent<IngredientComp>()->GetState() == State::OnTray)
 		{
-			float ingredientOffset{ 2 };
+			float ingredientOffset{ 1 };
 
 			glm::vec3 newPos{ m_pGameObj->GetTransform()->GetPos() - m_pGameObj->GetParent()->GetTransform()->GetPos() };
 			newPos.y -= ingredientOffset * m_pGameObj->GetTransform()->GetScale().y;

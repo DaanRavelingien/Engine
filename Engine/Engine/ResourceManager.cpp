@@ -55,11 +55,14 @@ std::string ResourceManager::LoadTexture(const std::string& textureName, SDL_Tex
 {
 	Texture2D* pNewTexture{ new Texture2D{pTexture} };
 
-	//checking if we are not overriding already existing textures
+	//if it already exists overwrite it
 	if (m_Resources.find(textureName) != m_Resources.end())
-		LOGWARNING("replacing a resource that already exists");
-
-	m_Resources.emplace(std::pair<std::string, Resource*>{textureName, pNewTexture});
+	{
+		delete m_Resources.at(textureName);
+		m_Resources.at(textureName) = pNewTexture;
+	}
+	else
+		m_Resources.emplace(std::pair<std::string, Resource*>{textureName, pNewTexture});
 
 	return textureName;
 }
@@ -68,46 +71,16 @@ std::string ResourceManager::LoadFont(const std::string& fontName ,const std::st
 {
 	Font* pFont{ new Font{ m_DataPath + file, size } };
 	
-	m_Resources.emplace(std::pair<std::string, Resource*>{fontName, pFont});
+	//if it already exists overwrite it
+	if (m_Resources.find(fontName) != m_Resources.end())
+	{
+		delete m_Resources.at(fontName);
+		m_Resources.at(fontName) = pFont;
+	}
+	else
+		m_Resources.emplace(std::pair<std::string, Resource*>{fontName, pFont});
 
 	return fontName;
-}
-
-std::string ResourceManager::ReplaceResource(const std::string& name, const std::string& otherName)
-{
-	Resource* pOldResource{ m_Resources.at(name) };
-	Resource* pNewResource{ m_Resources.at(otherName) };
-
-	//replacing the old resource 
-	delete pOldResource;
-	pOldResource = pNewResource;
-
-	//removing the new resource
-	m_Resources.erase(otherName);
-
-	return name;
-}
-
-std::string ResourceManager::ReplaceTexture(const std::string& name, const std::string& newTextureFile)
-{
-	Resource* pOldResource{ m_Resources.at(name) };
-
-	//replacing the resource with the new one
-	delete pOldResource;
-	pOldResource = new Texture2D{ newTextureFile };
-
-	return name;
-}
-
-std::string ResourceManager::ReplaceFont(const std::string& name, const std::string& newFontfile, unsigned int newFontSize)
-{
-	Resource* pOldResource{ m_Resources.at(name) };
-
-	//replacing the old font
-	delete pOldResource;
-	pOldResource = new Font{ m_DataPath + newFontfile, newFontSize };
-
-	return name;
 }
 
 void ResourceManager::RemoveResource(const std::string& name)

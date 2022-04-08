@@ -42,30 +42,23 @@ void TextureRenderComp::Render()
 void TextureRenderComp::AddTextureToRender(Component* pComp, const std::string& name)
 {
 	//first we do a check if its already in the vector 
-	auto it = std::find_if(m_CompsToRender.begin(), m_CompsToRender.end(), [pComp](const std::pair<Component*, std::string>& pair)
+	auto it = std::find_if(m_CompsToRender.begin(), m_CompsToRender.end(), [pComp, name](const std::pair<Component*, std::string>& pair)
 		{
-			if (pair.first == pComp)
+			if (pair.first == pComp && pair.second == name)
 				return true;
 			return false;
 		});
 
-	std::string newTextureName{ name };
-
-	//if its already in there do not add the component again, just change the texture
-	if (it != m_CompsToRender.end())
+	//only add if its not already in there
+	if (it == m_CompsToRender.end())
 	{
-		newTextureName = ResourceManager::GetInstance().ReplaceResource(it->second, name);
-		(*it).second = newTextureName;
-		return;
+		m_CompsToRender.push_back({ pComp,name });
 	}
-
-	//else add it to the vector
-	m_CompsToRender.push_back({ pComp,newTextureName });
 }
 
 void TextureRenderComp::Notify(Component* pComp, Event event)
 {
-	if (event == Event::COMPONENT_TEXTURE_RENDER)
+	if (event == Event::TEXTURE_RENDER)
 	{
 		TextureComp* pTextureComp{ m_pGameObj->GetComponent<TextureComp>(pComp->GetIdx()) };
 		AddTextureToRender(pComp, pTextureComp->GetTextureName());

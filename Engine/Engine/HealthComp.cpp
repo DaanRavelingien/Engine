@@ -16,7 +16,7 @@ void HealthComp::Damage(int damage)
 	if (m_Health < 0)
 		m_Health = 0;
 
-	m_pGameObj->SendNotification(this, Event::COMPONENT_HEALTH_CHANGED);
+	m_pGameObj->SendNotification(this, Event::HEALTH_CHANGED);
 }
 
 void HealthComp::Heal(int heal)
@@ -26,5 +26,5 @@ void HealthComp::Heal(int heal)
 	if (m_Health > m_MaxHealth)
 		m_Health = m_MaxHealth;
 
-	m_pGameObj->SendNotification(this, Event::COMPONENT_HEALTH_CHANGED);
+	m_pGameObj->SendNotification(this, Event::HEALTH_CHANGED);
 }

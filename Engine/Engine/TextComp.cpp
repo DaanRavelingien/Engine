@@ -14,20 +14,20 @@ TextComp::TextComp(const std::string& text, const std::string& fontName, const g
 
 void TextComp::Initialize()
 {
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXT_RENDER);
+	m_pGameObj->SendNotification(this, Event::TEXT_RENDER);
 }
 
 void TextComp::SetText(const std::string& text)
 {
 	m_Text = text;
 
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXT_RENDER);
+	m_pGameObj->SendNotification(this, Event::TEXT_RENDER);
 }
 
 void TextComp::SetFont(const std::string& newFontName)
 {
 	m_FontName = newFontName;
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXT_RENDER);
+	m_pGameObj->SendNotification(this, Event::TEXT_RENDER);
 }
 
 unsigned int TextComp::GetFontSize() const

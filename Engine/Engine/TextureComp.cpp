@@ -20,13 +20,13 @@ TextureComp::TextureComp(const std::string& textureName)
 
 void TextureComp::Initialize()
 {
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXTURE_RENDER);
+	m_pGameObj->SendNotification(this, Event::TEXTURE_RENDER);
 }
 
 void TextureComp::ChangeTexture(const std::string& newTextureName)
 {
 	m_TextureName = newTextureName;
-	m_pGameObj->SendNotification(this, Event::COMPONENT_TEXTURE_RENDER);
+	m_pGameObj->SendNotification(this, Event::TEXTURE_RENDER);
 }
 
 glm::vec4 TextureComp::GetDestRect() const

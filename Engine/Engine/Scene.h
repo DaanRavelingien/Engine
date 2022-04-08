@@ -1,8 +1,10 @@
 #pragma once
 #include "SceneManager.h"
+#include "Subject.h"
 
 class GameObject;
 class InputManager;
+class Component;
 
 class Scene
 {
@@ -29,6 +31,9 @@ public:
 	Scene& operator=(const Scene& other) = delete;
 	Scene& operator=(Scene&& other) = delete;
 
+	void AddObserver(Observer<Component>* pObserver) { m_SceneSubject.AddObserver(pObserver); };
+	void SendNotification(Component* pComp, Event event) { m_SceneSubject.Notify(pComp, event); };
+
 protected:
 	virtual void Update() {};
 	virtual void Initialize() {};
@@ -42,6 +47,8 @@ private:
 	InputManager* m_pInputManager{ nullptr };
 
 	bool m_Initialized{ false };
+
+	Subject<Component> m_SceneSubject{};
 
 	void AddNewGameObjs();
 	void RemoveDestroyedGameObjs();

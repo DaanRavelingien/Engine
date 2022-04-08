@@ -9,7 +9,11 @@ class Subject
 public: 
 	void AddObserver(Observer<T>* pObserver)
 	{
-		m_Observers.push_back(pObserver);
+		//checking if it is not already observing
+		auto it = std::find(m_Observers.begin(), m_Observers.end(), pObserver);
+
+		if(it == m_Observers.end())
+			m_Observers.push_back(pObserver);
 	};
 
 	void RemoveObserver(Observer<T>* pObserver)
