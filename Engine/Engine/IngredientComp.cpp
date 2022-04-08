@@ -156,7 +156,9 @@ void IngredientComp::UpdateFalling()
 		{
 			float ingredientOffset{ 1 };
 
-			glm::vec3 newPos{ m_pGameObj->GetTransform()->GetPos() - m_pGameObj->GetParent()->GetTransform()->GetPos() };
+			glm::vec3 newPos{ pHitbox->GetGameObj()->GetTransform()->GetPos() - m_pGameObj->GetParent()->GetTransform()->GetPos()};
+			newPos.x = m_pGameObj->GetTransform()->GetPos().x - m_pGameObj->GetParent()->GetTransform()->GetPos().x;
+			newPos.y -= m_pGameObj->GetComponent<HitboxComp>()->GetSize().y;
 			newPos.y -= ingredientOffset * m_pGameObj->GetTransform()->GetScale().y;
 			m_pGameObj->GetTransform()->SetPos(newPos);
 
