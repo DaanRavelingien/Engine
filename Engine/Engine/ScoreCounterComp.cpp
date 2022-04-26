@@ -15,12 +15,6 @@ void ScoreCounterComp::Initialize()
 	m_pGameObj->GetScene()->AddObserver(this);
 }
 
-void ScoreCounterComp::Update()
-{
-	if (m_Score >= 500)
-		m_pGameObj->SendNotification(this, Event::GAME_WON);
-}
-
 void ScoreCounterComp::Notify(Component*, Event event)
 {
 	if (event == Event::BURGER_DROPS)

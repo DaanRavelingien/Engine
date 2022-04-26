@@ -1,5 +1,5 @@
 #include "EnginePCH.h"
-#include "LevelLoaderComp.h"
+#include "LevelManagerComp.h"
 #include "document.h"
 #include <fstream>
 #include "GameObject.h"
@@ -14,19 +14,64 @@
 #include "HitboxManagerComp.h"
 #include "IngredientManagerComp.h"
 
-LevelLoaderComp::LevelLoaderComp(const std::string& levelFilePath, const std::string& textureName)
+LevelManagerComp::LevelManagerComp(const std::string& textureName)
 	:Component{typeid(this).name()}
-	,m_FilePath{levelFilePath}
 	,m_TextureName{textureName}
 {
 }
 
-void LevelLoaderComp::Initialize()
+void LevelManagerComp::Initialize()
 {
+	if (!m_LevelFiles.empty())
+		CreateLevel();
+	else
+		LOGWARNING("No level was created because no level files were given");
+
+	//adding this as an observer to the scene
+	m_pGameObj->GetScene()->AddObserver(this);
+}
+
+void LevelManagerComp::GoNextLvl()
+{
+	if (m_LevelFiles.empty())
+	{
+		LOGWARNING("No level was created because no level files were given");
+		return;
+	}
+
+	DestroyCurrentLevel();
+
+	m_CurrentLevel++;
+	m_CurrentLevel %= (int)m_LevelFiles.size();
+
 	CreateLevel();
 }
 
-void LevelLoaderComp::CreateLevel()
+void LevelManagerComp::GoPrevLvl()
+{
+	if (m_LevelFiles.empty())
+	{
+		LOGWARNING("No level was created because no level files were given");
+		return;
+	}
+
+	DestroyCurrentLevel();
+
+	m_CurrentLevel++;
+	m_CurrentLevel %= (int)m_LevelFiles.size();
+
+	CreateLevel();
+}
+
+void LevelManagerComp::Notify(Component*, Event event)
+{
+	if (event == Event::BURGERS_COMPLETE)
+	{
+		GoNextLvl();
+	}
+}
+
+void LevelManagerComp::CreateLevel()
 {
 	//file format example
 	//===================
@@ -58,11 +103,11 @@ void LevelLoaderComp::CreateLevel()
 	//}
 
 	//getting the given file in a string
-	std::ifstream jsonFile{ m_FilePath };
+	std::ifstream jsonFile{ m_LevelFiles.at(m_CurrentLevel) };
 	std::string jsonData{};
 	if (!jsonFile)
 	{
-		LOGERROR("Failed to find the given file: " + m_FilePath);
+		LOGERROR("Failed to find the given file: " + m_LevelFiles.at(m_CurrentLevel));
 		return;
 	}
 	std::ostringstream ss;
@@ -75,7 +120,7 @@ void LevelLoaderComp::CreateLevel()
 
 	if (!levelDocument.IsObject())
 	{
-		LOGERROR("Failed to pharse the scene file: " + m_FilePath);
+		LOGERROR("Failed to pharse the scene file: " + m_LevelFiles.at(m_CurrentLevel));
 		return;
 	}
 
@@ -177,5 +222,14 @@ void LevelLoaderComp::CreateLevel()
 
 	//adding the ingredients to the scene so they are managed and updated
 	m_pGameObj->GetScene()->AddGameObj(pIngredients);
+}
+
+void LevelManagerComp::DestroyCurrentLevel()
+{
+	//destroying the chilren of the current level
+	for (GameObject* pChild : m_pGameObj->GetChildren())
+	{
+		pChild->Destroy();
+	}
 }
 

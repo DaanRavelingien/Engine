@@ -151,7 +151,7 @@
     <ClInclude Include="PlayerInputComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
-    <ClInclude Include="LevelLoaderComp.h">
+    <ClInclude Include="LevelManagerComp.h">
       <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
     <ClInclude Include="IngredientManagerComp.h">
@@ -301,7 +301,7 @@
     <ClCompile Include="PlayerInputComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
-    <ClCompile Include="LevelLoaderComp.cpp">
+    <ClCompile Include="LevelManagerComp.cpp">
       <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
     <ClCompile Include="IngredientManagerComp.cpp">

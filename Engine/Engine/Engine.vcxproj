@@ -232,7 +232,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EnginePCH.h" />
-    <ClInclude Include="LevelLoaderComp.h" />
+    <ClInclude Include="LevelManagerComp.h" />
     <ClInclude Include="LivesDisplayComp.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MenuComp.h" />
@@ -250,6 +250,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScoreCounterComp.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SpriteComp.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TextComp.h" />
@@ -284,7 +285,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="IngredientManagerComp.cpp" />
     <ClCompile Include="IngredientPieceComp.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="LevelLoaderComp.cpp" />
+    <ClCompile Include="LevelManagerComp.cpp" />
     <ClCompile Include="LivesDisplayComp.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -309,6 +310,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll $(OutputPath) /R /Y</Command
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreCounterComp.cpp" />
+    <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="SpriteComp.cpp" />
     <ClCompile Include="TextComp.cpp" />
     <ClCompile Include="TextRenderComp.cpp" />

@@ -24,6 +24,12 @@ IngredientManagerComp::IngredientManagerComp()
 	m_IngredientTypes.emplace("TOMATO", glm::vec4{ 103,69,30,7 });
 }
 
+void IngredientManagerComp::Update()
+{
+	if (AreAllIngredientsInTray())
+		m_pGameObj->GetScene()->SendNotification(this, Event::BURGERS_COMPLETE);
+}
+
 void IngredientManagerComp::CreateIngredient(const std::string& type, const glm::vec2& pos)
 {
 	//an ingredient exists out of 4 child game objects wich have each a piece of the ingredient to display 
@@ -79,6 +85,19 @@ void IngredientManagerComp::CreateIngredientParts(GameObject* pIngredient, const
 		//adding the piece to the ingredient
 		pIngredient->AddChild(pIngredientPiece);
 	}
+}
+
+bool IngredientManagerComp::AreAllIngredientsInTray()
+{
+	//looping through all our children and checking the ones with ingredient components if they are in a tray
+	for (GameObject* pChild : m_pGameObj->GetChildren())
+	{
+		IngredientComp* pIngredient{ pChild->GetComponent<IngredientComp>() };
+		if (pIngredient && pIngredient->GetState() != IngredientComp::State::OnTray)
+			return false;
+	}
+
+	return true;
 }
 
 

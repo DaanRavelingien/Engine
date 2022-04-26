@@ -26,11 +26,11 @@ public:
 	void SetScene(Scene* pScene) { m_pScene = pScene; };
 	Scene* GetScene() const { return m_pScene; };
 
-	void Destroy() { m_Destroyed = true; };
+	void Destroy();
 	bool IsDestroyed() const { return m_Destroyed; };
 
-	void Enable() { m_Disabled = false; };
-	void Disable() { m_Disabled = true; };
+	void Enable();
+	void Disable();
 	bool IsDisabled() const { return m_Disabled; };
 
 	bool IsInitialized() const { return m_Initialized; };
@@ -73,6 +73,7 @@ public:
 	template<typename T>
 	T* GetComponent() const
 	{
+
 		auto it = std::find_if(m_Components.begin(), m_Components.end(), [](Component* pComponent)
 			{
 				if (dynamic_cast<T*>(pComponent))

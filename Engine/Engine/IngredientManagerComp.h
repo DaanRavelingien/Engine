@@ -14,10 +14,13 @@ public:
 	IngredientManagerComp& operator=(const IngredientManagerComp& other) = delete;
 	IngredientManagerComp& operator=(IngredientManagerComp&& other) = delete;
 
+	void Update() override;
+
 	void CreateIngredient(const std::string& type, const glm::vec2& pos);
 
 private:
 	void CreateIngredientParts(GameObject* pIngredient, const std::string& type);
+	bool AreAllIngredientsInTray();
 
 	std::map<std::string, glm::vec4> m_IngredientTypes{};
 };

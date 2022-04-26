@@ -12,14 +12,21 @@ HitboxManagerComp::HitboxManagerComp()
 
 void HitboxManagerComp::Update()
 {
-	//clearing previous overlapping hitboxes
-	for (HitboxComp* pHitbox : m_Hitboxes)
-	{
-		pHitbox->ClearOverlappingHitboxes();
-	}
+	//removing deleted hitboxes and clearing the overlapping hitboxes
+	auto it = std::remove_if(m_Hitboxes.begin(), m_Hitboxes.end(), [](HitboxComp* pHitbox)
+		{
+			if (pHitbox && !pHitbox->GetGameObj()->IsDestroyed())
+			{
+				pHitbox->ClearOverlappingHitboxes();
+				return false;
+			}
+			return true;
+		});
+	if(it != m_Hitboxes.end())
+		m_Hitboxes.erase(it, m_Hitboxes.end());
 
 	//comparing the hitboxes to each other to update wich ones overlap
-	for (int i{}; i<m_Hitboxes.size(); i++)
+	for (int i{}; i<(int)m_Hitboxes.size(); i++)
 	{
 		if (!m_Hitboxes.at(i))
 			continue;
@@ -28,7 +35,7 @@ void HitboxManagerComp::Update()
 		glm::vec2 thistSize{ m_Hitboxes.at(i)->GetSize() };
 		glm::vec4 thisHitboxRect{ thisPos.x,thisPos.y,thistSize.x,thistSize.y };
 
-		for (int j{i+1}; j<m_Hitboxes.size(); j++)
+		for (int j{i+1}; j<(int)m_Hitboxes.size(); j++)
 		{
 			if (!m_Hitboxes.at(j))
 				continue;

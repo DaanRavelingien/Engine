@@ -87,6 +87,39 @@ void GameObject::RenderGui()
 }
 #endif // _DEBUG
 
+void GameObject::Destroy()
+{
+	m_Destroyed = true;
+
+	//also destroying the children
+	for (GameObject* pChild : this->GetChildren())
+	{
+		pChild->Destroy();
+	}
+}
+
+void GameObject::Enable()
+{
+	m_Disabled = false;
+
+	//doing the same for the children
+	for (GameObject* pChild : this->GetChildren())
+	{
+		pChild->Enable();
+	}
+}
+
+void GameObject::Disable()
+{
+	m_Disabled = true;
+
+	//doing the same for the children
+	for (GameObject* pChild : this->GetChildren())
+	{
+		pChild->Disable();
+	}
+}
+
 void GameObject::AddChild(GameObject* pGameObj)
 {
 	//checking if the gameObj is already a child to avoid updating a game obj twice

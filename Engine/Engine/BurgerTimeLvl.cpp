@@ -18,7 +18,7 @@
 #include "HitboxComp.h"
 #include "EntityMoveComp.h"
 #include "PlayerInputComp.h"
-#include "LevelLoaderComp.h"
+#include "LevelManagerComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -26,7 +26,7 @@ void BurgerTimeLvl::Initialize()
 	GetInputManager()->SetControllerAmount(2);
 
 	//setting some general inputs like pausing the game
-	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{nullptr});
+	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr });
 	GetInputManager()->SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
 	GetInputManager()->SetCommand(ControllerButton::BackButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
 
@@ -91,7 +91,9 @@ void BurgerTimeLvl::Initialize()
 	//creating the level from a json
 	//==============================
 	GameObject* pLevel{ new GameObject{"Level"} };
-	pLevel->AddComponent(new LevelLoaderComp{ "../Data/Levels/Level1.json", "BurgerTimeTexture"});
+	LevelManagerComp* pLevelManagerComp{ new LevelManagerComp{"BurgerTimeTexture"} };
+	pLevelManagerComp->AddLevelFile("../Data/Levels/Level1.json");
+	pLevel->AddComponent(pLevelManagerComp);
 	pLevel->GetTransform()->SetScale({ 3,3,3 });
 	pLevel->GetTransform()->SetPos({ 48,60,-1 });
 	AddGameObj(pLevel);

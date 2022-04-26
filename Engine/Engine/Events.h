@@ -18,5 +18,5 @@ enum class Event
 	HOTDOG_DIES,
 	PICLE_DIES,
 	EGG_DIES,
-	GAME_WON
+	BURGERS_COMPLETE
 };

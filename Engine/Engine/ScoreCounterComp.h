@@ -13,8 +13,6 @@ public:
 	ScoreCounterComp& operator=(ScoreCounterComp&& other) = delete;
 
 	void Initialize() override;
-	void Update() override;
-
 	int GetScore() { return m_Score; };
 
 private:
