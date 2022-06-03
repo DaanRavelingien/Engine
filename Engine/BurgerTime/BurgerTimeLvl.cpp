@@ -86,7 +86,7 @@ void BurgerTimeLvl::Initialize()
 	m_pPeterPepper->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
 		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1 
 			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
-	m_pPeterPepper->AddComponent(new EntityMoveComp{ glm::vec2{200,400} });
+	m_pPeterPepper->AddComponent(new EntityMoveComp{ glm::vec2{336,99} });
 	m_pPeterPepper->AddComponent(new PlayerInputComp{});
 
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });
@@ -128,6 +128,8 @@ void BurgerTimeLvl::Initialize()
 	GameObject* pLevel{ new GameObject{"Level"} };
 	LevelManagerComp* pLevelManagerComp{ new LevelManagerComp{"BurgerTimeTexture"} };
 	pLevelManagerComp->AddLevelFile("../Data/Levels/Level1.json");
+	pLevelManagerComp->AddLevelFile("../Data/Levels/Level2.json");
+	pLevelManagerComp->AddLevelFile("../Data/Levels/Level3.json");
 	pLevel->AddComponent(pLevelManagerComp);
 	pLevel->GetTransform()->SetScale({ 3,3,3 });
 	pLevel->GetTransform()->SetPos({ 48,60,-1 });

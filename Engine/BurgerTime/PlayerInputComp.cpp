@@ -17,6 +17,8 @@ void PlayerInputComp::Initialize()
 	m_pEntityMoveComp = m_pGameObj->GetComponent<EntityMoveComp>();
 
 	//creating input 
+	//==============
+
 	//controller input
 	//start movements
 	//pressed commands
@@ -49,6 +51,36 @@ void PlayerInputComp::Initialize()
 		new PlayerStopMoveCmd{ m_pGameObj }, Controller::Controller_1);
 
 	//keyboard input
+	//start movements
+	//pressed commands
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::W, ButtonState::Pressed,
+		new PlayerStartMoveUpCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::S, ButtonState::Pressed,
+		new PlayerStartMoveDownCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::A, ButtonState::Pressed,
+		new PlayerStartMoveLeftCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::D, ButtonState::Pressed,
+		new PlayerStartMoveRightCmd{ m_pGameObj });
+
+	//down commands
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::W, ButtonState::Down,
+		new PlayerStartMoveUpCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::S, ButtonState::Down,
+		new PlayerStartMoveDownCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::A, ButtonState::Down,
+		new PlayerStartMoveLeftCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::D, ButtonState::Down,
+		new PlayerStartMoveRightCmd{ m_pGameObj });
+
+	//stop movement commands
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::W, ButtonState::Up,
+		new PlayerStopMoveCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::S, ButtonState::Up,
+		new PlayerStopMoveCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::A, ButtonState::Up,
+		new PlayerStopMoveCmd{ m_pGameObj });
+	m_pGameObj->GetScene()->GetInputManager()->SetCommand(KeyboardButton::D, ButtonState::Up,
+		new PlayerStopMoveCmd{ m_pGameObj });
 }
 
 void PlayerInputComp::Update()

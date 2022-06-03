@@ -148,7 +148,7 @@ void LevelManagerComp::CreateLevel()
 
 		glm::vec2 hitboxPos{ platform["Position"][0].GetFloat() * m_pGameObj->GetTransform()->GetScale().x,
 			platform["Position"][1].GetFloat() * m_pGameObj->GetTransform()->GetScale().y };
-		pPlatform->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,0 });
+		pPlatform->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,-3 });
 
 		//adding the ladder object as a child of the level
 		m_pGameObj->AddChild(pPlatform);
@@ -176,7 +176,7 @@ void LevelManagerComp::CreateLevel()
 
 		glm::vec2 hitboxPos{ ladder["Position"][0].GetFloat() * m_pGameObj->GetTransform()->GetScale().x,
 			ladder["Position"][1].GetFloat() * m_pGameObj->GetTransform()->GetScale().y };
-		pLadder->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,-1 });
+		pLadder->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,-4 });
 
 		//adding the ladder object as a child of the level
 		m_pGameObj->AddChild(pLadder);

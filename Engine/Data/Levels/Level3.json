@@ -1,0 +1,247 @@
+{
+	"LevelName": "Level_3",
+	"PlayerSpawn": [0, 0],
+	"EnemySpawns": [
+		[0, 0],
+		[0, 0]
+	],
+	"Platforms": [
+		{
+			"Size": [ 208, 16 ],
+			"Position": [ 0, 13 ]
+		},
+		{
+			"Size": [ 208, 16 ],
+			"Position": [ 0, 29 ]
+		},
+		{
+			"Size": [ 112, 16 ],
+			"Position": [ 0, 45 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 144, 45 ]
+		},
+		{
+			"Size": [ 208, 16 ],
+			"Position": [ 0, 61 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 48, 77 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 96, 77 ]
+		},
+		{
+			"Size": [ 112, 16 ],
+			"Position": [ 48, 93 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 48, 109 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 0, 125 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 144, 125 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 0, 141 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 144, 141 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 0, 157 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 144, 157 ]
+		},
+		{
+			"Size": [ 112, 16 ],
+			"Position": [ 48, 173 ]
+		},
+		{
+			"Size": [ 112, 16 ],
+			"Position": [ 48, 189 ]
+		}
+	],
+	"Ladders": [
+		{
+			"Size": [ 16, 48 ],
+			"Position": [ 0, 13 ]
+		},
+		{
+			"Size": [ 16, 32 ],
+			"Position": [ 0, 125 ]
+		},
+		{
+			"Size": [ 16, 32 ],
+			"Position": [ 24, 125 ]
+		},
+		{
+			"Size": [ 16, 32 ],
+			"Position": [ 48, 13 ]
+		},
+		{
+			"Size": [ 16, 128 ],
+			"Position": [ 48, 61 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 72, 13 ]
+		},
+		{
+			"Size": [ 16, 48 ],
+			"Position": [ 72, 45 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 72, 173 ]
+		},
+		{
+			"Size": [ 16, 64 ],
+			"Position": [ 96, 29 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 96, 173 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 120, 13 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 120, 61 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 120, 173 ]
+		},
+		{
+			"Size": [ 16, 32 ],
+			"Position": [ 144, 29 ]
+		},
+		{
+			"Size": [ 16, 112 ],
+			"Position": [ 144, 77 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 168, 141 ]
+		},
+		{
+			"Size": [ 16, 48 ],
+			"Position": [ 192, 13 ]
+		},
+		{
+			"Size": [ 16, 32 ],
+			"Position": [ 192, 125 ]
+		}
+	],
+	"BurgerTrays": [
+		{
+			"Position": [ 13, 114 ]
+		},
+		{
+			"Position": [ 13, 210 ]
+		},
+		{
+			"Position": [ 61, 162 ]
+		},
+		{
+			"Position": [ 109, 162 ]
+		},
+		{
+			"Position": [ 157, 114 ]
+		},
+		{
+			"Position": [ 157, 210 ]
+		}
+	],
+	"BurgerIngredients": [
+		{
+			"Type": "TOPBUN",
+			"Position": [ 16, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 16, 120 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 64, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 112, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 160, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 160, 120 ]
+		},
+		{
+			"Type": "TOMATO",
+			"Position": [ 17, 136 ]
+		},
+		{
+			"Type": "TOMATO",
+			"Position": [ 65, 24 ]
+		},
+		{
+			"Type": "TOMATO",
+			"Position": [ 161, 40 ]
+		},
+		{
+			"Type": "PATTY",
+			"Position": [ 18, 40 ]
+		},
+		{
+			"Type": "PATTY",
+			"Position": [ 114, 24 ]
+		},
+		{
+			"Type": "PATTY",
+			"Position": [ 162, 136 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 16, 56 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 16, 152 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 64, 56 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 112, 56 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 160, 56 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 160, 152 ]
+		}
+	]
+
+}

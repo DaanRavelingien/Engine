@@ -156,6 +156,7 @@ void IngredientComp::UpdateFalling()
 		{
 			float ingredientOffset{ 1 };
 
+			//setting our y pos to the one of the platform
 			glm::vec3 newPos{ pHitbox->GetGameObj()->GetTransform()->GetPos() - m_pGameObj->GetParent()->GetTransform()->GetPos()};
 			newPos.x = m_pGameObj->GetTransform()->GetPos().x - m_pGameObj->GetParent()->GetTransform()->GetPos().x;
 			newPos.y -= m_pGameObj->GetComponent<HitboxComp>()->GetSize().y;
@@ -166,7 +167,6 @@ void IngredientComp::UpdateFalling()
 			//disabeling the gravity component
 			m_pGameObj->GetComponent<GravityComp>()->Disable();
 
-			//setting our y pos to the one of the platform
 			m_State = State::OnTray;
 			return;
 		}

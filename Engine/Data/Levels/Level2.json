@@ -1,0 +1,177 @@
+{
+	"LevelName": "Level_2",
+	"PlayerSpawn": [0, 0],
+	"EnemySpawns": [
+		[0, 0],
+		[0, 0]
+	],
+	"Platforms": [
+		{
+			"Size": [ 208, 16 ],
+			"Position": [ 0, 13 ]
+		},
+		{
+			"Size": [ 112, 16 ],
+			"Position": [ 0, 29 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 0, 45 ]
+		},
+		{
+			"Size": [ 112, 16 ],
+			"Position": [ 96, 45 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 48, 61 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 144, 61 ]
+		},
+		{
+			"Size": [ 208, 16 ],
+			"Position": [ 0, 77 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 96, 93 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 48, 109 ]
+		},
+		{
+			"Size": [ 64, 16 ],
+			"Position": [ 96, 125 ]
+		},
+		{
+			"Size": [ 112, 16 ],
+			"Position": [ 48, 141 ]
+		},
+		{
+			"Size": [ 16, 16 ],
+			"Position": [ 96, 173 ]
+		}
+	],
+	"Ladders": [
+		{
+			"Size": [ 16, 64 ],
+			"Position": [ 0, 13 ]
+		},
+		{
+			"Size": [ 16, 64 ],
+			"Position": [ 24, 13 ]
+		},
+		{
+			"Size": [ 16, 64 ],
+			"Position": [ 48, 13 ]
+		},
+		{
+			"Size": [ 16, 128 ],
+			"Position": [ 72, 13 ]
+		},
+		{
+			"Size": [ 16, 160 ],
+			"Position": [ 96, 13 ]
+		},
+		{
+			"Size": [ 16, 128 ],
+			"Position": [ 120, 13 ]
+		},
+		{
+			"Size": [ 16, 64 ],
+			"Position": [ 144, 13 ]
+		},
+		{
+			"Size": [ 16, 64 ],
+			"Position": [ 168, 13 ]
+		},
+		{
+			"Size": [ 16, 64 ],
+			"Position": [ 192, 13 ]
+		}
+	],
+	"BurgerTrays": [
+		{
+			"Position": [ 13, 162 ]
+		},
+		{
+			"Position": [ 61, 210 ]
+		},
+		{
+			"Position": [ 109, 210 ]
+		},
+		{
+			"Position": [ 157, 162 ]
+		}
+	],
+	"BurgerIngredients": [
+		{
+			"Type": "TOPBUN",
+			"Position": [ 16, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 64, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 112, 8 ]
+		},
+		{
+			"Type": "TOPBUN",
+			"Position": [ 160, 8 ]
+		},
+		{
+			"Type": "LETTUCE",
+			"Position": [ 16, 24 ]
+		},
+		{
+			"Type": "LETTUCE",
+			"Position": [ 64, 56 ]
+		},
+		{
+			"Type": "LETTUCE",
+			"Position": [ 112, 120 ]
+		},
+		{
+			"Type": "LETTUCE",
+			"Position": [ 160, 40 ]
+		},
+		{
+			"Type": "CHEESE",
+			"Position": [ 18, 41 ]
+		},
+		{
+			"Type": "CHEESE",
+			"Position": [ 66, 25 ]
+		},
+		{
+			"Type": "CHEESE",
+			"Position": [ 114, 89 ]
+		},
+		{
+			"Type": "CHEESE",
+			"Position": [ 162, 57 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 16, 72 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 64, 136 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 112, 136 ]
+		},
+		{
+			"Type": "BOTTOMBUN",
+			"Position": [ 160, 72 ]
+		}
+	]
+
+}
