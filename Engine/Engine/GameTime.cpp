@@ -1,31 +1,31 @@
 #include "EnginePCH.h"
 #include "Time.h"
 
-void Time::Start()
+void GameTime::Start()
 {
 	m_Paused = false;
 	m_DeltaTime = std::chrono::duration<double>{ 0 };
 	m_LastTime = std::chrono::high_resolution_clock::now();
 }
 
-void Time::Stop()
+void GameTime::Stop()
 {
 	m_Paused = true;
 	m_DeltaTime = std::chrono::duration<double>{ 0 };
 	m_LastTime = std::chrono::high_resolution_clock::time_point();
 }
 
-void Time::Pause()
+void GameTime::Pause()
 {
 	m_Paused = true;
 }
 
-void Time::Continiu()
+void GameTime::Continiu()
 {
 	m_Paused = false;
 }
 
-void Time::Update()
+void GameTime::Update()
 {
 	if (!m_Paused)
 	{
@@ -35,17 +35,17 @@ void Time::Update()
 	}
 }
 
-float Time::GetDeltaTime() const
+float GameTime::GetDeltaTime() const
 {
 	return float(m_DeltaTime.count());
 }
 
-double Time::GetDeltaTimeAsDouble() const
+double GameTime::GetDeltaTimeAsDouble() const
 {
 	return m_DeltaTime.count();
 }
 
-int Time::GetDeltaTimeInMs() const
+int GameTime::GetDeltaTimeInMs() const
 {
 	return int(std::chrono::duration_cast<std::chrono::milliseconds>(m_DeltaTime).count());
 }

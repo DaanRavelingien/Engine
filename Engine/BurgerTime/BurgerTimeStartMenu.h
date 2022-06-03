@@ -1,8 +1,6 @@
 #pragma once
 #include "Scene.h"
 
-
-
 class BurgerTimeStartMenu final : public Scene
 {
 public:

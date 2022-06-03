@@ -43,26 +43,10 @@ private:
 class NullSoundSystem final : public SoundSystem
 {
 private:
-	void LoadSound(const std::string& soundName, const char* fileName, bool loop = false)
-	{
-		UNREFERENCED_PARAMETER(soundName);
-		UNREFERENCED_PARAMETER(fileName);
-		UNREFERENCED_PARAMETER(loop);
-	};
-	void RemoveSound(const std::string& soundName)
-	{
-		UNREFERENCED_PARAMETER(soundName);
-	};
-	void PlaySoundSystemSpecific(const std::string& soundName, const float volume)
-	{
-		UNREFERENCED_PARAMETER(soundName);
-		UNREFERENCED_PARAMETER(volume);
-	};
-	void PlayMusicSystemSpecific(const std::string& soundName, const float volume)
-	{
-		UNREFERENCED_PARAMETER(soundName);
-		UNREFERENCED_PARAMETER(volume);
-	};
+	void LoadSound(const std::string&, const char*, bool){};
+	void RemoveSound(const std::string&){};
+	void PlaySoundSystemSpecific(const std::string&, const float){};
+	void PlayMusicSystemSpecific(const std::string&, const float){};
 };
 
 class SdlSoundSystem final : public SoundSystem
@@ -78,6 +62,7 @@ protected:
 	void PlaySoundSystemSpecific(const std::string& soundName, const float volume);
 	void PlayMusicSystemSpecific(const std::string& soundName, const float volume);
 
+	static bool m_Initialized;
 	std::map<std::string, Audio*> m_Sounds{};
 };
 

@@ -62,9 +62,15 @@ void SoundSystem::HandleSoundQueue()
 	}
 }
 
+bool SdlSoundSystem::m_Initialized{ false };
+
 SdlSoundSystem::SdlSoundSystem()
 {
-	initAudio();
+	if (!m_Initialized)
+	{
+		initAudio();
+		m_Initialized = true;
+	}
 }
 
 SdlSoundSystem::~SdlSoundSystem()
@@ -74,7 +80,11 @@ SdlSoundSystem::~SdlSoundSystem()
 		freeAudio(pair.second);
 	}
 
-	endAudio();
+	if (m_Initialized)
+	{
+		endAudio();
+		m_Initialized = false;
+	}
 }
 
 void SdlSoundSystem::LoadSound(const std::string& soundName, const char* fileName, bool loop)

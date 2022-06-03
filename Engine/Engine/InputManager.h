@@ -122,7 +122,7 @@ private:
 	struct ControllerInput
 	{
 		ControllerButton button{};
-		Controller player{ 0 };
+		Controller player{ Controller::Controller_1 };
 		std::vector<Command*> upCommands{};
 		std::vector<Command*> pressedCommands{};
 		std::vector<Command*> downCommands{};

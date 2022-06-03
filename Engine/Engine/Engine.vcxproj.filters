@@ -25,7 +25,7 @@
     <ClInclude Include="EnginePCH.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
+    <ClInclude Include="GameTime.h">
       <Filter>Engine\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
@@ -94,20 +94,8 @@
     <ClInclude Include="TransformComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClInclude>
-    <ClInclude Include="HealthComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
     <ClInclude Include="FPSComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
-    </ClInclude>
-    <ClInclude Include="BurgerTimeLvl.h">
-      <Filter>Engine\Scenes\GameScenes</Filter>
-    </ClInclude>
-    <ClInclude Include="LivesDisplayComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreCounterComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
     </ClInclude>
     <ClInclude Include="TextRenderComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
@@ -115,60 +103,11 @@
     <ClInclude Include="TextureRenderComp.h">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClInclude>
-    <ClInclude Include="BurgerTimeStartMenu.h">
-      <Filter>Engine\Scenes\GameScenes</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuInputComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuSelectionComp.h">
-      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuSelectionStartComp.h">
-      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuSelectionExitComp.h">
-      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
-    </ClInclude>
-    <ClInclude Include="BurgerTimePauseMenu.h">
-      <Filter>Engine\Scenes\GameScenes</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuSelectionMainMenuComp.h">
-      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityMoveComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
-    <ClInclude Include="HitboxComp.h">
-      <Filter>Engine\Components\GameComps\Hitbox</Filter>
-    </ClInclude>
-    <ClInclude Include="HitboxManagerComp.h">
-      <Filter>Engine\Components\GameComps\Hitbox</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerInputComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelManagerComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClInclude>
-    <ClInclude Include="IngredientManagerComp.h">
-      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
-    </ClInclude>
-    <ClInclude Include="IngredientPieceComp.h">
-      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
-    </ClInclude>
-    <ClInclude Include="IngredientComp.h">
-      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
-    </ClInclude>
-    <ClInclude Include="GravityComp.h">
-      <Filter>Engine\Components\GameComps</Filter>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Engine\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Engine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -193,7 +132,7 @@
     <ClCompile Include="EnginePCH.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
+    <ClCompile Include="GameTime.cpp">
       <Filter>Engine\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Logger.cpp">
@@ -244,20 +183,8 @@
     <ClCompile Include="TransformComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClCompile>
-    <ClCompile Include="HealthComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClCompile>
     <ClCompile Include="FPSComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
-    </ClCompile>
-    <ClCompile Include="BurgerTimeLvl.cpp">
-      <Filter>Engine\Scenes\GameScenes</Filter>
-    </ClCompile>
-    <ClCompile Include="LivesDisplayComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreCounterComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
     </ClCompile>
     <ClCompile Include="TextRenderComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
@@ -265,56 +192,8 @@
     <ClCompile Include="TextureRenderComp.cpp">
       <Filter>Engine\Components\StandardComps</Filter>
     </ClCompile>
-    <ClCompile Include="BurgerTimeStartMenu.cpp">
-      <Filter>Engine\Scenes\GameScenes</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuInputComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuSelectionComp.cpp">
-      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuSelectionStartComp.cpp">
-      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuSelectionExitComp.cpp">
-      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
-    </ClCompile>
-    <ClCompile Include="BurgerTimePauseMenu.cpp">
-      <Filter>Engine\Scenes\GameScenes</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuSelectionMainMenuComp.cpp">
-      <Filter>Engine\Components\GameComps\MenuSelectionComps</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityMoveComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClCompile>
-    <ClCompile Include="HitboxComp.cpp">
-      <Filter>Engine\Components\GameComps\Hitbox</Filter>
-    </ClCompile>
-    <ClCompile Include="HitboxManagerComp.cpp">
-      <Filter>Engine\Components\GameComps\Hitbox</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerInputComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelManagerComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
-    </ClCompile>
-    <ClCompile Include="IngredientManagerComp.cpp">
-      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
-    </ClCompile>
-    <ClCompile Include="IngredientPieceComp.cpp">
-      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
-    </ClCompile>
-    <ClCompile Include="IngredientComp.cpp">
-      <Filter>Engine\Components\GameComps\IngredientComps</Filter>
-    </ClCompile>
-    <ClCompile Include="GravityComp.cpp">
-      <Filter>Engine\Components\GameComps</Filter>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>Engine\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -353,21 +232,6 @@
     </Filter>
     <Filter Include="Engine\Components\StandardComps">
       <UniqueIdentifier>{891d6783-1a53-44c4-8069-dfec15db9883}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Components\GameComps">
-      <UniqueIdentifier>{6620dbb8-cd61-49ca-963c-b073948d4b19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Scenes\GameScenes">
-      <UniqueIdentifier>{06dfc8a0-fdef-43a5-bb2b-7ae7ba3b2e28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Components\GameComps\MenuSelectionComps">
-      <UniqueIdentifier>{b0dac77e-ef17-4f28-8f85-2fd71680b0dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Components\GameComps\Hitbox">
-      <UniqueIdentifier>{9067f613-d94b-4273-b654-8e2ff2db9296}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Components\GameComps\IngredientComps">
-      <UniqueIdentifier>{7d4236f3-b584-4762-9d96-5ca3e97d4fae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

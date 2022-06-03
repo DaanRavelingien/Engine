@@ -21,9 +21,9 @@ void FPSComp::Initialize()
 
 void FPSComp::Update()
 {
-	m_AverageFps += int(1 / Time::GetInstance().GetDeltaTime());
+	m_AverageFps += int(1 / GameTime::GetInstance().GetDeltaTime());
 	m_SampleSize++;
-	m_RefreshTime += Time::GetInstance().GetDeltaTime();
+	m_RefreshTime += GameTime::GetInstance().GetDeltaTime();
 
 	if (m_RefreshTime >= m_RefreshRate)
 	{

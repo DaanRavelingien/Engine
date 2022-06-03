@@ -1,19 +1,18 @@
-#include "EnginePCH.h"
 #include "BurgerTimeLvl.h"
-#include "GameObject.h"
+#include <GameObject.h>
 #include "glm\detail\type_vec4.hpp"
-#include "ResourceManager.h"
-#include "InputManager.h"
+#include <ResourceManager.h>
+#include <InputManager.h>
 
 //component includes
-#include "TextureComp.h"
-#include "TransformComp.h"
+#include <TextureComp.h>
+#include <TransformComp.h>
 #include "LivesDisplayComp.h"
 #include "HealthComp.h"
 #include "TextComp.h"
 #include "ScoreCounterComp.h"
-#include "TextRenderComp.h"
-#include "TextureRenderComp.h"
+#include <TextRenderComp.h>
+#include <TextureRenderComp.h>
 #include "HitboxManagerComp.h"
 #include "HitboxComp.h"
 #include "EntityMoveComp.h"

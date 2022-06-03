@@ -9,11 +9,6 @@
 #include "Scene.h"
 #include "Time.h"
 
-//scene includes
-#include "BurgerTimeStartMenu.h"
-#include "BurgerTimeLvl.h"
-#include "BurgerTimePauseMenu.h"
-
 using namespace std;
 
 void PrintSDLVersion()
@@ -54,33 +49,6 @@ void Engine::Initialize()
 	Renderer::GetInstance().Init(m_Window);
 }
 
-/**
- * Code constructing the scene world starts here
- */
-void Engine::LoadGame() const
-{
-	//loading the nessecary textures
-	ResourceManager::GetInstance().LoadTexture("BurgerTimeTexture", "Textures/BurgerTimeSprites.png");
-	ResourceManager::GetInstance().LoadTexture("BurgerTimeLogo", "Textures/BurgerTimeLogo.png");
-
-	//loading the nessecary fonts
-	ResourceManager::GetInstance().LoadFont("ArcadeClassic_Size30", "Fonts/ARCADECLASSIC.otf", 30);
-	ResourceManager::GetInstance().LoadFont("ArcadeClassic_Size50", "Fonts/ARCADECLASSIC.otf", 50);
-	ResourceManager::GetInstance().LoadFont("ArcadeClassic_Size100", "Fonts/ARCADECLASSIC.otf", 100);
-
-	//creating our main menu scene
-	Scene* pMainMenuScene{ new BurgerTimeStartMenu{} };
-	SceneManager::GetInstance().AddScene(pMainMenuScene);
-
-	//creating our pause menu
-	Scene* pPauseMenuScene(new BurgerTimePauseMenu{});
-	SceneManager::GetInstance().AddScene(pPauseMenuScene);
-
-	//creating our lvl scene
-	Scene* pBurgerTimeLvl{ new BurgerTimeLvl{} };
-	SceneManager::GetInstance().AddScene(pBurgerTimeLvl);
-}
-
 void Engine::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
@@ -91,13 +59,6 @@ void Engine::Cleanup()
 
 void Engine::Run()
 {
-	Initialize();
-
-	// tell the resource manager where he can find the game data
-	ResourceManager::GetInstance().Init("../Data/");
-
-	LoadGame();
-
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 
@@ -105,12 +66,12 @@ void Engine::Run()
 	int lag = 0; //lag in Ms
 
 	//starting the game timer
-	Time& time{ Time::GetInstance() };
+	GameTime& time{ GameTime::GetInstance() };
 	time.Start();
 
 	while (doContinue)
 	{
-		Time::GetInstance().Update();
+		GameTime::GetInstance().Update();
 		lag += time.GetDeltaTimeInMs();
 
 		while (lag >= MsPerFrame)

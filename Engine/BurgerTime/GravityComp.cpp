@@ -17,7 +17,7 @@ void GravityComp::Update()
 
 	//in pixels per second
 	float gravitySpeed{ 150 };
-	float displacement{ gravitySpeed * Time::GetInstance().GetDeltaTime() };
+	float displacement{ gravitySpeed * GameTime::GetInstance().GetDeltaTime() };
 
 	glm::vec3 newPos{ m_pGameObj->GetTransform()->GetPos() - m_pGameObj->GetParent()->GetTransform()->GetPos() };
 	newPos.y += displacement;

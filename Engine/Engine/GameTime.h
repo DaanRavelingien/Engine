@@ -2,10 +2,10 @@
 #include <chrono>
 #include "Singleton.h"
 
-class Time final : public Singleton<Time>
+class GameTime final : public Singleton<GameTime>
 {
 public:
-	~Time() = default;
+	~GameTime() = default;
 
 	void Start();
 	void Stop();
@@ -18,8 +18,8 @@ public:
 	int GetDeltaTimeInMs() const;
 
 protected:
-	friend class Singleton<Time>;
-	Time() = default;
+	friend class Singleton<GameTime>;
+	GameTime() = default;
 
 	bool m_Paused{ false };
 

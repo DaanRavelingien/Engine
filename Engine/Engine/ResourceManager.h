@@ -1,7 +1,9 @@
 #pragma once
 #include "Singleton.h"
 #include <map>
+#include <string>
 
+struct SDL_Texture;
 class Resource;
 
 class ResourceManager final : public Singleton<ResourceManager>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="BurgerTime.cpp" />
+    <ClCompile Include="HitboxComp.cpp">
+      <Filter>GameComps\Hitbox</Filter>
+    </ClCompile>
+    <ClCompile Include="HitboxManagerComp.cpp">
+      <Filter>GameComps\Hitbox</Filter>
+    </ClCompile>
+    <ClCompile Include="IngredientComp.cpp">
+      <Filter>GameComps\IngredientComps</Filter>
+    </ClCompile>
+    <ClCompile Include="IngredientManagerComp.cpp">
+      <Filter>GameComps\IngredientComps</Filter>
+    </ClCompile>
+    <ClCompile Include="IngredientPieceComp.cpp">
+      <Filter>GameComps\IngredientComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionComp.cpp">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionExitComp.cpp">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionMainMenuComp.cpp">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionStartComp.cpp">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimeLvl.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimePauseMenu.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimeStartMenu.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityMoveComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManagerComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesDisplayComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuInputComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInputComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreCounterComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BurgerTime.h" />
+    <ClInclude Include="HitboxManagerComp.h">
+      <Filter>GameComps\Hitbox</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxComp.h">
+      <Filter>GameComps\Hitbox</Filter>
+    </ClInclude>
+    <ClInclude Include="IngredientComp.h">
+      <Filter>GameComps\IngredientComps</Filter>
+    </ClInclude>
+    <ClInclude Include="IngredientManagerComp.h">
+      <Filter>GameComps\IngredientComps</Filter>
+    </ClInclude>
+    <ClInclude Include="IngredientPieceComp.h">
+      <Filter>GameComps\IngredientComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionComp.h">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionExitComp.h">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionMainMenuComp.h">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionStartComp.h">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerTimeLvl.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerTimePauseMenu.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerTimeStartMenu.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityMoveComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManagerComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesDisplayComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuInputComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInputComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreCounterComp.h">
+      <Filter>GameComps</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameComps">
+      <UniqueIdentifier>{9ed1a9aa-8ed0-4903-9738-bbf844099cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameComps\MenuSelectionComps">
+      <UniqueIdentifier>{40409e47-cc0b-4ed5-b2cd-8020169c06bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameComps\Hitbox">
+      <UniqueIdentifier>{63d3dda1-b3f2-4b0c-a8f8-1278c1d1e97e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameComps\IngredientComps">
+      <UniqueIdentifier>{3a8bea9b-38e1-4a2c-abbe-99cb32a39d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScenes">
+      <UniqueIdentifier>{92ab8721-0373-4335-a813-51844020b2f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

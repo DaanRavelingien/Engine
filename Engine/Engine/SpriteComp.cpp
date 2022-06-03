@@ -31,7 +31,7 @@ void SpriteComp::Update()
 {
 	//updating the frame counter
 	int oldFrameNr{ m_CurrentFrame };
-	m_ElapsedFrameTime += float(Time::GetInstance().GetDeltaTime());
+	m_ElapsedFrameTime += float(GameTime::GetInstance().GetDeltaTime());
 	if (m_ElapsedFrameTime >= m_FrameTime)
 	{
 		m_ElapsedFrameTime = 0;

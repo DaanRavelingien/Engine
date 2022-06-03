@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "InputManager.h"
+#include "SoundSystem.h"
 #include "TransformComp.h"
 
 Scene::Scene(const std::string& name) 
@@ -9,6 +10,8 @@ Scene::Scene(const std::string& name)
 {
 	//create the input manager
 	m_pInputManager = new InputManager{};
+
+	m_pSoundSystem = new SdlSoundSystem{};
 }
 
 Scene::~Scene()
@@ -27,6 +30,9 @@ Scene::~Scene()
 
 	delete m_pInputManager;
 	m_pInputManager = nullptr;
+
+	delete m_pSoundSystem;
+	m_pSoundSystem = nullptr;
 }
 
 void Scene::AddGameObj(GameObject* pGameObj)

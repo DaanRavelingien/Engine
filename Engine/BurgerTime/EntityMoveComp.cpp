@@ -1,7 +1,7 @@
 #include "EnginePCH.h"
 #include "EntityMoveComp.h"
 #include "GameObject.h"
-#include "Time.h"
+#include "GameTime.h"
 
 //component includes
 #include "TransformComp.h"
@@ -77,7 +77,7 @@ void EntityMoveComp::MoveUp()
 		glm::vec3 currentPos{ m_pGameObj->GetTransform()->GetPos() };
 		glm::vec3 ladderPos{ m_pLadder->GetTransform()->GetPos() };
 
-		float newYPos{ currentPos.y - m_MoveSpeed * Time::GetInstance().GetDeltaTime() };
+		float newYPos{ currentPos.y - m_MoveSpeed * GameTime::GetInstance().GetDeltaTime() };
 
 		m_pGameObj->GetTransform()->SetPos({ currentPos.x,newYPos,currentPos.z });
 
@@ -108,7 +108,7 @@ void EntityMoveComp::MoveDown()
 		glm::vec3 currentPos{ m_pGameObj->GetTransform()->GetPos() };
 		glm::vec3 ladderPos{ m_pLadder->GetTransform()->GetPos() };
 
-		float newYPos{ currentPos.y + m_MoveSpeed * Time::GetInstance().GetDeltaTime() };
+		float newYPos{ currentPos.y + m_MoveSpeed * GameTime::GetInstance().GetDeltaTime() };
 
 		m_pGameObj->GetTransform()->SetPos({ currentPos.x,newYPos,currentPos.z });
 
@@ -139,7 +139,7 @@ void EntityMoveComp::MoveLeft()
 		glm::vec3 currentPos{ m_pGameObj->GetTransform()->GetPos() };
 		glm::vec3 platformPos{ m_pPlatform->GetTransform()->GetPos() };
 
-		float newXPos{ currentPos.x - m_MoveSpeed * Time::GetInstance().GetDeltaTime() };
+		float newXPos{ currentPos.x - m_MoveSpeed * GameTime::GetInstance().GetDeltaTime() };
 
 		m_pGameObj->GetTransform()->SetPos({ newXPos,currentPos.y,currentPos.z });
 
@@ -172,7 +172,7 @@ void EntityMoveComp::MoveRight()
 		glm::vec3 currentPos{ m_pGameObj->GetTransform()->GetPos() };
 		glm::vec3 platformPos{ m_pPlatform->GetTransform()->GetPos() };
 
-		float newXPos{ currentPos.x + m_MoveSpeed * Time::GetInstance().GetDeltaTime() };
+		float newXPos{ currentPos.x + m_MoveSpeed * GameTime::GetInstance().GetDeltaTime() };
 
 		m_pGameObj->GetTransform()->SetPos({ newXPos,currentPos.y,currentPos.z });
 

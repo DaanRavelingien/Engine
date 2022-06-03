@@ -5,6 +5,7 @@
 class GameObject;
 class InputManager;
 class Component;
+class SoundSystem;
 
 class Scene
 {
@@ -24,6 +25,7 @@ public:
 
 	bool IsInitialized() const { return m_Initialized; };
 	InputManager* GetInputManager() const { return m_pInputManager; };
+	SoundSystem* GetSoundSystem() const { return m_pSoundSystem; };
 
 	virtual ~Scene();
 	Scene(const Scene& other) = delete;
@@ -45,6 +47,7 @@ private:
 	std::vector <GameObject*> m_ObjsToAdd{};
 	std::string m_Name;
 	InputManager* m_pInputManager{ nullptr };
+	SoundSystem* m_pSoundSystem{ nullptr };
 
 	bool m_Initialized{ false };
 
