@@ -30,6 +30,9 @@ GameObject::~GameObject()
 
 void GameObject::Initialize()
 {
+	if (IsDestroyed())
+		return;
+
 	for (Component* comp : m_Components)
 	{
 		comp->Initialize();
@@ -38,7 +41,7 @@ void GameObject::Initialize()
 
 void GameObject::Update()
 {
-	if (IsDestroyed())
+	if (IsDestroyed() || m_Disabled)
 		return;
 
 	for (Component* comp : m_Components)
@@ -49,7 +52,7 @@ void GameObject::Update()
 
 void GameObject::FixedUpdate()
 {
-	if (IsDestroyed())
+	if (IsDestroyed() || m_Disabled)
 		return;
 
 	for (Component* comp : m_Components)
@@ -60,6 +63,9 @@ void GameObject::FixedUpdate()
 
 void GameObject::Render() const
 {
+	if (IsDestroyed() || m_Disabled)
+		return;
+
 	//find all the render components of this game object and call the render function on them
 	std::for_each(m_Components.begin(), m_Components.end(), [](Component* pComp)
 		{
@@ -77,7 +83,7 @@ void GameObject::Render() const
 #ifdef _DEBUG
 void GameObject::RenderGui()
 {
-	if (IsDestroyed())
+	if (IsDestroyed() || m_Disabled)
 		return;
 
 	for (Component* comp : m_Components)
@@ -122,7 +128,10 @@ void GameObject::Disable()
 
 void GameObject::AddChild(GameObject* pGameObj)
 {
-	//checking if the gameObj is already a child to avoid updating a game obj twice
+	if (IsDestroyed())
+		return;
+
+	//checking if the gameObj is already a child to avoid adding a game obj twice
 	auto it = std::find_if(m_Children.begin(), m_Children.end(), [pGameObj](GameObject* pOtherGameObj)
 		{
 			if (pGameObj->GetName() == pOtherGameObj->GetName())
@@ -138,8 +147,25 @@ void GameObject::AddChild(GameObject* pGameObj)
 	}
 }
 
+std::vector<GameObject*> GameObject::GetChildren() const
+{
+	return m_Children;
+}
+
+void GameObject::RemoveChild(GameObject* pGameObj)
+{
+	if (IsDestroyed())
+		return;
+
+	auto it = std::remove(m_Children.begin(), m_Children.end(), pGameObj);
+	m_Children.erase(it, m_Children.end());
+}
+
 void GameObject::SetParent(GameObject* pGameObj)
 {
+	if (IsDestroyed())
+		return;
+
 	if (m_pParent != pGameObj)
 	{
 		pGameObj->AddChild(this);
@@ -147,8 +173,16 @@ void GameObject::SetParent(GameObject* pGameObj)
 	}
 }
 
+GameObject* GameObject::GetParent() const
+{
+	return m_pParent;
+}
+
 void GameObject::AddComponent(Component* pComp)
 {
+	if (IsDestroyed())
+		return;
+
 	//setting the component game obj pointer to this
 	pComp->SetGameObj(this);
 
@@ -157,6 +191,9 @@ void GameObject::AddComponent(Component* pComp)
 
 void GameObject::RemoveComponent(int idx)
 {
+	if (IsDestroyed())
+		return;
+
 	auto it = std::remove_if(m_Components.begin(), m_Components.end(), [idx](Component* comp)
 		{
 			if (comp->GetIdx() == idx)
@@ -172,5 +209,8 @@ void GameObject::RemoveComponent(int idx)
 
 void GameObject::AddObserver(Observer<Component>* pObserver)
 {
+	if (IsDestroyed())
+		return;
+
 	m_GameObjSubject.AddObserver(pObserver);
 }

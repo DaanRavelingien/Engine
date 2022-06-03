@@ -15,7 +15,7 @@ public:
 	};
 
 	HitboxManagerComp();
-	~HitboxManagerComp() = default;
+	~HitboxManagerComp();
 	HitboxManagerComp(const HitboxManagerComp& other) = delete;
 	HitboxManagerComp(HitboxManagerComp&& other) = delete;
 	HitboxManagerComp& operator=(const HitboxManagerComp& other) = delete;
@@ -25,6 +25,7 @@ public:
 
 	bool AreOverlapping(const glm::vec4& hitbox1, const glm::vec4& hitbox2);
 	void AddHitbox(HitboxComp* pHitbox);
+	void RemoveHitbox(HitboxComp* pHitbox);
 
 private:
 	std::vector<HitboxComp*> m_Hitboxes{};

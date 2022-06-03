@@ -19,6 +19,43 @@
 #include "PlayerInputComp.h"
 #include "LevelManagerComp.h"
 
+void BurgerTimeLvl::SetGamePlay(const GamePlay& gamePlay)
+{
+	switch (gamePlay)
+	{
+	case GamePlay::Single:
+		//disabeling the characters we will not need in this game mode
+		m_pPeterPepper->Enable();
+		m_pPlayerHotDog->Disable();
+		m_pSallySalt->Disable();
+
+		//enabeling enemies
+		m_SpawnEnemies = true;
+
+		break;
+	case GamePlay::CoOp:
+		//disabeling the characters we will not need in this game mode
+		m_pPeterPepper->Enable();
+		m_pPlayerHotDog->Disable();
+		m_pSallySalt->Enable();
+
+		//enabeling enemies
+		m_SpawnEnemies = true;
+
+		break;
+	case GamePlay::Vs:
+		//disabeling the characters we will not need in this game mode
+		m_pPeterPepper->Enable();
+		m_pPlayerHotDog->Enable();
+		m_pSallySalt->Disable();
+
+		//enabeling enemies
+		m_SpawnEnemies = true;
+
+		break;
+	}
+}
+
 void BurgerTimeLvl::Initialize()
 {
 	//setting the input controller amount to 2
@@ -49,10 +86,9 @@ void BurgerTimeLvl::Initialize()
 	m_pPeterPepper->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
 		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1 
 			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
-	m_pPeterPepper->AddComponent(new EntityMoveComp{});
+	m_pPeterPepper->AddComponent(new EntityMoveComp{ glm::vec2{200,400} });
 	m_pPeterPepper->AddComponent(new PlayerInputComp{});
 
-	m_pPeterPepper->GetTransform()->SetPos({ 200,400,0 });
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });
 	AddGameObj(m_pPeterPepper);
 

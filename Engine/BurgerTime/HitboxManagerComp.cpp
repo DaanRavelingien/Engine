@@ -10,6 +10,15 @@ HitboxManagerComp::HitboxManagerComp()
 	:Component{typeid(this).name()}
 {}
 
+HitboxManagerComp::~HitboxManagerComp()
+{
+	//detaching all the hitboxes
+	for (HitboxComp* pHitbox : m_Hitboxes)
+	{
+		pHitbox->Detach();
+	}
+}
+
 void HitboxManagerComp::Update()
 {
 	//removing deleted hitboxes and clearing the overlapping hitboxes
@@ -75,4 +84,10 @@ bool HitboxManagerComp::AreOverlapping(const glm::vec4& hitbox1, const glm::vec4
 void HitboxManagerComp::AddHitbox(HitboxComp* pHitbox)
 {
 	m_Hitboxes.emplace_back(pHitbox);
+}
+
+void HitboxManagerComp::RemoveHitbox(HitboxComp* pHitbox)
+{
+	auto it = std::remove(m_Hitboxes.begin(), m_Hitboxes.end(), pHitbox);
+	m_Hitboxes.erase(it, m_Hitboxes.end());
 }

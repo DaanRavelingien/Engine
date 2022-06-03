@@ -19,13 +19,17 @@ class HitboxComp : public Component
 {
 public:
 	HitboxComp(HitboxTag tag, float width, float height, HitboxManagerComp::CollisionGroup collisionGroup = HitboxManagerComp::CollisionGroup::CollisionGroup1);
-	~HitboxComp() = default;
+	~HitboxComp();
 	HitboxComp(const HitboxComp& other) = delete;
 	HitboxComp(HitboxComp&& other) = delete;
 	HitboxComp& operator=(const HitboxComp& other) = delete;
 	HitboxComp& operator=(HitboxComp&& other) = delete;
 
 	void Initialize() override;
+
+	void Detach() { m_pManager = nullptr; };
+	void Attach(HitboxManagerComp* pManager) { m_pManager = pManager; };
+	HitboxManagerComp* GetManager() const { return m_pManager; };
 
 	void AddOverlappingHitBox(HitboxComp* pOtherHitbox) { m_OverlappingHitboxes.push_back(pOtherHitbox); };
 	void ClearOverlappingHitboxes() { m_OverlappingHitboxes.clear(); };
@@ -40,6 +44,8 @@ private:
 	std::vector<HitboxComp*> m_OverlappingHitboxes{};
 	HitboxTag m_Tag{};
 	HitboxManagerComp::CollisionGroup m_CollisionGroups{};
+
+	HitboxManagerComp* m_pManager{};
 
 	bool m_IsOvelapping{ false };
 };

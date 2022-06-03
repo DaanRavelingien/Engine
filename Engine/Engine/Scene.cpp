@@ -35,6 +35,19 @@ Scene::~Scene()
 	m_pSoundSystem = nullptr;
 }
 
+GameObject* Scene::GetGameObject(const std::string& name) const
+{
+	auto it = std::find_if(m_GameObjs.begin(), m_GameObjs.end(), [name](GameObject* pObj) 
+		{
+			return name.compare(pObj->GetName()) == 0;
+		});
+
+	if (it == m_GameObjs.end())
+		return nullptr;
+
+	return *it;
+}
+
 void Scene::AddGameObj(GameObject* pGameObj)
 {
 	//adding the children to the scene
@@ -58,7 +71,7 @@ void Scene::InitializeScene()
 
 	for (auto& gameObj : m_GameObjs)
 	{
-		if (!gameObj->IsDisabled())
+		if (!gameObj->IsDisabled() || !gameObj->IsDestroyed())
 		{
 			gameObj->Initialize();
 			gameObj->SetInitialized(true);
@@ -76,7 +89,7 @@ void Scene::UpdateScene()
 
 	for (GameObject* pGameObj : m_GameObjs)
 	{
-		if (!pGameObj->IsDisabled())
+		if (!pGameObj->IsDisabled()  || !pGameObj->IsDestroyed())
 		{
 			//initialize the newly added game objects
 			if(!pGameObj->IsInitialized())
@@ -99,7 +112,7 @@ void Scene::FixedUpdateScene()
 
 	for (auto& gameObj : m_GameObjs)
 	{
-		if (!gameObj->IsDisabled())
+		if (!gameObj->IsDisabled() || !gameObj->IsDestroyed())
 			gameObj->FixedUpdate();
 	}
 
@@ -115,7 +128,7 @@ void Scene::Render() const
 {
 	for (const auto& object : m_GameObjs)
 	{
-		if(!object->IsDisabled())
+		if(!object->IsDisabled() || !object->IsDestroyed())
 			object->Render();
 	}
 }
@@ -125,7 +138,7 @@ void Scene::RenderGui()
 {
 	for (auto& gameObj : m_GameObjs)
 	{
-		if(gameObj->IsDisabled())
+		if(gameObj->IsDisabled() || !gameObj->IsDestroyed())
 			gameObj->RenderGui();
 	}
 }
@@ -160,6 +173,10 @@ void Scene::RemoveDestroyedGameObjs()
 		{
 			if (obj->IsDestroyed())
 			{
+				//removing it from parent
+				if (obj->GetParent())
+					obj->GetParent()->RemoveChild(obj);
+
 				delete obj;
 				obj = nullptr;
 				return true;

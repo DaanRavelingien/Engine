@@ -13,6 +13,7 @@ public:
 	LevelManagerComp& operator=(LevelManagerComp&& other) = delete;
 
 	void Initialize() override;
+	void Update() override;
 
 	void AddLevelFile(const std::string& levelFilePath) { m_LevelFiles.push_back(levelFilePath); };
 	void GoNextLvl();

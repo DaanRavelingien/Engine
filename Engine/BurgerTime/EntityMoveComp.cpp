@@ -2,13 +2,15 @@
 #include "EntityMoveComp.h"
 #include "GameObject.h"
 #include "GameTime.h"
+#include "Scene.h"
 
 //component includes
 #include "TransformComp.h"
 #include "HitboxComp.h"
 
-EntityMoveComp::EntityMoveComp()
+EntityMoveComp::EntityMoveComp(const glm::vec2& spawnPosition)
 	:Component{typeid(this).name()}
+	,m_spawnPos{spawnPosition}
 {
 }
 
@@ -16,7 +18,12 @@ void EntityMoveComp::Initialize()
 {
 	m_pHitbox = m_pGameObj->GetComponent<HitboxComp>();
 	if (!m_pHitbox)
-		LOGWARNING("could not fine a hitbox component");
+		LOGWARNING("could not find a hitbox component");
+
+	//adding this as an observer to the scene
+	m_pGameObj->GetScene()->AddObserver(this);
+
+	Respawn();
 
 	//clamping the position of the object to the size of the start platform
 	if (m_pPlatform)
@@ -58,6 +65,14 @@ void EntityMoveComp::Update()
 
 	if (m_pPlatform)
 		m_pGameObj->GetTransform()->SetPos({ currentPos.x, m_pPlatform->GetTransform()->GetPos().y, currentPos.z });
+}
+
+void EntityMoveComp::Respawn()
+{
+	m_pPlatform = nullptr;
+	m_pLadder = nullptr;
+
+	m_pGameObj->GetTransform()->SetPos(glm::vec3{ m_spawnPos.x,m_spawnPos.y,m_pGameObj->GetTransform()->GetPos().z });
 }
 
 void EntityMoveComp::MoveUp()
@@ -232,4 +247,11 @@ void EntityMoveComp::FindPlatform()
 	}
 }
 
+void EntityMoveComp::Notify(Component*, Event event)
+{
+	if (event == Event::BURGERS_COMPLETE)
+	{
+		Respawn();
+	}
+}
 

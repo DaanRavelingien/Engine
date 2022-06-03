@@ -13,10 +13,17 @@ HitboxComp::HitboxComp(HitboxTag tag, float width, float height, HitboxManagerCo
 	,m_CollisionGroups{collisionGroup}
 {}
 
+HitboxComp::~HitboxComp()
+{
+	if (m_pManager)
+		m_pManager->RemoveHitbox(this);
+}
+
 void HitboxComp::Initialize()
 {
 	//adding the new hitbox to the hitboxManager
-	dynamic_cast<BurgerTimeLvl*>(m_pGameObj->GetScene())->GetHitboxManager()->GetComponent<HitboxManagerComp>()->AddHitbox(this);
+	m_pManager = dynamic_cast<BurgerTimeLvl*>(m_pGameObj->GetScene())->GetHitboxManager()->GetComponent<HitboxManagerComp>();
+	m_pManager->AddHitbox(this);
 }
 
 glm::vec2 HitboxComp::GetSize() const

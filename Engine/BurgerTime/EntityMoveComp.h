@@ -1,12 +1,13 @@
 #pragma once
 #include "Component.h"
+#include "Observer.h"
 
 class HitboxComp;
 
-class EntityMoveComp : public Component
+class EntityMoveComp : public Component, public Observer<Component>
 {
 public:
-	EntityMoveComp();
+	EntityMoveComp(const glm::vec2& spawnPosition);
 	~EntityMoveComp() = default;
 	EntityMoveComp(const EntityMoveComp& other) = delete;
 	EntityMoveComp(EntityMoveComp&& other) = delete;
@@ -15,6 +16,8 @@ public:
 
 	void Initialize() override;
 	void Update() override;
+
+	void Respawn();
 
 	void MoveUp();
 	void MoveDown();
@@ -25,9 +28,13 @@ private:
 	void FindLadder();
 	void FindPlatform();
 
+	void Notify(Component* pComp, Event event) override;
+
 	HitboxComp* m_pHitbox{ nullptr };
 	float m_Reach{ 10.f };
 	float m_MoveSpeed{ 100.f };
+
+	glm::vec2 m_spawnPos{};
 
 	//TODO: create platform comp and ladder comp
 	GameObject* m_pPlatform{ nullptr };

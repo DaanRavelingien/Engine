@@ -31,6 +31,13 @@ void LevelManagerComp::Initialize()
 	m_pGameObj->GetScene()->AddObserver(this);
 }
 
+void LevelManagerComp::Update()
+{
+	//if no level exists then create the one we need
+	if (m_pGameObj->GetChildren().empty())
+		CreateLevel();
+}
+
 void LevelManagerComp::GoNextLvl()
 {
 	if (m_LevelFiles.empty())
@@ -43,8 +50,6 @@ void LevelManagerComp::GoNextLvl()
 
 	m_CurrentLevel++;
 	m_CurrentLevel %= (int)m_LevelFiles.size();
-
-	CreateLevel();
 }
 
 void LevelManagerComp::GoPrevLvl()

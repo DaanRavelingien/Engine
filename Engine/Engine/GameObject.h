@@ -40,9 +40,11 @@ public:
 	void Rename(const std::string& name) { m_Name = name; };
 
 	void AddChild(GameObject* pGameObj);
-	std::vector<GameObject*> GetChildren() const { return m_Children; };
+	std::vector<GameObject*> GetChildren() const;
+	void RemoveChild(GameObject* pGameObj);
+
 	void SetParent(GameObject* pGameObj);
-	GameObject* GetParent() const { return m_pParent; };
+	GameObject* GetParent() const;
 
 	void AddComponent(Component* comp);
 	void RemoveComponent(int idx);

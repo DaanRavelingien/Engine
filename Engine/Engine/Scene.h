@@ -20,6 +20,7 @@ public:
 #endif	//_DEBUG
 	std::string GetName() const { return m_Name; };
 	std::vector<GameObject*> GetGameObjects() const { return m_GameObjs; };
+	GameObject* GetGameObject(const std::string& name) const;
 
 	void AddGameObj(GameObject* pGameObj);
 
