@@ -30,10 +30,16 @@ void IngredientPieceComp::Update()
 				//checking if the player is close enough to be considdered on top
 				float middleIngredientPart{ m_pGameObj->GetTransform()->GetPos().x + m_pHitbox->GetSize().x/2.f };
 				float middlePlayer{ pHitbox->GetGameObj()->GetTransform()->GetPos().x + pHitbox->GetSize().x/2.f };
-				float playerDist{ abs(middlePlayer - middleIngredientPart) };
+				float playerDist{ std::abs(middlePlayer - middleIngredientPart) };
 				float ingrPartReach{ 10.f };
 
-				if (ingrPartReach > playerDist)
+				//also checking the height
+				float ingrHeight{ m_pGameObj->GetTransform()->GetPos().y};
+				float playerHeight{ pHitbox->GetGameObj()->GetTransform()->GetPos().y + pHitbox->GetSize().y};
+				float heightDiff{ std::abs(playerHeight - ingrHeight) };
+				float ingrPartHeightReach{ 16.f };
+
+				if (ingrPartReach > playerDist && ingrPartHeightReach > heightDiff)
 				{
 					m_IsTrampled = true;
 					m_pGameObj->GetParent()->GetComponent<IngredientComp>()->IsSteppedOn();

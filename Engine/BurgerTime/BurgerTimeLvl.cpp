@@ -50,7 +50,7 @@ void BurgerTimeLvl::Initialize()
 		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1 
 			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
 	m_pPeterPepper->AddComponent(new EntityMoveComp{ glm::vec2{336,99} });
-	m_pPeterPepper->AddComponent(new PlayerInputComp{ PlayerInputComp::Player::Player_1 });
+	m_pPeterPepper->AddComponent(new PlayerInputComp{});
 
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });
 	AddGameObj(m_pPeterPepper);
