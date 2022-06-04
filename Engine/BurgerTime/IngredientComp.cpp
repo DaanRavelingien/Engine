@@ -8,6 +8,7 @@
 #include "TransformComp.h"
 #include "GravityComp.h"
 #include "HitboxComp.h"
+#include "EnemyComp.h"
 
 IngredientComp::IngredientComp()
 	:Component{typeid(this).name()}
@@ -109,7 +110,9 @@ void IngredientComp::UpdateOnPlatform()
 			//also checking if any enemies were on top
 			else if(pHitbox->GetTag() == HitboxTag::Enemy)
 			{
-				m_EnemiesOnTop.push_back(pHitbox->GetGameObj());
+				//checking if the enemies are still alive
+				if (!pHitbox->GetGameObj()->GetComponent<EnemyComp>()->IsDead())
+					m_EnemiesOnTop.push_back(pHitbox->GetGameObj());
 			}
 		}
 
