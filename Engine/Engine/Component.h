@@ -21,6 +21,10 @@ public:
 	virtual void RenderGui() {};
 #endif // _DEBUG
 
+	bool IsEnabled() const { return m_Enabled; };
+	void Enable() { m_Enabled = true; };
+	void Disable() { m_Enabled = false; };
+
 	int GetIdx() const { return m_Idx; };
 	std::string GetCompName() const { return m_CompName; };
 
@@ -32,6 +36,7 @@ protected:
 private:
 	std::string SimplifyCompTypeName(const std::string& compTypeName);
 
+	bool m_Enabled{ true };
 	static int m_IdxCount;
 	int m_Idx{};
 	std::string m_CompName{};

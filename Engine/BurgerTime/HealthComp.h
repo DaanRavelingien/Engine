@@ -11,6 +11,8 @@ public:
 	HealthComp& operator=(const HealthComp& other) = delete;
 	HealthComp& operator=(HealthComp&& other) = delete;
 
+	void Update() override;
+
 	int GetHealth() const {	return m_Health; };
 	int GetMaxHealth() const { return m_MaxHealth; };
 

@@ -18,6 +18,8 @@
 #include "EntityMoveComp.h"
 #include "PlayerInputComp.h"
 #include "LevelManagerComp.h"
+#include "EnemyComp.h"
+#include "GravityComp.h"
 
 void BurgerTimeVsLvl::Initialize()
 {
@@ -45,7 +47,7 @@ void BurgerTimeVsLvl::Initialize()
 	pPeterPepperTextureComp->SetSourceRect({ 16,0,16,16 });
 	pPeterPepperTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
-	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
+	m_pPeterPepper->AddComponent(new HealthComp{ 3 });
 	m_pPeterPepper->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
 		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1
 			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
@@ -60,16 +62,16 @@ void BurgerTimeVsLvl::Initialize()
 	m_pMrHotDog = new GameObject{ "MrHotDog" };
 	m_pMrHotDog->AddComponent(new TextureRenderComp{});
 
-	TextureComp* pSallySaltTextureComp{ new TextureComp{"BurgerTimeTexture"} };
-	pSallySaltTextureComp->SetSourceRect({ 0,32,16,16 });
-	pSallySaltTextureComp->SetDestRect({ 0,0,16,16 });
-	m_pMrHotDog->AddComponent(pSallySaltTextureComp);
-	m_pMrHotDog->AddComponent(new HealthComp{ 5 });
-	m_pMrHotDog->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
-		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1
-			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
-	m_pMrHotDog->AddComponent(new EntityMoveComp{ glm::vec2{336,99} });
+	TextureComp* pMrHotDogTextureComp{ new TextureComp{"BurgerTimeTexture"} };
+	pMrHotDogTextureComp->SetSourceRect({ 0,32,16,16 });
+	pMrHotDogTextureComp->SetDestRect({ 0,0,16,16 });
+	m_pMrHotDog->AddComponent(pMrHotDogTextureComp);
+	m_pMrHotDog->AddComponent(new HitboxComp{ HitboxTag::Enemy, 16,16,
+		HitboxManagerComp::CollisionGroup::CollisionGroup1 });
+	m_pMrHotDog->AddComponent(new EntityMoveComp{ glm::vec2{336,339} });
 	m_pMrHotDog->AddComponent(new PlayerInputComp{ PlayerInputComp::Player::Player_2 });
+	m_pMrHotDog->AddComponent(new EnemyComp{EnemyComp::EnemyType::MrHotDog});
+	m_pMrHotDog->AddComponent(new GravityComp{});
 
 	m_pMrHotDog->GetTransform()->SetScale({ 3,3,3 });
 	AddGameObj(m_pMrHotDog);

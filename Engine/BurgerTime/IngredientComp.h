@@ -29,11 +29,14 @@ private:
 	std::vector<IngredientPieceComp*> m_Pieces{};
 	State m_State{ State::OnPlatform };
 	HitboxComp* m_pOldPlatform{ nullptr };
+	std::vector<GameObject*> m_EnemiesOnTop{};
 
 	void UpdateOnPlatform();
 	void UpdateFalling();
 
 	bool FoundNewPlatform() const;
 	void ResetPieces();
+
+	void HandleEnemiesOnTopFalling();
 };
 

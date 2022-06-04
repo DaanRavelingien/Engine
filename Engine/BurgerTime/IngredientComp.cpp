@@ -105,9 +105,16 @@ void IngredientComp::UpdateOnPlatform()
 			if (pHitbox->GetTag() == HitboxTag::Platform)
 			{
 				m_pOldPlatform = pHitbox;
-				break;
+			}
+			//also checking if any enemies were on top
+			else if(pHitbox->GetTag() == HitboxTag::Enemy)
+			{
+				m_EnemiesOnTop.push_back(pHitbox->GetGameObj());
 			}
 		}
+
+		//handeling the enemies that were on top
+		HandleEnemiesOnTopFalling();
 
 		//enabeling the gravity component
 		m_pGameObj->GetComponent<GravityComp>()->Enable();
@@ -124,7 +131,6 @@ void IngredientComp::UpdateFalling()
 		m_pGameObj->GetComponent<GravityComp>()->Disable();
 
 		//setting our y pos to the one of the platform
-
 		m_State = State::OnPlatform;
 		return;
 	}
@@ -170,6 +176,16 @@ void IngredientComp::UpdateFalling()
 			m_State = State::OnTray;
 			return;
 		}
+
+		//killing any enemy we fall on
+		if (pHitbox->GetTag() == HitboxTag::Enemy)
+		{
+			//checking if the overlapping hitbox is not one of the enemies that was on top
+			auto it = std::find(m_EnemiesOnTop.begin(), m_EnemiesOnTop.end(), pHitbox->GetGameObj());
+			if (it == m_EnemiesOnTop.end())
+				pHitbox->GetGameObj()->SendNotification(this, Event::ENEMY_CRUSHED);
+
+		}
 	}
 }
 
@@ -201,4 +217,40 @@ void IngredientComp::ResetPieces()
 	{
 		pPiece->ResetPiece();
 	}
+}
+
+void IngredientComp::HandleEnemiesOnTopFalling()
+{
+	//send the needed events for our score system
+	switch ((int)m_EnemiesOnTop.size())
+	{
+	case 1:
+		m_pGameObj->GetScene()->SendNotification(this, Event::BURGER_DROPS_1_ENEMY);
+		break;
+	case 2:
+		m_pGameObj->GetScene()->SendNotification(this, Event::BURGER_DROPS_2_ENEMYS);
+		break;
+	case 3:
+		m_pGameObj->GetScene()->SendNotification(this, Event::BURGER_DROPS_3_ENEMYS);
+		break;
+	case 4:
+		m_pGameObj->GetScene()->SendNotification(this, Event::BURGER_DROPS_4_ENEMYS);
+		break;
+	case 5:
+		m_pGameObj->GetScene()->SendNotification(this, Event::BURGER_DROPS_5_ENEMYS);
+		break;
+	case 6:
+		m_pGameObj->GetScene()->SendNotification(this, Event::BURGER_DROPS_6_ENEMYS);
+		break;
+	default:
+		break;
+	}
+
+	//and sent the needed events to our enemies
+	for (GameObject* pEnemy : m_EnemiesOnTop)
+	{
+		pEnemy->SendNotification(this, Event::ENEMY_DROPPED);
+	}
+
+	m_EnemiesOnTop.clear();
 }

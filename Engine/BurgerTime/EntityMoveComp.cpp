@@ -23,6 +23,9 @@ void EntityMoveComp::Initialize()
 	//adding this as an observer to the scene
 	m_pGameObj->GetScene()->AddObserver(this);
 
+	//adding this as an observer to its game object
+	m_pGameObj->AddObserver(this);
+
 	Respawn();
 
 	//clamping the position of the object to the size of the start platform
@@ -77,6 +80,10 @@ void EntityMoveComp::Respawn()
 
 void EntityMoveComp::MoveUp()
 {
+	//do nothing if this comp is disabled
+	if (!IsEnabled())
+		return;
+
 	//checking if we need to find a ladder
 	if (!m_pLadder)
 	{
@@ -108,6 +115,9 @@ void EntityMoveComp::MoveUp()
 
 void EntityMoveComp::MoveDown()
 {
+	if (!IsEnabled())
+		return;
+
 	//checking if we need to find a ladder
 	if (!m_pLadder)
 	{
@@ -139,6 +149,9 @@ void EntityMoveComp::MoveDown()
 
 void EntityMoveComp::MoveLeft()
 {
+	if (!IsEnabled())
+		return;
+
 	//checking if we need to find a platform
 	if (!m_pPlatform)
 	{
@@ -172,6 +185,9 @@ void EntityMoveComp::MoveLeft()
 
 void EntityMoveComp::MoveRight()
 {
+	if (!IsEnabled())
+		return;
+
 	//checking if we need to find a platform
 	if (!m_pPlatform)
 	{
@@ -249,7 +265,7 @@ void EntityMoveComp::FindPlatform()
 
 void EntityMoveComp::Notify(Component*, Event event)
 {
-	if (event == Event::BURGERS_COMPLETE)
+	if (event == Event::BURGERS_COMPLETE || event == Event::HEALTH_CHANGED)
 	{
 		Respawn();
 	}

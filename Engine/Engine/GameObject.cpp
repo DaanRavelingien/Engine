@@ -35,7 +35,8 @@ void GameObject::Initialize()
 
 	for (Component* comp : m_Components)
 	{
-		comp->Initialize();
+		if(comp->IsEnabled())
+			comp->Initialize();
 	}
 }
 
@@ -46,7 +47,8 @@ void GameObject::Update()
 
 	for (Component* comp : m_Components)
 	{
-		comp->Update();
+		if (comp->IsEnabled())
+			comp->Update();
 	}
 }
 
@@ -57,7 +59,8 @@ void GameObject::FixedUpdate()
 
 	for (Component* comp : m_Components)
 	{
-		comp->FixedUpdate();
+		if (comp->IsEnabled())
+			comp->FixedUpdate();
 	}
 }
 
@@ -88,7 +91,8 @@ void GameObject::RenderGui()
 
 	for (Component* comp : m_Components)
 	{
-		comp->RenderGui();
+		if (comp->IsEnabled())
+			comp->RenderGui();
 	}
 }
 #endif // _DEBUG

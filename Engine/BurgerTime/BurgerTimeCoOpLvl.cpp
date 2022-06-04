@@ -45,7 +45,7 @@ void BurgerTimeCoOpLvl::Initialize()
 	pPeterPepperTextureComp->SetSourceRect({ 16,0,16,16 });
 	pPeterPepperTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
-	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
+	m_pPeterPepper->AddComponent(new HealthComp{ 3 });
 	m_pPeterPepper->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
 		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1
 			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
@@ -64,7 +64,7 @@ void BurgerTimeCoOpLvl::Initialize()
 	pSallySaltTextureComp->SetSourceRect({ 149,13,16,16 });
 	pSallySaltTextureComp->SetDestRect({ 0,0,16,16 });
 	m_pSallySalt->AddComponent(pSallySaltTextureComp);
-	m_pSallySalt->AddComponent(new HealthComp{ 5 });
+	m_pSallySalt->AddComponent(new HealthComp{ 3 });
 	m_pSallySalt->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
 		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1
 			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });

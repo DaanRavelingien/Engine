@@ -25,6 +25,7 @@
     <ClCompile Include="BurgerTimePauseMenu.cpp" />
     <ClCompile Include="BurgerTimeStartMenu.cpp" />
     <ClCompile Include="BurgerTimeVsLvl.cpp" />
+    <ClCompile Include="EnemyComp.cpp" />
     <ClCompile Include="EntityMoveComp.cpp" />
     <ClCompile Include="GravityComp.cpp" />
     <ClCompile Include="HealthComp.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="BurgerTimePauseMenu.h" />
     <ClInclude Include="BurgerTimeStartMenu.h" />
     <ClInclude Include="BurgerTimeVsLvl.h" />
+    <ClInclude Include="EnemyComp.h" />
     <ClInclude Include="EntityMoveComp.h" />
     <ClInclude Include="GravityComp.h" />
     <ClInclude Include="HealthComp.h" />

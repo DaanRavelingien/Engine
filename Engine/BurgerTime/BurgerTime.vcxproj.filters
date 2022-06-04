@@ -78,6 +78,9 @@
     <ClCompile Include="BurgerTimeVsLvl.cpp">
       <Filter>GameScenes</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyComp.cpp">
+      <Filter>GameComps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTime.h" />
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="BurgerTimeVsLvl.h">
       <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyComp.h">
+      <Filter>GameComps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
