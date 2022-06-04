@@ -34,7 +34,7 @@ private:
 	void UpdateOnPlatform();
 	void UpdateFalling();
 
-	bool FoundNewPlatform() const;
+	HitboxComp* FindNewPlatform();
 	void ResetPieces();
 
 	void HandleEnemiesOnTopFalling();

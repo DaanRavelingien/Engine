@@ -150,7 +150,7 @@ void LevelManagerComp::CreateLevel()
 			platform["Position"][1].GetFloat() * m_pGameObj->GetTransform()->GetScale().y };
 		pPlatform->GetTransform()->SetPos({ hitboxPos.x,hitboxPos.y,-3 });
 
-		//adding the ladder object as a child of the level
+		//adding the platform object as a child of the level
 		m_pGameObj->AddChild(pPlatform);
 
 		//also adding the game object to the scene to it can manage it

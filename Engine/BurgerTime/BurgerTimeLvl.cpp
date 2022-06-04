@@ -90,8 +90,8 @@ void BurgerTimeLvl::Initialize()
 	//==============================
 	GameObject* pLevel{ new GameObject{"Level"} };
 	LevelManagerComp* pLevelManagerComp{ new LevelManagerComp{"BurgerTimeTexture"} };
-	pLevelManagerComp->AddLevelFile("../Data/Levels/Level1.json");
-	pLevelManagerComp->AddLevelFile("../Data/Levels/Level2.json");
+	//pLevelManagerComp->AddLevelFile("../Data/Levels/Level1.json");
+	//pLevelManagerComp->AddLevelFile("../Data/Levels/Level2.json");
 	pLevelManagerComp->AddLevelFile("../Data/Levels/Level3.json");
 	pLevel->AddComponent(pLevelManagerComp);
 	pLevel->GetTransform()->SetScale({ 3,3,3 });

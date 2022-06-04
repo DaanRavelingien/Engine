@@ -83,8 +83,9 @@ void IngredientComp::UpdateOnPlatform()
 		{
 			if (pHitbox->GetTag() == HitboxTag::Ingredient)
 			{
-				//check if its actually above this ingredient
-				if (pHitbox->GetGameObj()->GetTransform()->GetPos().y < m_pGameObj->GetTransform()->GetPos().y)
+				//check if its actually above this ingredient and if its falling
+				if (pHitbox->GetGameObj()->GetTransform()->GetPos().y < m_pGameObj->GetTransform()->GetPos().y
+					&& pHitbox->GetGameObj()->GetComponent<IngredientComp>()->GetState() == State::Falling)
 				{
 					needsToFall = true;
 					break;
@@ -103,7 +104,7 @@ void IngredientComp::UpdateOnPlatform()
 		//setting the old platform
 		for (HitboxComp* pHitbox : m_pGameObj->GetComponent<HitboxComp>()->GetOverlappingHitboxes())
 		{
-			if (pHitbox->GetTag() == HitboxTag::Platform)
+			if (pHitbox->GetTag() == HitboxTag::Platform && !m_pOldPlatform)
 			{
 				m_pOldPlatform = pHitbox;
 			}
@@ -126,18 +127,6 @@ void IngredientComp::UpdateOnPlatform()
 
 void IngredientComp::UpdateFalling()
 {
-	//if we found a new platform to land on reset the pieces and disable our falling
-	if (FoundNewPlatform())
-	{
-		ResetPieces();
-		//disabeling the gravity component
-		m_pGameObj->GetComponent<GravityComp>()->Disable();
-
-		//setting our y pos to the one of the platform
-		m_State = State::OnPlatform;
-		return;
-	}
-
 	//check if we found a tray or an ingredient that is on a tray
 	for (HitboxComp* pHitbox : m_pGameObj->GetComponent<HitboxComp>()->GetOverlappingHitboxes())
 	{
@@ -147,6 +136,7 @@ void IngredientComp::UpdateFalling()
 			//placing the ingredient in the tray
 			float trayOffset{ 3 };
 
+			//setting our y pos to the one of the platform
 			glm::vec3 newPos{ m_pGameObj->GetTransform()->GetPos() - m_pGameObj->GetParent()->GetTransform()->GetPos() };
 			newPos.y += trayOffset * m_pGameObj->GetTransform()->GetScale().y;
 			m_pGameObj->GetTransform()->SetPos(newPos);
@@ -155,7 +145,6 @@ void IngredientComp::UpdateFalling()
 			//disabeling the gravity component
 			m_pGameObj->GetComponent<GravityComp>()->Disable();
 
-			//setting our y pos to the one of the platform
 			m_State = State::OnTray;
 			return;
 		}
@@ -190,28 +179,54 @@ void IngredientComp::UpdateFalling()
 
 		}
 	}
+
+	//if we found a new platform to land on reset the pieces and disable our falling
+	HitboxComp* newPlatform{ FindNewPlatform() };
+	if (newPlatform)
+	{
+		//setting our y pos to the one of the platform
+		glm::vec3 newPos{ m_pGameObj->GetTransform()->GetPos() - m_pGameObj->GetParent()->GetTransform()->GetPos() };
+
+		newPos.y = newPlatform->GetGameObj()->GetTransform()->GetPos().y + newPlatform->GetSize().y - m_pGameObj->GetComponent<HitboxComp>()->GetSize().y;
+		newPos.y -= m_pGameObj->GetParent()->GetTransform()->GetPos().y;
+
+		float platformThickness{ 2.f * newPlatform->GetGameObj()->GetTransform()->GetScale().y };
+
+		newPos.y += platformThickness;
+
+		m_pGameObj->GetTransform()->SetPos(newPos);
+
+		ResetPieces();
+
+		//disabeling the gravity component
+		m_pGameObj->GetComponent<GravityComp>()->Disable();
+
+		m_State = State::OnPlatform;
+		return;
+	}
 }
 
-bool IngredientComp::FoundNewPlatform() const
+HitboxComp* IngredientComp::FindNewPlatform()
 {
 	//checking for a new platform that is close enough
 	for (HitboxComp* pHitbox : m_pGameObj->GetComponent<HitboxComp>()->GetOverlappingHitboxes())
 	{
 		if (pHitbox->GetTag() == HitboxTag::Platform && pHitbox != m_pOldPlatform)
 		{
-			//checking if the new platform is close enough
-			float range{ -2 };
-			float yPosIngredient{ m_pGameObj->GetTransform()->GetPos().y + m_pGameObj->GetComponent<HitboxComp>()->GetSize().y };
-			float yPosPlatform{ pHitbox->GetGameObj()->GetTransform()->GetPos().y + pHitbox->GetSize().y };
+			float yPosIngr{ m_pGameObj->GetTransform()->GetPos().y + m_pGameObj->GetComponent<HitboxComp>()->GetSize().y };
+			float yPosPlatfrm{ pHitbox->GetGameObj()->GetTransform()->GetPos().y + pHitbox->GetSize().y };
+			float dist{ std::abs(yPosPlatfrm - yPosIngr) };
+			float range{ 5.f };
 
-			float distance{ yPosPlatform - yPosIngredient };
-
-			if (range*m_pGameObj->GetTransform()->GetScale().y > distance)
-				return true;
+			if (range > dist)
+			{
+				m_pOldPlatform = nullptr;
+				return pHitbox;
+			}
 		}
 	}
 
-	return false;
+	return nullptr;
 }
 
 void IngredientComp::ResetPieces()
