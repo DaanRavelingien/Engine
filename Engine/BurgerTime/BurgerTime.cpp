@@ -5,6 +5,8 @@
 #include "BurgerTimeStartMenu.h"
 #include "BurgerTimePauseMenu.h"
 #include "BurgerTimeLvl.h"
+#include "BurgerTimeCoOpLvl.h"
+#include "BurgerTimeVsLvl.h"
 
 void BurgerTime::Load() const
 {
@@ -25,7 +27,15 @@ void BurgerTime::Load() const
 	Scene* pPauseMenuScene(new BurgerTimePauseMenu{});
 	SceneManager::GetInstance().AddScene(pPauseMenuScene);
 	
-	//creating our lvl scene
+	//creating our single player scene
 	Scene* pBurgerTimeLvl{ new BurgerTimeLvl{} };
 	SceneManager::GetInstance().AddScene(pBurgerTimeLvl);
+
+	//creating our CoOp scene
+	Scene* pBurgerTimeCoOpLvl{ new BurgerTimeCoOpLvl{} };
+	SceneManager::GetInstance().AddScene(pBurgerTimeCoOpLvl);
+
+	//creating our vs scene
+	Scene* pBurgerTimeVsLvl{ new BurgerTimeVsLvl{} };
+	SceneManager::GetInstance().AddScene(pBurgerTimeVsLvl);
 }

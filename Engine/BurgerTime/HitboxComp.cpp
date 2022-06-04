@@ -22,7 +22,7 @@ HitboxComp::~HitboxComp()
 void HitboxComp::Initialize()
 {
 	//adding the new hitbox to the hitboxManager
-	m_pManager = dynamic_cast<BurgerTimeLvl*>(m_pGameObj->GetScene())->GetHitboxManager()->GetComponent<HitboxManagerComp>();
+	m_pManager = m_pGameObj->GetScene()->GetGameObject("HitboxManager")->GetComponent<HitboxManagerComp>();
 	m_pManager->AddHitbox(this);
 }
 

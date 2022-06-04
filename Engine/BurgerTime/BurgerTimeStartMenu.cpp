@@ -14,6 +14,8 @@
 #include "MenuComp.h"
 #include "MenuSelectionExitComp.h"
 #include "MenuSelectionStartComp.h"
+#include "MenuSelectionCompCoOpStart.h"
+#include "MenuSelectionVsStartComp.h"
 
 void BurgerTimeStartMenu::Initialize()
 {
@@ -51,7 +53,7 @@ void BurgerTimeStartMenu::Initialize()
 	//2 player CoOp selection
 	//=======================
 	GameObject* pCoOpSelection{ new GameObject{"TwoPlayerCoOpSelection"} };
-	//pCoOpSelection->AddComponent(new MenuSelectionStartComp{});
+	pCoOpSelection->AddComponent(new MenuSelectionCompCoOpStart{});
 	pCoOpSelection->AddComponent(new TextRenderComp{});
 	pCoOpSelection->AddComponent(new TextComp{ "2 PLAYERS CO OP", "ArcadeClassic_Size30",{1,1,1} });
 	pCoOpSelection->GetTransform()->SetPos({ 0, 40, 0 });
@@ -60,7 +62,7 @@ void BurgerTimeStartMenu::Initialize()
 	//2 player VS selection
 	//=====================
 	GameObject* pVSPlayerSelection{ new GameObject{"TwoPlayerVSSelection"} };
-	//pVSPlayerSelection->AddComponent(new MenuSelectionStartComp{});
+	pVSPlayerSelection->AddComponent(new MenuSelectionVsStartComp{});
 	pVSPlayerSelection->AddComponent(new TextRenderComp{});
 	pVSPlayerSelection->AddComponent(new TextComp{ "2 PLAYERS VERSUS", "ArcadeClassic_Size30",{1,1,1} });
 	pVSPlayerSelection->GetTransform()->SetPos({ 0, 80, 0 });

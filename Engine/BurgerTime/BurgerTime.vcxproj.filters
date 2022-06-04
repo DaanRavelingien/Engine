@@ -66,6 +66,18 @@
     <ClCompile Include="ScoreCounterComp.cpp">
       <Filter>GameComps</Filter>
     </ClCompile>
+    <ClCompile Include="MenuSelectionCompCoOpStart.cpp">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionVsStartComp.cpp">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimeCoOpLvl.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerTimeVsLvl.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTime.h" />
@@ -131,6 +143,18 @@
     </ClInclude>
     <ClInclude Include="ScoreCounterComp.h">
       <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionCompCoOpStart.h">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionVsStartComp.h">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerTimeCoOpLvl.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerTimeVsLvl.h">
+      <Filter>GameScenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

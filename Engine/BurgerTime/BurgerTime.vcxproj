@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BurgerTime.cpp" />
+    <ClCompile Include="BurgerTimeCoOpLvl.cpp" />
     <ClCompile Include="BurgerTimeLvl.cpp" />
     <ClCompile Include="BurgerTimePauseMenu.cpp" />
     <ClCompile Include="BurgerTimeStartMenu.cpp" />
+    <ClCompile Include="BurgerTimeVsLvl.cpp" />
     <ClCompile Include="EntityMoveComp.cpp" />
     <ClCompile Include="GravityComp.cpp" />
     <ClCompile Include="HealthComp.cpp" />
@@ -37,17 +39,21 @@
     <ClCompile Include="MenuComp.cpp" />
     <ClCompile Include="MenuInputComp.cpp" />
     <ClCompile Include="MenuSelectionComp.cpp" />
+    <ClCompile Include="MenuSelectionCompCoOpStart.cpp" />
     <ClCompile Include="MenuSelectionExitComp.cpp" />
     <ClCompile Include="MenuSelectionMainMenuComp.cpp" />
     <ClCompile Include="MenuSelectionStartComp.cpp" />
+    <ClCompile Include="MenuSelectionVsStartComp.cpp" />
     <ClCompile Include="PlayerInputComp.cpp" />
     <ClCompile Include="ScoreCounterComp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTime.h" />
+    <ClInclude Include="BurgerTimeCoOpLvl.h" />
     <ClInclude Include="BurgerTimeLvl.h" />
     <ClInclude Include="BurgerTimePauseMenu.h" />
     <ClInclude Include="BurgerTimeStartMenu.h" />
+    <ClInclude Include="BurgerTimeVsLvl.h" />
     <ClInclude Include="EntityMoveComp.h" />
     <ClInclude Include="GravityComp.h" />
     <ClInclude Include="HealthComp.h" />
@@ -61,9 +67,11 @@
     <ClInclude Include="MenuComp.h" />
     <ClInclude Include="MenuInputComp.h" />
     <ClInclude Include="MenuSelectionComp.h" />
+    <ClInclude Include="MenuSelectionCompCoOpStart.h" />
     <ClInclude Include="MenuSelectionExitComp.h" />
     <ClInclude Include="MenuSelectionMainMenuComp.h" />
     <ClInclude Include="MenuSelectionStartComp.h" />
+    <ClInclude Include="MenuSelectionVsStartComp.h" />
     <ClInclude Include="PlayerInputComp.h" />
     <ClInclude Include="ScoreCounterComp.h" />
   </ItemGroup>

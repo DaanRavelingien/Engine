@@ -1,4 +1,4 @@
-#include "BurgerTimeLvl.h"
+#include "BurgerTimeCoOpLvl.h"
 #include <GameObject.h>
 #include "glm\detail\type_vec4.hpp"
 #include <ResourceManager.h>
@@ -19,10 +19,10 @@
 #include "PlayerInputComp.h"
 #include "LevelManagerComp.h"
 
-void BurgerTimeLvl::Initialize()
+void BurgerTimeCoOpLvl::Initialize()
 {
-	//setting the input controller amount to 1
-	GetInputManager()->SetControllerAmount(1);
+	//setting the input controller amount to 2
+	GetInputManager()->SetControllerAmount(2);
 
 	//setting some general inputs like pausing the game
 	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr });
@@ -47,13 +47,32 @@ void BurgerTimeLvl::Initialize()
 	m_pPeterPepper->AddComponent(pPeterPepperTextureComp);
 	m_pPeterPepper->AddComponent(new HealthComp{ 5 });
 	m_pPeterPepper->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
-		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1 
+		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1
 			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
 	m_pPeterPepper->AddComponent(new EntityMoveComp{ glm::vec2{336,99} });
 	m_pPeterPepper->AddComponent(new PlayerInputComp{ PlayerInputComp::Player::Player_1 });
 
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });
 	AddGameObj(m_pPeterPepper);
+
+	//creating sallySalt
+	//==================
+	m_pSallySalt = new GameObject{ "SallySalt" };
+	m_pSallySalt->AddComponent(new TextureRenderComp{});
+
+	TextureComp* pSallySaltTextureComp{ new TextureComp{"BurgerTimeTexture"} };
+	pSallySaltTextureComp->SetSourceRect({ 149,13,16,16 });
+	pSallySaltTextureComp->SetDestRect({ 0,0,16,16 });
+	m_pSallySalt->AddComponent(pSallySaltTextureComp);
+	m_pSallySalt->AddComponent(new HealthComp{ 5 });
+	m_pSallySalt->AddComponent(new HitboxComp{ HitboxTag::Player, 16,16,
+		HitboxManagerComp::CollisionGroup((int)HitboxManagerComp::CollisionGroup::CollisionGroup1
+			| (int)HitboxManagerComp::CollisionGroup::CollisionGroup2) });
+	m_pSallySalt->AddComponent(new EntityMoveComp{ glm::vec2{336,99} });
+	m_pSallySalt->AddComponent(new PlayerInputComp{ PlayerInputComp::Player::Player_2 });
+
+	m_pSallySalt->GetTransform()->SetScale({ 3,3,3 });
+	AddGameObj(m_pSallySalt);
 
 	//creating hud
 	//============
@@ -99,7 +118,7 @@ void BurgerTimeLvl::Initialize()
 	AddGameObj(pLevel);
 }
 
-void BurgerTimeLvl::PauseCmd::Execute()
+void BurgerTimeCoOpLvl::PauseCmd::Execute()
 {
 	SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
 }
