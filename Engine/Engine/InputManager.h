@@ -106,7 +106,10 @@ public:
 	void SetCommand(const ControllerButton & button, ButtonState buttonState, Command * pCommand, Controller player);
 	//keyboard down commands do not work at the moment
 	void SetCommand(const KeyboardButton & button, ButtonState buttonState, Command * pCommand);
-	
+
+	void RemoveCommands(const ControllerButton& button, ButtonState buttonState, Controller player);
+	void RemoveCommands(const KeyboardButton& button, ButtonState buttonState);
+
 	void SetControllerAmount(int amount) { m_ControllerAmount = amount; };
 	void QuitGame() { m_Quit = true; };
 

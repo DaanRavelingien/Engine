@@ -38,6 +38,11 @@ void LevelManagerComp::Update()
 		CreateLevel();
 }
 
+void LevelManagerComp::ResetLvl()
+{
+	DestroyCurrentLevel();
+}
+
 void LevelManagerComp::GoNextLvl()
 {
 	if (m_LevelFiles.empty())

@@ -15,6 +15,9 @@ public:
 	void FixedUpdateScene();
 	bool ProcessInput();
 	void Render() const;
+	virtual void OnSceneActivated() {};
+	virtual void OnSceneDeactivated() {};
+
 #ifdef _DEBUG
 	void RenderGui();
 #endif	//_DEBUG

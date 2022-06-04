@@ -11,18 +11,27 @@ InputManager::~InputManager()
 	{
 		for (Command* pCommand : controllerCmd.second.downCommands)
 		{
-			delete pCommand;
-			pCommand = nullptr;
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
 		}
 		for (Command* pCommand : controllerCmd.second.pressedCommands)
 		{
-			delete pCommand;
-			pCommand = nullptr;
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
 		}
 		for (Command* pCommand : controllerCmd.second.upCommands)
 		{
-			delete pCommand;
-			pCommand = nullptr;
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
 		}
 	}
 
@@ -30,18 +39,27 @@ InputManager::~InputManager()
 	{
 		for (Command* pCommand : keyboardCmd.second.downCommands)
 		{
-			delete pCommand;
-			pCommand = nullptr;
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
 		}
 		for (Command* pCommand : keyboardCmd.second.pressedCommands)
 		{
-			delete pCommand;
-			pCommand = nullptr;
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
 		}
 		for (Command* pCommand : keyboardCmd.second.upCommands)
 		{
-			delete pCommand;
-			pCommand = nullptr;
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
 		}
 	}
 }
@@ -205,6 +223,113 @@ void InputManager::SetCommand(const KeyboardButton& button, ButtonState buttonSt
 	}
 }
 
+void InputManager::RemoveCommands(const ControllerButton& button, ButtonState buttonState, Controller player)
+{
+	auto it = std::find_if(m_ControllerCommands.begin(), m_ControllerCommands.end(), [player, button]
+	(const std::pair<int, ControllerInput>& input)
+		{
+			if (input.second.player == player && button == input.second.button)
+				return true;
+			return false;
+		});
+
+	if (it == m_ControllerCommands.end())
+		return;
+
+	switch (buttonState)
+	{
+	case ButtonState::Down:
+		for (Command* pCommand : m_ControllerCommands.at(it->first).downCommands)
+		{
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
+		}
+		m_ControllerCommands.at(it->first).downCommands.clear();
+		m_ControllerCommands.erase(it->first);
+		break;
+	case ButtonState::Up:
+		for (Command* pCommand : m_ControllerCommands.at(it->first).upCommands)
+		{
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
+		}
+		m_ControllerCommands.at(it->first).upCommands.clear();
+		m_ControllerCommands.erase(it->first);
+		break;
+	case ButtonState::Pressed:
+		for (Command* pCommand : m_ControllerCommands.at(it->first).pressedCommands)
+		{
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
+		}
+		m_ControllerCommands.at(it->first).pressedCommands.clear();
+		m_ControllerCommands.erase(it->first);
+		break;
+	default:
+		break;
+	}
+}
+
+void InputManager::RemoveCommands(const KeyboardButton& button, ButtonState buttonState)
+{
+	//checking if the button exists
+	auto it = m_KeyboardCommands.find(button);
+	
+	if (it == m_KeyboardCommands.end())
+		return;
+
+	switch (buttonState)
+	{
+	case ButtonState::Down:
+		for (Command* pCommand : m_KeyboardCommands.at(button).downCommands)
+		{
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
+		}
+		m_KeyboardCommands.at(button).downCommands.clear();
+		m_KeyboardCommands.erase(button);
+		break;
+	case ButtonState::Up:
+		for (Command* pCommand : m_KeyboardCommands.at(button).upCommands)
+		{
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
+		}
+		m_KeyboardCommands.at(button).upCommands.clear();
+		m_KeyboardCommands.erase(button);
+		break;
+	case ButtonState::Pressed:
+		for (Command* pCommand : m_KeyboardCommands.at(button).pressedCommands)
+		{
+			if (pCommand)
+			{
+				delete pCommand;
+				pCommand = nullptr;
+			}
+		}
+		m_KeyboardCommands.at(button).pressedCommands.clear();
+		m_KeyboardCommands.erase(button);
+		break;
+	default:
+		break;
+	}
+}
+
 void InputManager::HandleControllerInput(Controller player)
 {
 	//going through all the buttons and checking wich ones are pressed
@@ -221,7 +346,7 @@ void InputManager::HandleControllerInput(Controller player)
 			{
 				for (Command* pCommand : m_ControllerCommands.at(input.first).pressedCommands)
 				{
-					if (pCommand != nullptr)
+					if (pCommand != nullptr && pCommand->IsEnabled())
 						pCommand->Execute();
 				}
 			}
@@ -233,7 +358,7 @@ void InputManager::HandleControllerInput(Controller player)
 			{
 				for (Command* pCommand : m_ControllerCommands.at(input.first).upCommands)
 				{
-					if (pCommand != nullptr)
+					if (pCommand != nullptr && pCommand->IsEnabled())
 						pCommand->Execute();
 				}
 			}
@@ -245,7 +370,7 @@ void InputManager::HandleControllerInput(Controller player)
 			{
 				for (Command* pCommand : m_ControllerCommands.at(input.first).downCommands)
 				{
-					if (pCommand != nullptr)
+					if (pCommand != nullptr && pCommand->IsEnabled())
 						pCommand->Execute();
 				}
 			}
@@ -267,7 +392,7 @@ void InputManager::HandleKeyboardInput()
 	{
 		for (Command* pCommand : it->second.pressedCommands)
 		{
-			if (pCommand != nullptr)
+			if (pCommand != nullptr && pCommand->IsEnabled())
 				pCommand->Execute();
 		}
 	}
@@ -275,7 +400,7 @@ void InputManager::HandleKeyboardInput()
 	{
 		for (Command* pCommand : it->second.upCommands)
 		{
-			if (pCommand != nullptr)
+			if (pCommand != nullptr && pCommand->IsEnabled())
 				pCommand->Execute();
 		}
 	}

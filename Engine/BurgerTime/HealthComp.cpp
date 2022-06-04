@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "HitboxComp.h"
 #include <TransformComp.h>
+#include <Scene.h>
 
 HealthComp::HealthComp(int maxHealth)
 	: Component{ typeid(this).name() }
@@ -42,6 +43,9 @@ void HealthComp::Damage(int damage)
 	
 	if (m_Health < 0)
 		m_Health = 0;
+
+	if (m_Health == 0)
+		m_pGameObj->GetScene()->SendNotification(this, Event::PLAYER_DIED);
 
 	m_pGameObj->SendNotification(this, Event::HEALTH_CHANGED);
 }

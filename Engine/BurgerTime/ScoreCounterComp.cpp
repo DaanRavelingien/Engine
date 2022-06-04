@@ -15,6 +15,12 @@ void ScoreCounterComp::Initialize()
 	m_pGameObj->GetScene()->AddObserver(this);
 }
 
+void ScoreCounterComp::Reset()
+{
+	m_Score = 0;
+	m_pGameObj->GetComponent<TextComp>()->SetText(std::to_string(m_Score));
+}
+
 void ScoreCounterComp::Notify(Component*, Event event)
 {
 	if (event == Event::BURGER_DROPS)

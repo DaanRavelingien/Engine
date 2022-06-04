@@ -16,6 +16,7 @@ public:
 	void Update() override;
 
 	void AddLevelFile(const std::string& levelFilePath) { m_LevelFiles.push_back(levelFilePath); };
+	void ResetLvl();
 	void GoNextLvl();
 	void GoPrevLvl();
 
