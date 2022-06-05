@@ -13,6 +13,7 @@ public:
 	Scene& AddScene(Scene* pScene);
 	void SetActiveScene(const std::string& sceneName);
 	Scene* GetActiveScene() const { return m_pActiveScene; };
+	Scene* GetPrevActiveScene() const { return m_pPrevActiveScene; };
 
 	void Update();
 	void FixedUpdate();
@@ -27,4 +28,5 @@ protected:
 	std::vector<Scene*> m_Scenes;
 
 	Scene* m_pActiveScene{ nullptr };
+	Scene* m_pPrevActiveScene{ nullptr };
 };

@@ -24,6 +24,11 @@ void BurgerTimeLvl::Initialize()
 	//setting the input controller amount to 1
 	GetInputManager()->SetControllerAmount(1);
 
+	//setting up the correct input
+	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr });
+	GetInputManager()->SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
+	GetInputManager()->SetCommand(ControllerButton::BackButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
+
 	//observing our own scene for events
 	this->AddObserver(this);
 
@@ -84,32 +89,6 @@ void BurgerTimeLvl::Initialize()
 
 	AddGameObj(pHud);
 
-	//creating GameOver hud
-	//=====================
-	m_pGameOverHud = new GameObject{ "GameOverHud" };
-	m_pGameOverHud->GetTransform()->SetPos({ 230,200,0 });
-
-	GameObject* pGameOverLable{ new GameObject{ "GameOverLable" } };
-	pGameOverLable->AddComponent(new TextRenderComp{});
-	pGameOverLable->AddComponent(new TextComp{ "GAME OVER", "ArcadeClassic_Size100",{1,0,0} });
-	pGameOverLable->GetTransform()->SetScale({ 0.5f,0.5f,0.5f });
-	m_pGameOverHud->AddChild(pGameOverLable);
-
-	GameObject* pHightScoreLable{ new GameObject{ "HightScoreLable" } };
-	pHightScoreLable->AddComponent(new TextRenderComp{});
-	pHightScoreLable->AddComponent(new TextComp{ "HIGH SCORE:", "ArcadeClassic_Size50",{1,0,0} });
-	pHightScoreLable->GetTransform()->SetPos({ 0,40,0 });
-	m_pGameOverHud->AddChild(pGameOverLable);
-
-	GameObject* pScoreLable{ new GameObject{ "ScoreLable" } };
-	pScoreLable->AddComponent(new TextRenderComp{});
-	pScoreLable->AddComponent(new TextComp{ "YOUR SCORE:", "ArcadeClassic_Size50",{1,0,0} });
-	pScoreLable->GetTransform()->SetPos({ 0,80,0 });
-	m_pGameOverHud->AddChild(pScoreLable);
-
-	m_pGameOverHud->Disable();
-	AddGameObj(m_pGameOverHud);
-
 	//creating the level from a json
 	//==============================
 	m_pLevel = new GameObject{"Level"};
@@ -123,63 +102,31 @@ void BurgerTimeLvl::Initialize()
 	AddGameObj(m_pLevel);
 }
 
-void BurgerTimeLvl::OnSceneActivated()
-{
-	//setting up the correct input
-	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr });
-	GetInputManager()->SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
-	GetInputManager()->SetCommand(ControllerButton::BackButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
-
-	//resetting the score
-	m_pScoreCounter->GetComponent<ScoreCounterComp>()->Reset();
-
-	//hiding the game over Display
-	m_pGameOverHud->Disable();
-
-	//respawning the player characters
-	m_pPeterPepper->Enable();
-	m_pPeterPepper->GetComponent<EntityMoveComp>()->Respawn();
-}
-
-void BurgerTimeLvl::OnSceneDeactivated()
-{
-	//resetting the level after leaving the scene so we dont see any flickering
-	m_pLevel->GetComponent<LevelManagerComp>()->ResetLvl();
-
-	//removing the game over input
-	GetInputManager()->RemoveCommands(KeyboardButton::ESC, ButtonState::Up);
-	GetInputManager()->RemoveCommands(KeyboardButton::ENTER, ButtonState::Up);
-	GetInputManager()->RemoveCommands(ControllerButton::ButtonA, ButtonState::Up, Controller::Controller_1);
-}
-
 void BurgerTimeLvl::PauseCmd::Execute()
 {
 	SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
-}
-
-void BurgerTimeLvl::GameOverCmd::Execute()
-{
-	SceneManager::GetInstance().SetActiveScene("BurgerTimeMainMenu");
 }
 
 void BurgerTimeLvl::Notify(Component*, Event event)
 {
 	if (event == Event::PLAYER_DIED)
 	{
-		//remove the pause commands
-		GetInputManager()->RemoveCommands(KeyboardButton::ESC, ButtonState::Up);
-		GetInputManager()->RemoveCommands(ControllerButton::StartButton, ButtonState::Up, Controller::Controller_1);
-		GetInputManager()->RemoveCommands(ControllerButton::BackButton, ButtonState::Up, Controller::Controller_1);
+		//resetting the scene
+		ResetScene();
 
-		//setting up the game over commands
-		GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new GameOverCmd{ nullptr });
-		GetInputManager()->SetCommand(KeyboardButton::ENTER, ButtonState::Up, new GameOverCmd{ nullptr });
-		GetInputManager()->SetCommand(ControllerButton::ButtonA, ButtonState::Up, new GameOverCmd{ nullptr }, Controller::Controller_1);
-
-		//enabeling the game over hud
-		m_pGameOverHud->Enable();
-
-		//disabeling the player character so no more input can be given
-		m_pPeterPepper->Disable();
+		//going to the game over scene
+		SceneManager::GetInstance().SetActiveScene("BurgerTimeGameOver");
 	}
+}
+
+void BurgerTimeLvl::ResetScene()
+{
+	//resetting the level after leaving the scene so we dont see any flickering
+	m_pLevel->GetComponent<LevelManagerComp>()->ResetLvl();
+
+	//resetting the score
+	m_pScoreCounter->GetComponent<ScoreCounterComp>()->Reset();
+
+	//respawning the player characters
+	m_pPeterPepper->GetComponent<EntityMoveComp>()->Respawn();
 }

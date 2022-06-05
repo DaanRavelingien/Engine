@@ -81,6 +81,12 @@
     <ClCompile Include="EnemyComp.cpp">
       <Filter>GameComps</Filter>
     </ClCompile>
+    <ClCompile Include="BurgerTimeGameOver.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSelectionResumeComp.cpp">
+      <Filter>GameComps\MenuSelectionComps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTime.h" />
@@ -161,6 +167,12 @@
     </ClInclude>
     <ClInclude Include="EnemyComp.h">
       <Filter>GameComps</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerTimeGameOver.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSelectionResumeComp.h">
+      <Filter>GameComps\MenuSelectionComps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

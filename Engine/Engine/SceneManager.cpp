@@ -74,7 +74,10 @@ void SceneManager::SetActiveScene(const std::string& sceneName)
 	else //otherwise set as active scene
 	{
 		if (m_pActiveScene)
+		{
 			m_pActiveScene->OnSceneDeactivated();
+			m_pPrevActiveScene = m_pActiveScene;
+		}
 
 		if (!(*sceneIt)->IsInitialized())
 			(*sceneIt)->InitializeScene();

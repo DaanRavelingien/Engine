@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="BurgerTime.cpp" />
     <ClCompile Include="BurgerTimeCoOpLvl.cpp" />
+    <ClCompile Include="BurgerTimeGameOver.cpp" />
     <ClCompile Include="BurgerTimeLvl.cpp" />
     <ClCompile Include="BurgerTimePauseMenu.cpp" />
     <ClCompile Include="BurgerTimeStartMenu.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="MenuSelectionCompCoOpStart.cpp" />
     <ClCompile Include="MenuSelectionExitComp.cpp" />
     <ClCompile Include="MenuSelectionMainMenuComp.cpp" />
+    <ClCompile Include="MenuSelectionResumeComp.cpp" />
     <ClCompile Include="MenuSelectionStartComp.cpp" />
     <ClCompile Include="MenuSelectionVsStartComp.cpp" />
     <ClCompile Include="PlayerInputComp.cpp" />
@@ -51,6 +53,7 @@
   <ItemGroup>
     <ClInclude Include="BurgerTime.h" />
     <ClInclude Include="BurgerTimeCoOpLvl.h" />
+    <ClInclude Include="BurgerTimeGameOver.h" />
     <ClInclude Include="BurgerTimeLvl.h" />
     <ClInclude Include="BurgerTimePauseMenu.h" />
     <ClInclude Include="BurgerTimeStartMenu.h" />
@@ -72,6 +75,7 @@
     <ClInclude Include="MenuSelectionCompCoOpStart.h" />
     <ClInclude Include="MenuSelectionExitComp.h" />
     <ClInclude Include="MenuSelectionMainMenuComp.h" />
+    <ClInclude Include="MenuSelectionResumeComp.h" />
     <ClInclude Include="MenuSelectionStartComp.h" />
     <ClInclude Include="MenuSelectionVsStartComp.h" />
     <ClInclude Include="PlayerInputComp.h" />

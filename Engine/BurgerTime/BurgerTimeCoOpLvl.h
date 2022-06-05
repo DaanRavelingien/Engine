@@ -15,8 +15,6 @@ public:
 
 protected:
 	void Initialize() override;
-	void OnSceneActivated() override;
-	void OnSceneDeactivated() override;
 
 private:
 	GameObject* m_pPeterPepper{ nullptr };
@@ -25,7 +23,6 @@ private:
 	GameObject* m_pLevel{ nullptr };
 
 	GameObject* m_pScoreCounter{ nullptr };
-	GameObject* m_pGameOverHud{ nullptr };
 
 	//general inputs for this scene
 	class PauseCmd : public Command
@@ -35,13 +32,7 @@ private:
 		void Execute() override;
 	};
 
-	class GameOverCmd : public Command
-	{
-	public:
-		GameOverCmd(GameObject* pGameObject) :Command{ pGameObject } {};
-		void Execute() override;
-	};
-
 	void Notify(Component* pComp, Event event) override;
+	void ResetScene();
 };
 

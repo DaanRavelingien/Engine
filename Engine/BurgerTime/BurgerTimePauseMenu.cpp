@@ -13,7 +13,7 @@
 #include "MenuInputComp.h"
 #include "MenuComp.h"
 #include "MenuSelectionExitComp.h"
-#include "MenuSelectionStartComp.h"
+#include "MenuSelectionResumeComp.h"
 #include "MenuSelectionMainMenuComp.h"
 
 void BurgerTimePauseMenu::Initialize()
@@ -43,7 +43,7 @@ void BurgerTimePauseMenu::Initialize()
 	//Resume selection
 	//==================================
 	GameObject* pResumeSelection{ new GameObject{"ResumeSelection"} };
-	pResumeSelection->AddComponent(new MenuSelectionStartComp{});
+	pResumeSelection->AddComponent(new MenuSelectionResumeComp{});
 	pResumeSelection->AddComponent(new TextRenderComp{});
 	pResumeSelection->AddComponent(new TextComp{ "RESUME", "ArcadeClassic_Size30",{1,1,1} });
 	pResumeSelection->GetTransform()->SetPos({ 0, 0, 0 });
