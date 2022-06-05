@@ -33,6 +33,11 @@ void Engine::Initialize()
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
+	if (SDL_Init(SDL_INIT_AUDIO) != 0)
+	{
+		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
+	}
+
 	m_Window = SDL_CreateWindow(
 		"Game Engine Testing",
 		SDL_WINDOWPOS_CENTERED,

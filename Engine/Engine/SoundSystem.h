@@ -18,6 +18,9 @@ public:
 	virtual void LoadSound(const std::string& soundName, const char* fileName, bool loop = false) = 0;
 	virtual void RemoveSound(const std::string& soundName) = 0;
 
+	virtual void PauseMusic() = 0;
+	virtual void ContiniuMusic() = 0;
+
 protected:
 	SoundSystem();
 
@@ -55,12 +58,13 @@ public:
 	SdlSoundSystem();
 	~SdlSoundSystem();
 
-	void LoadSound(const std::string& soundName, const char* fileName, bool loop = false);
-	void RemoveSound(const std::string& soundName);
-
+	void LoadSound(const std::string& soundName, const char* fileName, bool loop = false) override;
+	void RemoveSound(const std::string& soundName) override;
+	void PauseMusic() override;
+	void ContiniuMusic() override;
 protected:
-	void PlaySoundSystemSpecific(const std::string& soundName, const float volume);
-	void PlayMusicSystemSpecific(const std::string& soundName, const float volume);
+	void PlaySoundSystemSpecific(const std::string& soundName, const float volume) override;
+	void PlayMusicSystemSpecific(const std::string& soundName, const float volume) override;
 
 	static bool m_Initialized;
 	std::map<std::string, Audio*> m_Sounds{};
@@ -72,11 +76,14 @@ public:
 	LoggingSoundSystem(SoundSystem* ss, bool muted = false);
 	~LoggingSoundSystem();
 
-	void LoadSound(const std::string& soundName, const char* fileName, bool loop = false);
-	void RemoveSound(const std::string& soundName);
+	void LoadSound(const std::string& soundName, const char* fileName, bool loop = false) override;
+	void RemoveSound(const std::string& soundName) override;
+	void PauseMusic() override;
+	void ContiniuMusic() override;
+
 protected:
-	void PlaySoundSystemSpecific(const std::string& soundName, const float volume);
-	void PlayMusicSystemSpecific(const std::string& soundName, const float volume);
+	void PlaySoundSystemSpecific(const std::string& soundName, const float volume) override;
+	void PlayMusicSystemSpecific(const std::string& soundName, const float volume) override;
 
 	SoundSystem* m_pRealSs;
 	bool m_Muted{ false };

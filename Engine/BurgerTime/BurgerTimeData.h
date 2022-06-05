@@ -19,6 +19,8 @@ public:
 
 	void SetHeighScore(GameMode gameMode, int score);
 	void SetScore(GameMode gameMode, int score);
+	
+	int GetGameVolume();
 
 protected:
 	friend class Singleton<BurgerTimeData>;

@@ -4,6 +4,7 @@
 #include <ResourceManager.h>
 #include <InputManager.h>
 #include "BurgerTimeData.h"
+#include "SoundSystem.h"
 
 //component includes
 #include <TextureComp.h>
@@ -23,6 +24,11 @@
 
 void BurgerTimeCoOpLvl::Initialize()
 {
+	//loading the sound for the level
+	//===============================
+	GetSoundSystem()->LoadSound("BgCoOp", "../Data/Sound/BgCoOp.wav", true);
+	GetSoundSystem()->LoadSound("Dmg", "../Data/Sound/Damage.wav");
+
 	//setting the input controller amount to 2
 	GetInputManager()->SetControllerAmount(2);
 
@@ -151,6 +157,16 @@ void BurgerTimeCoOpLvl::OnSceneActivated()
 	m_pSallySalt->GetComponent<EntityMoveComp>()->Respawn();
 
 	m_pEnemyManager->GetComponent<EnemyManagerComp>()->ResetEnemies();
+
+	//playing sound
+	GetSoundSystem()->ContiniuMusic();
+	GetSoundSystem()->PlayMusic("BgCoOp", (float)BurgerTimeData::GetInstance().GetGameVolume());
+}
+
+void BurgerTimeCoOpLvl::OnSceneDeactivated()
+{
+	//stopping sound system
+	GetSoundSystem()->PauseMusic();
 }
 
 void BurgerTimeCoOpLvl::PauseCmd::Execute()
@@ -164,6 +180,7 @@ void BurgerTimeCoOpLvl::Notify(Component*, Event event)
 	{
 		//resetting the enemies
 		m_pEnemyManager->GetComponent<EnemyManagerComp>()->ResetEnemies();
+		GetSoundSystem()->PlayASound("Dmg", (float)BurgerTimeData::GetInstance().GetGameVolume());
 	}
 	if (event == Event::PLAYER_DIED)
 	{

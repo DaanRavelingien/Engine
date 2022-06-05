@@ -16,6 +16,7 @@ public:
 protected:
 	void Initialize() override;
 	void OnSceneActivated() override;
+	void OnSceneDeactivated() override;
 
 private:
 	GameObject* m_pPeterPepper{ nullptr };

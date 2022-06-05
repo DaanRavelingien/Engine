@@ -156,6 +156,23 @@ void BurgerTimeData::SetScore(GameMode gameMode, int score)
 	outStream.close();
 }
 
+int BurgerTimeData::GetGameVolume()
+{
+	std::string data{ GetDataSring() };
+
+	//getting the string into a rapidjson document
+	rapidjson::Document jsonData{};
+	jsonData.Parse(data.c_str());
+
+	if (!jsonData.IsObject())
+	{
+		LOGERROR("Failed to pharse the scene file: " + m_SourcePath);
+		return 0;
+	}
+
+	return jsonData["Sound"]["Volume"].GetInt();
+}
+
 std::string BurgerTimeData::GetDataSring()
 {
 	//getting the given file in a string

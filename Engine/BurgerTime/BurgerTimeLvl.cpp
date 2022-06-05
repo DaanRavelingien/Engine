@@ -4,6 +4,7 @@
 #include <ResourceManager.h>
 #include <InputManager.h>
 #include "BurgerTimeData.h"
+#include "SoundSystem.h"
 
 //component includes
 #include <TextureComp.h>
@@ -25,6 +26,11 @@
 
 void BurgerTimeLvl::Initialize()
 {
+	//loading the sound for the level
+	//===============================
+	GetSoundSystem()->LoadSound("BgSingle", "../Data/Sound/BgSingle.wav", true);
+	GetSoundSystem()->LoadSound("Dmg", "../Data/Sound/Damage.wav");
+
 	//setting the input controller amount to 1
 	GetInputManager()->SetControllerAmount(1);
 
@@ -123,6 +129,16 @@ void BurgerTimeLvl::OnSceneActivated()
 	m_pPeterPepper->GetComponent<EntityMoveComp>()->Respawn();
 
 	m_pEnemyManager->GetComponent<EnemyManagerComp>()->ResetEnemies();
+
+	//start sound
+	GetSoundSystem()->PlayMusic("BgSingle", (float)BurgerTimeData::GetInstance().GetGameVolume());
+	GetSoundSystem()->ContiniuMusic();
+}
+
+void BurgerTimeLvl::OnSceneDeactivated()
+{
+	//stop sound
+	GetSoundSystem()->PauseMusic();
 }
 
 void BurgerTimeLvl::PauseCmd::Execute()
@@ -136,6 +152,7 @@ void BurgerTimeLvl::Notify(Component*, Event event)
 	{
 		//resetting the enemies
 		m_pEnemyManager->GetComponent<EnemyManagerComp>()->ResetEnemies();
+		GetSoundSystem()->PlayASound("Dmg", (float)BurgerTimeData::GetInstance().GetGameVolume());
 	}
 	if (event == Event::PLAYER_DIED)
 	{

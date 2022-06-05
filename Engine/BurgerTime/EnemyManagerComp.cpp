@@ -27,7 +27,7 @@ void EnemyManagerComp::Update()
 	m_SpawnTimer += GameTime::GetInstance().GetDeltaTime();
 	if (m_SpawnTime < m_SpawnTimer)
 	{
-		if (m_EnemyCount > 1 && m_Enemies.size() == m_EnemyCount - 1)
+		if (m_EnemyCount > 1 && (int)m_Enemies.size() == m_EnemyCount - 1)
 			AddEnemy(EnemyComp::EnemyType::MrEgg);
 		else if ((int)m_Enemies.size() % 2 == 1)
 			AddEnemy(EnemyComp::EnemyType::MrPickle);

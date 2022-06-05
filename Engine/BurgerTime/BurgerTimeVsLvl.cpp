@@ -4,6 +4,7 @@
 #include <ResourceManager.h>
 #include <InputManager.h>
 #include "BurgerTimeData.h"
+#include "SoundSystem.h"
 
 //component includes
 #include <TextureComp.h>
@@ -24,6 +25,11 @@
 
 void BurgerTimeVsLvl::Initialize()
 {
+	//loading the sound for the level
+	//===============================
+	GetSoundSystem()->LoadSound("BgVs", "../Data/Sound/BgVs.wav", true);
+	GetSoundSystem()->LoadSound("Dmg", "../Data/Sound/Damage.wav");
+
 	//setting the input controller amount to 2
 	GetInputManager()->SetControllerAmount(2);
 
@@ -130,6 +136,17 @@ void BurgerTimeVsLvl::OnSceneActivated()
 	//respawning the player characters when we come to this scene
 	m_pPeterPepper->GetComponent<EntityMoveComp>()->Respawn();
 	m_pMrHotDog->GetComponent<EntityMoveComp>()->Respawn();
+
+	//play this scenes sound
+	GetSoundSystem()->ContiniuMusic();
+	GetSoundSystem()->PlayMusic("BgVs", (float)BurgerTimeData::GetInstance().GetGameVolume());
+
+}
+
+void BurgerTimeVsLvl::OnSceneDeactivated()
+{
+	//pausing the sound of this scene
+	GetSoundSystem()->PauseMusic();
 }
 
 void BurgerTimeVsLvl::PauseCmd::Execute()
@@ -143,6 +160,7 @@ void BurgerTimeVsLvl::Notify(Component*, Event event)
 	{
 		//resetting the hotdog player
 		m_pMrHotDog->GetComponent<EntityMoveComp>()->Respawn();
+		GetSoundSystem()->PlayASound("Dmg", (float)BurgerTimeData::GetInstance().GetGameVolume());
 	}
 	if (event == Event::PLAYER_DIED)
 	{

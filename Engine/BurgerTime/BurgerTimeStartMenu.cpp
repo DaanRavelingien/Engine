@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
 #include "InputManager.h"
+#include "SoundSystem.h"
+#include "BurgerTimeData.h"
 
 //component includes
 #include "TransformComp.h"
@@ -19,6 +21,10 @@
 
 void BurgerTimeStartMenu::Initialize()
 {
+	//loading the sound for the menu
+	//==============================
+	GetSoundSystem()->LoadSound("MainMenuBg", "../Data/Sound/BgMainMenu.wav", true);
+
 	//creating the burger time logo
 	//=============================
 	GameObject* pBurgerTimeLogo{ new GameObject{"BurgerTimeLogo"} };
@@ -31,7 +37,6 @@ void BurgerTimeStartMenu::Initialize()
 
 	//creating menu
 	//=============
-
 	GameObject* pMenu{ new GameObject{"Menu"} };
 	pMenu->AddComponent(new MenuInputComp{});
 	pMenu->AddComponent(new MenuComp{});
@@ -79,4 +84,17 @@ void BurgerTimeStartMenu::Initialize()
 
 	pMenu->GetTransform()->SetPos({ 230,300,0 });
 	AddGameObj(pMenu);
+}
+
+void BurgerTimeStartMenu::OnSceneActivated()
+{
+	//start playing music
+	GetSoundSystem()->ContiniuMusic();
+	GetSoundSystem()->PlayMusic("MainMenuBg", (float)BurgerTimeData::GetInstance().GetGameVolume());
+}
+
+void BurgerTimeStartMenu::OnSceneDeactivated()
+{
+	//stop playing music
+	GetSoundSystem()->PauseMusic();
 }

@@ -99,6 +99,16 @@ void SdlSoundSystem::RemoveSound(const std::string& soundName)
 	m_Sounds.erase(soundName);
 }
 
+void SdlSoundSystem::PauseMusic()
+{
+	pauseAudio();
+}
+
+void SdlSoundSystem::ContiniuMusic()
+{
+	unpauseAudio();
+}
+
 void SdlSoundSystem::PlaySoundSystemSpecific(const std::string& soundName, const float volume)
 {
 	playSoundFromMemory(m_Sounds.at(soundName), (int)volume);
@@ -133,6 +143,17 @@ void LoggingSoundSystem::RemoveSound(const std::string& soundName)
 	m_pRealSs->RemoveSound(soundName);
 
 	std::cout << "LoggingSoundSystem: Removing sound " << soundName << '\n';
+}
+
+void LoggingSoundSystem::PauseMusic()
+{
+	std::cout << "LoggingSoundSystem: paused music\n";
+}
+
+void LoggingSoundSystem::ContiniuMusic()
+{
+	std::cout << "LoggingSoundSystem: continiued music\n";
+
 }
 
 void LoggingSoundSystem::PlaySoundSystemSpecific(const std::string& soundName, const float volume)

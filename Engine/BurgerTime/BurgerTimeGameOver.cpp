@@ -2,6 +2,7 @@
 #include <GameObject.h>
 #include <InputManager.h>
 #include "BurgerTimeData.h"
+#include "SoundSystem.h"
 
 //component includes
 #include "TextRenderComp.h"
@@ -10,6 +11,10 @@
 
 void BurgerTimeGameOver::Initialize()
 {
+	//loading the sound for the level
+	//===============================
+	GetSoundSystem()->LoadSound("GameOver", "../Data/Sound/GameOverFx.wav");
+
 	//setting the input controller amount to 2
 	GetInputManager()->SetControllerAmount(1);
 
@@ -63,6 +68,16 @@ void BurgerTimeGameOver::OnSceneActivated()
 
 	m_pHighScoreLable->GetComponent<TextComp>()->SetText("HIGHSCORE    " + std::to_string(highScore));
 	m_pScoreLable->GetComponent<TextComp>()->SetText("YOUR SCORE    " + std::to_string(score));
+
+	//play sound
+	GetSoundSystem()->ContiniuMusic();
+	GetSoundSystem()->PlayASound("GameOver", (float)BurgerTimeData::GetInstance().GetGameVolume());
+}
+
+void BurgerTimeGameOver::OnSceneDeactivated()
+{
+	//stop sound
+	GetSoundSystem()->PauseMusic();
 }
 
 void BurgerTimeGameOver::ContiniuCmd::Execute()
