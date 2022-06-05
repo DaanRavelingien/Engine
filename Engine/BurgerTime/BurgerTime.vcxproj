@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="BurgerTime.cpp" />
     <ClCompile Include="BurgerTimeCoOpLvl.cpp" />
+    <ClCompile Include="BurgerTimeData.cpp" />
     <ClCompile Include="BurgerTimeGameOver.cpp" />
     <ClCompile Include="BurgerTimeLvl.cpp" />
     <ClCompile Include="BurgerTimePauseMenu.cpp" />
@@ -53,6 +54,7 @@
   <ItemGroup>
     <ClInclude Include="BurgerTime.h" />
     <ClInclude Include="BurgerTimeCoOpLvl.h" />
+    <ClInclude Include="BurgerTimeData.h" />
     <ClInclude Include="BurgerTimeGameOver.h" />
     <ClInclude Include="BurgerTimeLvl.h" />
     <ClInclude Include="BurgerTimePauseMenu.h" />

@@ -14,8 +14,12 @@ public:
 
 protected:
 	void Initialize() override;
+	void OnSceneActivated() override;
 
 private:
+	GameObject* m_pHighScoreLable{nullptr};
+	GameObject* m_pScoreLable{nullptr};
+
 	//general inputs for this scene
 	class ContiniuCmd : public Command
 	{

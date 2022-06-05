@@ -87,6 +87,9 @@
     <ClCompile Include="MenuSelectionResumeComp.cpp">
       <Filter>GameComps\MenuSelectionComps</Filter>
     </ClCompile>
+    <ClCompile Include="BurgerTimeData.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTime.h" />
@@ -174,6 +177,9 @@
     <ClInclude Include="MenuSelectionResumeComp.h">
       <Filter>GameComps\MenuSelectionComps</Filter>
     </ClInclude>
+    <ClInclude Include="BurgerTimeData.h">
+      <Filter>Other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameComps">
@@ -190,6 +196,9 @@
     </Filter>
     <Filter Include="GameScenes">
       <UniqueIdentifier>{92ab8721-0373-4335-a813-51844020b2f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{254c47db-f9e9-4b34-a380-1fc211d41d5f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

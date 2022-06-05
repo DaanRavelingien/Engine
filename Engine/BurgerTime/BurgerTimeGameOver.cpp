@@ -1,6 +1,7 @@
 #include "BurgerTimeGameOver.h"
 #include <GameObject.h>
 #include <InputManager.h>
+#include "BurgerTimeData.h"
 
 //component includes
 #include "TextRenderComp.h"
@@ -29,19 +30,39 @@ void BurgerTimeGameOver::Initialize()
 	pGameOverLable->GetTransform()->SetScale({ 0.5f,0.5f,0.5f });
 	pGameOverDispl->AddChild(pGameOverLable);
 
-	GameObject* pHightScoreLable{ new GameObject{ "HightScoreLable" } };
-	pHightScoreLable->AddComponent(new TextRenderComp{});
-	pHightScoreLable->AddComponent(new TextComp{ "HIGH SCORE", "ArcadeClassic_Size50",{1,0.3f,0.3f} });
-	pHightScoreLable->GetTransform()->SetPos({ 0,80,0 });
-	pGameOverDispl->AddChild(pHightScoreLable);
+	m_pHighScoreLable = new GameObject{ "HightScoreLable" };
+	m_pHighScoreLable->AddComponent(new TextRenderComp{});
+	m_pHighScoreLable->AddComponent(new TextComp{ "HIGH SCORE", "ArcadeClassic_Size50",{1,1,1} });
+	m_pHighScoreLable->GetTransform()->SetPos({ 0,80,0 });
+	pGameOverDispl->AddChild(m_pHighScoreLable);
 
-	GameObject* pScoreLable{ new GameObject{ "ScoreLable" } };
-	pScoreLable->AddComponent(new TextRenderComp{});
-	pScoreLable->AddComponent(new TextComp{ "YOUR SCORE", "ArcadeClassic_Size50",{1,0.3f,0.3f} });
-	pScoreLable->GetTransform()->SetPos({ 0,120,0 });
-	pGameOverDispl->AddChild(pScoreLable);
+	m_pScoreLable = new GameObject{ "ScoreLable" };
+	m_pScoreLable->AddComponent(new TextRenderComp{});
+	m_pScoreLable->AddComponent(new TextComp{ "YOUR SCORE", "ArcadeClassic_Size50",{1,1,1} });
+	m_pScoreLable->GetTransform()->SetPos({ 0,120,0 });
+	pGameOverDispl->AddChild(m_pScoreLable);
 
 	AddGameObj(pGameOverDispl);
+}
+
+void BurgerTimeGameOver::OnSceneActivated()
+{
+	//getting the previous scene name
+	std::string prevSceneName{ SceneManager::GetInstance().GetPrevActiveScene()->GetName() };
+	BurgerTimeData::GameMode gameMode{};
+
+	if (prevSceneName.compare("BurgerTimeLvl") == 0)
+		gameMode = BurgerTimeData::GameMode::Single;
+	if (prevSceneName.compare("BurgerTimeCoOpLvl") == 0)
+		gameMode = BurgerTimeData::GameMode::CoOp;
+	if (prevSceneName.compare("BurgerTimeVsLvl") == 0)
+		gameMode = BurgerTimeData::GameMode::Vs;
+
+	int highScore{ BurgerTimeData::GetInstance().GetHeighScore(gameMode) };
+	int score{ BurgerTimeData::GetInstance().GetScore(gameMode) };
+
+	m_pHighScoreLable->GetComponent<TextComp>()->SetText("HIGHSCORE    " + std::to_string(highScore));
+	m_pScoreLable->GetComponent<TextComp>()->SetText("SCORE    " + std::to_string(score));
 }
 
 void BurgerTimeGameOver::ContiniuCmd::Execute()

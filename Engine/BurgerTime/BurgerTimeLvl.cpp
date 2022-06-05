@@ -3,6 +3,7 @@
 #include "glm\detail\type_vec4.hpp"
 #include <ResourceManager.h>
 #include <InputManager.h>
+#include "BurgerTimeData.h"
 
 //component includes
 #include <TextureComp.h>
@@ -111,6 +112,14 @@ void BurgerTimeLvl::Notify(Component*, Event event)
 {
 	if (event == Event::PLAYER_DIED)
 	{
+		//updating the high score
+		int HighScore{ BurgerTimeData::GetInstance().GetHeighScore(BurgerTimeData::GameMode::Single) };
+		int currScore{ m_pScoreCounter->GetComponent<ScoreCounterComp>()->GetScore() };
+
+		if (HighScore < currScore)
+			BurgerTimeData::GetInstance().SetHeighScore(BurgerTimeData::GameMode::Single, currScore);
+		BurgerTimeData::GetInstance().SetScore(BurgerTimeData::GameMode::Single, currScore);
+
 		//resetting the scene
 		ResetScene();
 

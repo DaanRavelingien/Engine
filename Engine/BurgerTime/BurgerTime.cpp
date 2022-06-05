@@ -1,5 +1,6 @@
 #include "BurgerTime.h"
 #include <ResourceManager.h>
+#include "BurgerTimeData.h"
 
 //scenes
 #include "BurgerTimeStartMenu.h"
@@ -11,6 +12,9 @@
 
 void BurgerTime::Load() const
 {
+	//telling the game where to find saved data
+	BurgerTimeData::GetInstance().SetSourcePath("../Data/GameData.json");
+
 	//loading the nessecary textures
 	ResourceManager::GetInstance().LoadTexture("BurgerTimeTexture", "Textures/BurgerTimeSprites.png");
 	ResourceManager::GetInstance().LoadTexture("BurgerTimeLogo", "Textures/BurgerTimeLogo.png");
