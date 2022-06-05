@@ -62,7 +62,7 @@ void BurgerTimeGameOver::OnSceneActivated()
 	int score{ BurgerTimeData::GetInstance().GetScore(gameMode) };
 
 	m_pHighScoreLable->GetComponent<TextComp>()->SetText("HIGHSCORE    " + std::to_string(highScore));
-	m_pScoreLable->GetComponent<TextComp>()->SetText("SCORE    " + std::to_string(score));
+	m_pScoreLable->GetComponent<TextComp>()->SetText("YOUR SCORE    " + std::to_string(score));
 }
 
 void BurgerTimeGameOver::ContiniuCmd::Execute()

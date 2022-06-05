@@ -37,6 +37,13 @@ void HealthComp::Update()
 	}
 }
 
+void HealthComp::Reset()
+{
+	m_Health = m_MaxHealth;
+
+	m_pGameObj->SendNotification(this, Event::HEALTH_CHANGED);
+}
+
 void HealthComp::Damage(int damage)
 {
 	m_Health -= damage;
@@ -46,6 +53,8 @@ void HealthComp::Damage(int damage)
 
 	if (m_Health == 0)
 		m_pGameObj->GetScene()->SendNotification(this, Event::PLAYER_DIED);
+	else
+		m_pGameObj->GetScene()->SendNotification(this, Event::PLAYER_DAMAGED);
 
 	m_pGameObj->SendNotification(this, Event::HEALTH_CHANGED);
 }

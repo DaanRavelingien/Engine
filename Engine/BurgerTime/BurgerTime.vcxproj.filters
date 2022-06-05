@@ -78,9 +78,6 @@
     <ClCompile Include="BurgerTimeVsLvl.cpp">
       <Filter>GameScenes</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyComp.cpp">
-      <Filter>GameComps</Filter>
-    </ClCompile>
     <ClCompile Include="BurgerTimeGameOver.cpp">
       <Filter>GameScenes</Filter>
     </ClCompile>
@@ -89,6 +86,15 @@
     </ClCompile>
     <ClCompile Include="BurgerTimeData.cpp">
       <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyComp.cpp">
+      <Filter>GameComps\EnemyComps</Filter>
+    </ClCompile>
+    <ClCompile Include="HotDogBehaviourComp.cpp">
+      <Filter>GameComps\EnemyComps</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManagerComp.cpp">
+      <Filter>GameComps\EnemyComps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,9 +174,6 @@
     <ClInclude Include="BurgerTimeVsLvl.h">
       <Filter>GameScenes</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyComp.h">
-      <Filter>GameComps</Filter>
-    </ClInclude>
     <ClInclude Include="BurgerTimeGameOver.h">
       <Filter>GameScenes</Filter>
     </ClInclude>
@@ -179,6 +182,15 @@
     </ClInclude>
     <ClInclude Include="BurgerTimeData.h">
       <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyComp.h">
+      <Filter>GameComps\EnemyComps</Filter>
+    </ClInclude>
+    <ClInclude Include="HotDogBehaviourComp.h">
+      <Filter>GameComps\EnemyComps</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManagerComp.h">
+      <Filter>GameComps\EnemyComps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +211,9 @@
     </Filter>
     <Filter Include="Other">
       <UniqueIdentifier>{254c47db-f9e9-4b34-a380-1fc211d41d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameComps\EnemyComps">
+      <UniqueIdentifier>{5c69cab4-5fac-4741-afbd-f9ef138eee22}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

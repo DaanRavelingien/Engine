@@ -29,7 +29,7 @@ void BurgerTimeVsLvl::Initialize()
 
 	//setting up the correct input for this scene
 	//===========================================
-	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr });
+	GetInputManager()->SetCommand(KeyboardButton::ESC, ButtonState::Up, new PauseCmd{ nullptr }	);
 	GetInputManager()->SetCommand(ControllerButton::StartButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
 	GetInputManager()->SetCommand(ControllerButton::BackButton, ButtonState::Up, new PauseCmd{ nullptr }, Controller::Controller_1);
 
@@ -96,7 +96,7 @@ void BurgerTimeVsLvl::Initialize()
 
 	GameObject* pScoreLabel{ new GameObject{ "ScoreLabel" } };
 	pScoreLabel->AddComponent(new TextRenderComp{});
-	pScoreLabel->AddComponent(new TextComp{ "SCORE P1", "ArcadeClassic_Size50",{1,0,0} });
+	pScoreLabel->AddComponent(new TextComp{ "SCORE", "ArcadeClassic_Size50",{1,0,0} });
 	pScoreLabel->GetTransform()->SetPos({ 0,0,0 });
 	pScoreDisplay->AddChild(pScoreLabel);
 
@@ -125,6 +125,13 @@ void BurgerTimeVsLvl::Initialize()
 	AddGameObj(m_pLevel);
 }
 
+void BurgerTimeVsLvl::OnSceneActivated()
+{
+	//respawning the player characters when we come to this scene
+	m_pPeterPepper->GetComponent<EntityMoveComp>()->Respawn();
+	m_pMrHotDog->GetComponent<EntityMoveComp>()->Respawn();
+}
+
 void BurgerTimeVsLvl::PauseCmd::Execute()
 {
 	SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
@@ -132,6 +139,11 @@ void BurgerTimeVsLvl::PauseCmd::Execute()
 
 void BurgerTimeVsLvl::Notify(Component*, Event event)
 {
+	if (event == Event::PLAYER_DAMAGED)
+	{
+		//resetting the hotdog player
+		m_pMrHotDog->GetComponent<EntityMoveComp>()->Respawn();
+	}
 	if (event == Event::PLAYER_DIED)
 	{
 		//updating the high score
@@ -145,8 +157,16 @@ void BurgerTimeVsLvl::Notify(Component*, Event event)
 		//resetting the scene
 		ResetScene();
 
+		//also setting the 1s level again
+		m_pLevel->GetComponent<LevelManagerComp>()->SetFirsLvl();
+
 		//going to the game over scene
 		SceneManager::GetInstance().SetActiveScene("BurgerTimeGameOver");
+	}
+	if (event == Event::BURGERS_COMPLETE)
+	{
+		//resetting the hotdog player
+		m_pMrHotDog->GetComponent<EntityMoveComp>()->Respawn();
 	}
 }
 
@@ -160,5 +180,7 @@ void BurgerTimeVsLvl::ResetScene()
 
 	//respawning the player characters
 	m_pPeterPepper->GetComponent<EntityMoveComp>()->Respawn();
+	m_pPeterPepper->GetComponent<HealthComp>()->Reset();
+
 	m_pMrHotDog->GetComponent<EntityMoveComp>()->Respawn();
 }

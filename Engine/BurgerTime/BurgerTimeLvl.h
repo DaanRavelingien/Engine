@@ -15,9 +15,12 @@ public:
 
 protected:
 	void Initialize() override;
+	void OnSceneActivated() override;
 
 private:	
 	GameObject* m_pPeterPepper{ nullptr };
+
+	GameObject* m_pEnemyManager{ nullptr };
 
 	GameObject* m_pLevel{ nullptr };
 	GameObject* m_pScoreCounter{ nullptr };;

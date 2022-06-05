@@ -78,11 +78,11 @@ void EntityMoveComp::Respawn()
 	m_pGameObj->GetTransform()->SetPos(glm::vec3{ m_spawnPos.x,m_spawnPos.y,m_pGameObj->GetTransform()->GetPos().z });
 }
 
-void EntityMoveComp::MoveUp()
+bool EntityMoveComp::MoveUp()
 {
 	//do nothing if this comp is disabled
 	if (!IsEnabled())
-		return;
+		return false;
 
 	//checking if we need to find a ladder
 	if (!m_pLadder)
@@ -110,13 +110,17 @@ void EntityMoveComp::MoveUp()
 		float top{ m_pLadder->GetTransform()->GetPos().y + m_pLadder->GetComponent<HitboxComp>()->GetSize().y };
 		if (m_pGameObj->GetTransform()->GetPos().y > top)
 			m_pGameObj->GetTransform()->SetPos({ currentPos.x,top,currentPos.z });
+
+		return true;
 	}
+
+	return false;
 }
 
-void EntityMoveComp::MoveDown()
+bool EntityMoveComp::MoveDown()
 {
 	if (!IsEnabled())
-		return;
+		return false;
 
 	//checking if we need to find a ladder
 	if (!m_pLadder)
@@ -144,13 +148,17 @@ void EntityMoveComp::MoveDown()
 		float top{ m_pLadder->GetTransform()->GetPos().y + m_pLadder->GetComponent<HitboxComp>()->GetSize().y };
 		if (m_pGameObj->GetTransform()->GetPos().y > top)
 			m_pGameObj->GetTransform()->SetPos({ currentPos.x,top,currentPos.z });
+
+		return true;
 	}
+
+	return false;
 }
 
-void EntityMoveComp::MoveLeft()
+bool EntityMoveComp::MoveLeft()
 {
 	if (!IsEnabled())
-		return;
+		return false;
 
 	//checking if we need to find a platform
 	if (!m_pPlatform)
@@ -180,13 +188,16 @@ void EntityMoveComp::MoveLeft()
 		if (m_pGameObj->GetTransform()->GetPos().x > right)
 			m_pGameObj->GetTransform()->SetPos({ right, currentPos.y ,currentPos.z });
 
+		return true;
 	}
+
+	return false;
 }
 
-void EntityMoveComp::MoveRight()
+bool EntityMoveComp::MoveRight()
 {
 	if (!IsEnabled())
-		return;
+		return false;
 
 	//checking if we need to find a platform
 	if (!m_pPlatform)
@@ -216,7 +227,10 @@ void EntityMoveComp::MoveRight()
 		if (m_pGameObj->GetTransform()->GetPos().x > right)
 			m_pGameObj->GetTransform()->SetPos({ right, currentPos.y ,currentPos.z });
 
+		return true;
 	}
+
+	return false;
 }
 
 void EntityMoveComp::FindLadder()

@@ -19,6 +19,9 @@
 #include "EntityMoveComp.h"
 #include "PlayerInputComp.h"
 #include "LevelManagerComp.h"
+#include "GravityComp.h"
+#include "EnemyComp.h"
+#include "EnemyManagerComp.h"
 
 void BurgerTimeLvl::Initialize()
 {
@@ -59,6 +62,17 @@ void BurgerTimeLvl::Initialize()
 	m_pPeterPepper->GetTransform()->SetScale({ 3,3,3 });
 	AddGameObj(m_pPeterPepper);
 
+	//creating the enemy manager
+	//==========================
+	m_pEnemyManager = new GameObject{ "EnemyManager" };
+	EnemyManagerComp* pEnemyManagerComp{ new EnemyManagerComp{6} };
+	m_pEnemyManager->AddComponent(pEnemyManagerComp);
+	pEnemyManagerComp->AddSpawnPoint(glm::vec3{ 48,99,0 });
+	pEnemyManagerComp->AddSpawnPoint(glm::vec3{ 624,99,0 });
+	pEnemyManagerComp->AddEnemyTarget(m_pPeterPepper);
+
+	AddGameObj(m_pEnemyManager);
+
 	//creating hud
 	//============
 	GameObject* pHud{ new GameObject{ "Hud" } };
@@ -66,7 +80,7 @@ void BurgerTimeLvl::Initialize()
 	GameObject* pLivesDisplay{ new GameObject{"LivesDisplay"} };
 	pLivesDisplay->AddComponent(new LivesDisplayComp(m_pPeterPepper, "BurgerTimeTexture"));
 
-	pLivesDisplay->GetTransform()->SetScale({ 3,3,3 });
+	pLivesDisplay->GetTransform()->SetScale({ 4,4,4 });
 	pLivesDisplay->GetTransform()->SetPos({ 10,700,0 });
 	pHud->AddChild(pLivesDisplay);
 
@@ -74,7 +88,7 @@ void BurgerTimeLvl::Initialize()
 
 	GameObject* pScoreLabel{ new GameObject{ "ScoreLabel" } };
 	pScoreLabel->AddComponent(new TextRenderComp{});
-	pScoreLabel->AddComponent(new TextComp{ "SCORE P1", "ArcadeClassic_Size50",{1,0,0} });
+	pScoreLabel->AddComponent(new TextComp{ "SCORE", "ArcadeClassic_Size50",{1,0,0} });
 	pScoreLabel->GetTransform()->SetPos({ 0,0,0 });
 	pScoreDisplay->AddChild(pScoreLabel);
 
@@ -103,6 +117,14 @@ void BurgerTimeLvl::Initialize()
 	AddGameObj(m_pLevel);
 }
 
+void BurgerTimeLvl::OnSceneActivated()
+{
+	//respawning the player characters when we come to this scene
+	m_pPeterPepper->GetComponent<EntityMoveComp>()->Respawn();
+
+	m_pEnemyManager->GetComponent<EnemyManagerComp>()->ResetEnemies();
+}
+
 void BurgerTimeLvl::PauseCmd::Execute()
 {
 	SceneManager::GetInstance().SetActiveScene("BurgerTimePauseMenu");
@@ -110,6 +132,11 @@ void BurgerTimeLvl::PauseCmd::Execute()
 
 void BurgerTimeLvl::Notify(Component*, Event event)
 {
+	if (event == Event::PLAYER_DAMAGED)
+	{
+		//resetting the enemies
+		m_pEnemyManager->GetComponent<EnemyManagerComp>()->ResetEnemies();
+	}
 	if (event == Event::PLAYER_DIED)
 	{
 		//updating the high score
@@ -123,8 +150,16 @@ void BurgerTimeLvl::Notify(Component*, Event event)
 		//resetting the scene
 		ResetScene();
 
+		//also setting the 1s level again
+		m_pLevel->GetComponent<LevelManagerComp>()->SetFirsLvl();
+
 		//going to the game over scene
 		SceneManager::GetInstance().SetActiveScene("BurgerTimeGameOver");
+	}
+	if (event == Event::BURGERS_COMPLETE)
+	{
+		//resetting the enemies
+		m_pEnemyManager->GetComponent<EnemyManagerComp>()->ResetEnemies();
 	}
 }
 
@@ -138,4 +173,8 @@ void BurgerTimeLvl::ResetScene()
 
 	//respawning the player characters
 	m_pPeterPepper->GetComponent<EntityMoveComp>()->Respawn();
+	m_pPeterPepper->GetComponent<HealthComp>()->Reset();
+
+	//resetting the enemies
+	m_pEnemyManager->GetComponent<EnemyManagerComp>()->ResetEnemies();
 }

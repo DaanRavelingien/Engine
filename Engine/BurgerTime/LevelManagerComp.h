@@ -17,6 +17,7 @@ public:
 
 	void AddLevelFile(const std::string& levelFilePath) { m_LevelFiles.push_back(levelFilePath); };
 	void ResetLvl();
+	void SetFirsLvl();
 	void GoNextLvl();
 	void GoPrevLvl();
 

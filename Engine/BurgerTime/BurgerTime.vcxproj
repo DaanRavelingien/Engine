@@ -28,11 +28,13 @@
     <ClCompile Include="BurgerTimeStartMenu.cpp" />
     <ClCompile Include="BurgerTimeVsLvl.cpp" />
     <ClCompile Include="EnemyComp.cpp" />
+    <ClCompile Include="EnemyManagerComp.cpp" />
     <ClCompile Include="EntityMoveComp.cpp" />
     <ClCompile Include="GravityComp.cpp" />
     <ClCompile Include="HealthComp.cpp" />
     <ClCompile Include="HitboxComp.cpp" />
     <ClCompile Include="HitboxManagerComp.cpp" />
+    <ClCompile Include="HotDogBehaviourComp.cpp" />
     <ClCompile Include="IngredientComp.cpp" />
     <ClCompile Include="IngredientManagerComp.cpp" />
     <ClCompile Include="IngredientPieceComp.cpp" />
@@ -61,11 +63,13 @@
     <ClInclude Include="BurgerTimeStartMenu.h" />
     <ClInclude Include="BurgerTimeVsLvl.h" />
     <ClInclude Include="EnemyComp.h" />
+    <ClInclude Include="EnemyManagerComp.h" />
     <ClInclude Include="EntityMoveComp.h" />
     <ClInclude Include="GravityComp.h" />
     <ClInclude Include="HealthComp.h" />
     <ClInclude Include="HitboxComp.h" />
     <ClInclude Include="HitboxManagerComp.h" />
+    <ClInclude Include="HotDogBehaviourComp.h" />
     <ClInclude Include="IngredientComp.h" />
     <ClInclude Include="IngredientManagerComp.h" />
     <ClInclude Include="IngredientPieceComp.h" />

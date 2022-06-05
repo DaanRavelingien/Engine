@@ -43,6 +43,12 @@ void LevelManagerComp::ResetLvl()
 	DestroyCurrentLevel();
 }
 
+void LevelManagerComp::SetFirsLvl()
+{
+	DestroyCurrentLevel();
+	m_CurrentLevel = 0;
+}
+
 void LevelManagerComp::GoNextLvl()
 {
 	if (m_LevelFiles.empty())
